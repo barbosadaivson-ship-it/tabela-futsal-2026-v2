@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>METALÚRGICOS SUB 9 — V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  /* LIGHT MODE (Default) */
+  --bg: #F4F5F7;
+  --s1: #FFFFFF;
+  --s2: #F8F9FA;
+  --t1: #0D1117;
+  --t2: #4B5563;
+  --t3: #9CA3AF;
+  --red: #CC1033; --red-bg: rgba(204,16,51,.06); --red-bd: rgba(204,16,51,.18);
+  --green: #16A34A; --green-bg: rgba(22,163,74,.06); --green-bd: rgba(22,163,74,.2);
+  --amber: #C07A00; --amber-bg: rgba(192,122,0,.06); --amber-bd: rgba(192,122,0,.2);
+  --border: #E5E7EB; --border2: #D1D5DB;
+  --r: 12px; --r2: 16px; --r3: 20px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+html.dark-mode {
+  /* DARK MODE (Glassmorphism) */
+  --bg: #0a0014;
+  --s1: rgba(255, 255, 255, 0.06);
+  --s2: rgba(255, 255, 255, 0.1);
+  --t1: #ffffff;
+  --t2: rgba(255, 255, 255, 0.7);
+  --t3: rgba(255, 255, 255, 0.4);
+  --red: #ff4466; --red-bg: rgba(204,16,51,.15); --red-bd: rgba(204,16,51,.35);
+  --green: #4ade80; --green-bg: rgba(34,197,94,.1); --green-bd: rgba(34,197,94,.25);
+  --amber: #fbbf24; --amber-bg: rgba(251,191,36,.1); --amber-bd: rgba(251,191,36,.25);
+  --border: rgba(255, 255, 255, 0.12); --border2: rgba(255, 255, 255, 0.2);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+html {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ORBS BACKGROUND (Dark Mode Only) ── */
+.orbs { display: none; position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+html.dark-mode .orbs { display: block; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55; animation: float-orb 14s ease-in-out infinite alternate; }
+.orb1 { width: 600px; height: 600px; background: radial-gradient(circle, #CC1033 0%, transparent 70%); top: -200px; left: -150px; animation-duration: 16s; }
+.orb2 { width: 500px; height: 500px; background: radial-gradient(circle, #4f46e5 0%, transparent 70%); top: 20%; right: -150px; animation-duration: 20s; animation-delay: -4s; }
+.orb3 { width: 400px; height: 400px; background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); bottom: -100px; left: 30%; animation-duration: 18s; animation-delay: -8s; }
+@keyframes float-orb {
+  0% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-40px) scale(1.05); }
+  66% { transform: translate(-20px,20px) scale(.95); }
+  100% { transform: translate(10px,-10px) scale(1.02); }
+}
+
+/* ── UTILS ── */
+.glass-panel {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+html.dark-mode .glass-panel {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ── THEME SWITCH ── */
+.theme-switch-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.theme-switch-wrapper span {
+  font-size: 16px;
+  opacity: 0.8;
+}
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.15); transition: .4s;
+}
+.slider:before {
+  position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+  background-color: white; transition: .4s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+html.dark-mode .slider { background-color: rgba(255,255,255,0.3); }
+html.dark-mode .slider:before { transform: translateX(22px); }
+.slider.round { border-radius: 24px; }
+.slider.round:before { border-radius: 50%; }
+
+/* ── HEADER ── */
+.top-bar {
+  background: var(--t1);
+  border-radius: var(--r3);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+html.dark-mode .top-bar {
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+/* Removed decorative red circle */
+.tb-badge {
+  display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; background: rgba(204,16,51,.2); border: 1px solid rgba(204,16,51,.3); border-radius: 999px; font-size: 9px; font-weight: 700; color: #ff4466; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
+}
+.tb-title {
+  font-family: 'Outfit', sans-serif; font-size: clamp(24px, 4vw, 36px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -.5px;
+}
+.tb-sub {
+  font-size: 12px; color: rgba(255,255,255,.5); margin-top: 4px;
+}
+.tb-stats {
+  display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1;
+}
+.tb-stat {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 10px 16px; text-align: center;
+}
+.tb-stat .n { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 900; color: #fff; line-height: 1; }
+.tb-stat .l { font-size: 9px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .8px; font-weight: 600; margin-top: 2px; }
+
+/* ── OVERVIEW GRID (WDL + LAST RESULTS) ── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 800px) {
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+/* W/D/L */
+.wdl-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; grid-auto-rows: 1fr; }
+.wdl-card { padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; min-height: 100px; overflow: hidden; }
+.wdl-card.w { border-color: var(--green-bd); background: var(--green-bg); }
+.wdl-card.d { border-color: var(--amber-bd); background: var(--amber-bg); }
+.wdl-card.l { border-color: var(--red-bd); background: var(--red-bg); }
+.wdl-card.a { border-color: rgba(14, 165, 233, 0.2); background: rgba(14, 165, 233, 0.06); }
+html.dark-mode .wdl-card.a { border-color: rgba(14, 165, 233, 0.25); background: rgba(14, 165, 233, 0.1); }
+.wdl-num { font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.wdl-card.w .wdl-num { color: var(--green); }
+.wdl-card.d .wdl-num { color: var(--amber); }
+.wdl-card.l .wdl-num { color: var(--red); }
+.wdl-card.a .wdl-num { color: #0ea5e9; }
+.wdl-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--t3); }
+
+/* LAST RESULTS PANEL */
+.last-results-panel { display: flex; flex-direction: column; }
+.last-games-container { display: flex; flex-direction: column; gap: 8px; padding: 12px 20px; flex: 1; justify-content: flex-start; max-height: 200px; overflow-y: auto; }
+.lg-row {
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--s2); border-radius: 10px; border: 1px solid var(--border);
+}
+.lg-teams { font-size: 11px; font-weight: 700; color: var(--t2); text-transform: uppercase; display: flex; flex: 1; justify-content: center; gap: 8px; align-items: center; }
+.lg-score { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 900; color: var(--t1); background: var(--s1); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); }
+.lg-teams span.our { color: var(--red); }
+
+/* ── NEXT GAME ── */
+.next-banner {
+  padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  border: 2px solid var(--red-bd);
+}
+html.dark-mode .next-banner {
+  box-shadow: 0 0 30px rgba(204,16,51,.08) inset, 0 0 20px rgba(204,16,51,.05);
+}
+.nb-pulse { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; background: var(--red-bg); border: 1px solid var(--red-bd); border-radius: 999px; font-size: 9px; font-weight: 800; color: var(--red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.nb-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: pulse-r 1.5s infinite; }
+@keyframes pulse-r { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.5)} }
+.nb-match { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: var(--t1); margin-bottom: 6px; }
+.nb-match .our { color: var(--red); }
+.nb-detail { font-size: 12px; color: var(--t2); line-height: 1.8; }
+.nb-address { font-size: 11px; color: var(--t3); margin-top: 4px; font-weight: 500; }
+.nb-map-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--red); color: white; padding: 6px 12px; border-radius: 8px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-top: 8px; transition: opacity .2s; }
+.nb-map-btn:hover { opacity: .8; }
+.nb-right { text-align: center; background: var(--red-bg); padding: 12px 20px; border-radius: 12px; border: 1px solid var(--red-bd); }
+.nb-date { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 900; color: var(--red); line-height: 1; }
+.nb-time { font-size: 11px; color: var(--t2); font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+
+/* ── CALENDÁRIO & ESTATÍSTICAS LAYOUT ── */
+.mb-16 { margin-bottom: 16px; }
+.stats-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+@media (max-width: 900px) {
+  .stats-cols { grid-template-columns: 1fr; }
+}
+
+/* Uniform height for the three statistic panels */
+.stats-cols .glass-panel {
+  height: 340px; /* same height for all three */
+  display: flex;
+  flex-direction: column;
+}
+.stats-cols .glass-panel .scroll-list {
+  flex: 1;
+  overflow-y: auto;
+}
+/* Slight visual tweak: the first panel (Artilharia) will show a bit more content before scrolling */
+.stats-cols .glass-panel:nth-child(1) .scroll-list {
+  /* no extra margin */
+}
+/* The other two panels start a bit lower, hiding a portion of their content */
+.stats-cols .glass-panel:not(:nth-child(1)) .scroll-list {
+  margin-top: 6px; /* hides a tiny slice at the top */
+}
+
+/* ── LISTS & PANELS ── */
+.panel-head { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--t3); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.panel-head-title { display: flex; align-items: center; gap: 8px; }
+.panel-head-title::before { content: ''; width: 3px; height: 14px; background: var(--red); border-radius: 2px; }
+.fed-link { font-size: 10px; font-weight: 600; color: var(--t2); background: var(--s2); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); transition: all 0.2s; }
+.fed-link:hover { background: var(--t2); color: var(--s1); }
+
+/* ── ACCORDION ── */
+.month-group { display: flex; flex-direction: column; }
+.month-header {
+  padding: 14px 20px; background: var(--s2); border-bottom: 1px solid var(--border); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: var(--t1); cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+}
+.month-header:hover { background: var(--border); }
+.month-icon { font-size: 12px; transition: transform 0.3s; color: var(--t3); }
+.month-header.collapsed .month-icon.toggle-icon { transform: rotate(-90deg); }
+.month-content { overflow: hidden; transition: max-height 0.3s ease; }
+.month-content.collapsed { max-height: 0; }
+
+/* ── GAME ROW ── */
+.game-row { display: flex; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 14px; position: relative; transition: background .15s; }
+.game-row:last-child { border-bottom: none; }
+.game-row:hover { background: var(--s2); }
+.game-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+.game-row.win::before { background: var(--green); }
+.game-row.loss::before { background: var(--red); }
+.game-row.draw::before { background: var(--amber); }
+
+.gr-round { font-size: 9px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: .5px; width: 50px; flex-shrink: 0; }
+.gr-teams { flex: 1; min-width: 0; }
+.gr-match { font-size: 14px; font-weight: 600; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gr-match .our { color: var(--red); }
+.gr-info { font-size: 11px; color: var(--t3); margin-top: 4px; display: flex; gap: 8px; align-items: center; }
+.gr-info a { color: var(--red); text-decoration: underline; }
+.gr-score { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 900; min-width: 65px; text-align: center; flex-shrink: 0; line-height: 1; }
+.gr-score.win { color: var(--green); }
+.gr-score.loss { color: var(--red); }
+.gr-score.draw { color: var(--amber); }
+.gr-score.pending { font-size: 11px; font-weight: 600; color: var(--t3); background: var(--s2); padding: 4px 8px; border-radius: 6px; border: 1px dashed var(--border2); }
+.gr-badge { min-width: 60px; text-align: right; flex-shrink: 0; }
+.outcome-badge { display: inline-flex; padding: 4px 8px; border-radius: 6px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.outcome-badge.win { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bd); }
+.outcome-badge.loss { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bd); }
+.outcome-badge.draw { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bd); }
+
+.btn-edit { background: none; border: 1px solid var(--border); border-radius: 6px; font-size: 10px; font-weight: 600; color: var(--t2); padding: 4px 8px; margin-top: 6px; display: inline-block; }
+.btn-edit:hover { background: var(--s2); color: var(--t1); }
+.goals-list { font-size: 10px; color: var(--t2); margin-top: 6px; background: var(--s2); padding: 6px 10px; border-radius: 6px; display: inline-block; }
+
+
+
+/* SCROLLABLE LISTS */
+.scroll-list { max-height: 400px; overflow-y: auto; }
+.scroll-list::-webkit-scrollbar { width: 6px; }
+.scroll-list::-webkit-scrollbar-track { background: var(--bg); }
+.scroll-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 6px; }
+.scroll-list::-webkit-scrollbar-thumb:hover { background: var(--t3); }
+
+/* ARTILHARIA */
+#artilhariaList { max-height: 320px; } /* Roughly 5 items */
+.scorer-row { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+.scorer-row:last-child { border-bottom: none; }
+.s-pos { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 900; color: var(--t3); width: 24px; text-align: center; }
+.s-pos.gold { color: #CA8A04; }
+.s-photo { width: 32px; height: 32px; border-radius: 8px; background: var(--s2); border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; }
+.s-photo img { width: 100%; height: 100%; object-fit: cover; }
+.s-info { flex: 1; min-width: 0; }
+.s-name { font-size: 13px; font-weight: 600; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-goals-wrap { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.s-goals-num { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 900; color: var(--red); line-height: 1; }
+
+/* CLASSIF */
+.classif-row { display: grid; grid-template-columns: 24px 1fr 24px; align-items: center; gap: 10px; padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.classif-row:last-child { border-bottom: none; }
+.classif-row.our { background: var(--red-bg); border-left: 3px solid var(--red); }
+.c-pos { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 800; background: var(--s2); color: var(--t2); border: 1px solid var(--border); }
+.classif-row.our .c-pos { background: var(--red); color: #fff; border-color: var(--red); }
+.c-team { font-weight: 600; color: var(--t2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.classif-row.our .c-team { color: var(--red); font-weight: 800; }
+.c-pts { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 900; color: var(--t1); text-align: right; }
+.classif-row.our .c-pts { color: var(--red); }
+
+/* ── MODAL ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; opacity: 0; transition: opacity 0.3s; }
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal { background: var(--s1); width: 100%; max-width: 400px; border-radius: var(--r2); padding: 24px; position: relative; border: 1px solid var(--border); box-shadow: var(--shadow); transform: translateY(20px); transition: transform 0.3s; max-height: 90vh; display: flex; flex-direction: column; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; color: var(--t3); cursor: pointer; }
+.modal h3 { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: var(--t1); margin-bottom: 4px; }
+.modal-subtitle { font-size: 12px; color: var(--t2); margin-bottom: 20px; }
+.modal label { font-size: 11px; font-weight: 700; color: var(--t2); text-transform: uppercase; margin-bottom: 6px; display: block; }
+.modal input[type="password"] { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--t1); margin-bottom: 16px; font-family: inherit; }
+.score-inputs { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 20px; }
+.score-inputs > div { text-align: center; }
+.score-inputs input { width: 60px; text-align: center; font-size: 24px; font-weight: 900; font-family: 'Outfit', sans-serif; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--t1); }
+.score-sep { font-size: 24px; font-weight: 700; color: var(--t3); }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn-save { flex: 1; background: var(--red); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 14px; }
+.btn-clear { background: var(--s2); color: var(--t2); border: 1px solid var(--border); padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+.modal-error { color: var(--red); font-size: 12px; font-weight: 600; margin-top: 10px; display: none; text-align: center; }
+
+#goalsContainer { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--border); padding: 12px; border-radius: 12px; background: var(--bg); flex: 1; }
+.goal-row { display: flex; align-items: center; justify-content: space-between; background: var(--s1); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); }
+.goal-player { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--t1); }
+.goal-controls { display: flex; align-items: center; gap: 10px; }
+.goal-controls button { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border); background: var(--s2); color: var(--t1); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.goal-controls span { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--red); width: 20px; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- ORBS -->
+<div class="orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- THEME TOGGLE -->
+<div class="theme-switch-wrapper">
+  <span>☀️</span>
+  <label class="theme-switch">
+    <input type="checkbox" id="themeCheckbox" onchange="toggleTheme()">
+    <span class="slider round"></span>
+  </label>
+  <span>🌙</span>
+</div>
+
+<!-- HEADER -->
+<div class="top-bar">
+  <div class="tb-left">
+    <div class="tb-badge">⚽ Federação Paulista · SUB 9</div>
+    <div class="tb-title">METALÚRGICOS JUNDIAÍ</div>
+    <div class="tb-sub">Campeonato Paulista 2026 · Iniciação A2 · MAR–AGO</div>
+  </div>
+  <div class="tb-stats">
+    <div class="tb-stat"><div class="n" id="stat-j">0</div><div class="l">Jogados</div></div>
+    <div class="tb-stat"><div class="n" id="stat-pts">0</div><div class="l">Pontos</div></div>
+    <div class="tb-stat"><div class="n" id="stat-pos">-</div><div class="l">Posição</div></div>
+    <div class="tb-stat"><div class="n" id="stat-apr">0%</div><div class="l">Aproveit.</div></div>
+  </div>
+</div>
+
+<!-- W / D / L & ÚLTIMOS RESULTADOS -->
+<div class="overview-grid">
+  <div class="wdl-row">
+    <div class="glass-panel wdl-card w"><div class="wdl-num" id="wc-w">0</div><div class="wdl-lbl">Vitórias</div></div>
+    <div class="glass-panel wdl-card d"><div class="wdl-num" id="wc-d">0</div><div class="wdl-lbl">Empates</div></div>
+    <div class="glass-panel wdl-card l"><div class="wdl-num" id="wc-l">0</div><div class="wdl-lbl">Derrotas</div></div>
+    <div class="glass-panel wdl-card a"><div class="wdl-num" id="wc-a">0%</div><div class="wdl-lbl">Aproveitamento</div></div>
+  </div>
+  
+  <div class="glass-panel last-results-panel">
+    <div class="panel-head">
+      <div class="panel-head-title">Últimos Resultados</div>
+    </div>
+    <div id="lastGamesList" class="last-games-container"></div>
+  </div>
+</div>
+
+<!-- PRÓXIMO JOGO -->
+<div class="glass-panel next-banner" id="nextBannerContainer" style="display: none;">
+  <!-- Injetado via JS -->
+</div>
+
+<!-- CALENDÁRIO FULL WIDTH -->
+<div class="glass-panel mb-16">
+  <div class="panel-head">
+    <div class="panel-head-title">Calendário de Jogos</div>
+  </div>
+  <div id="gamesList"></div>
+</div>
+
+<!-- 3 COLS ESTATÍSTICAS -->
+<div class="stats-cols">
+
+    <!-- ARTILHARIA -->
+    <div class="glass-panel">
+      <div class="panel-head">
+        <div class="panel-head-title">⚽ Artilharia</div>
+      </div>
+      <div id="artilhariaList" class="scroll-list"></div>
+    </div>
+
+    <!-- CLASSIFICAÇÃO SUB 9 -->
+    <div class="glass-panel">
+      <div class="panel-head">
+        <div class="panel-head-title">🏆 Classificação Sub 9</div>
+        <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" class="fed-link">Federação ↗</a>
+      </div>
+      <div id="classifList" class="scroll-list"></div>
+    </div>
+
+    <!-- RANKING GERAL -->
+    <div class="glass-panel">
+      <div class="panel-head">
+        <div class="panel-head-title">🌟 Ranking Geral (Soma)</div>
+        <a href="https://eventos.admfutsal.com.br/ranking?grupo-cat=1&divisao=4" target="_blank" class="fed-link">Federação ↗</a>
+      </div>
+      <div id="rankingList" class="scroll-list"></div>
+    </div>
+
+</div>
+
+<!-- MODAL DE RESULTADO -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modalTitle">Registrar Resultado</h3>
+    <p class="modal-subtitle" id="modalSubtitle"></p>
+
+    <label>Senha de acesso</label>
+    <input type="password" id="inputPassword" placeholder="••••••••" autocomplete="off">
+
+    <label>Placar</label>
+    <div class="score-inputs">
+      <div>
+        <label id="modalHomeLabel" style="text-align: center; margin-bottom: 4px;">CASA</label>
+        <input type="number" id="inputScoreHome" placeholder="0" min="0" max="99">
+      </div>
+      <div class="score-sep">×</div>
+      <div>
+        <label id="modalAwayLabel" style="text-align: center; margin-bottom: 4px;">FORA</label>
+        <input type="number" id="inputScoreAway" placeholder="0" min="0" max="99">
+      </div>
+    </div>
+
+    <label>Gols Marcados</label>
+    <div id="goalsContainer"></div>
+
+    <div class="modal-error" id="modalError">Senha incorreta ou erro no placar.</div>
+
+    <div class="modal-actions">
+      <button class="btn-save" onclick="saveResult()">Salvar Resultado</button>
+      <button class="btn-clear" onclick="clearResult()">Apagar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =====================================================
+// THEME TOGGLE
+// =====================================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const cb = document.getElementById('themeCheckbox');
+  if (cb.checked) {
+    html.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Load theme preference
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark-mode');
+  document.getElementById('themeCheckbox').checked = true;
+}
+
+// =====================================================
+// DADOS
+// =====================================================
+const RESULT_PASSWORD = "metaljundiai2026";
+const PLAYER_ICON = "icones/avatar.avif";
+
+const PLAYERS = [
+  { id: 1, name: "Bernardo Zanini", photo: "fotos_jogadores/01.png" },
+  { id: 2, name: "Miguel", photo: "fotos_jogadores/02.png" },
+  { id: 3, name: "Caio", photo: "fotos_jogadores/03.png" },
+  { id: 4, name: "Xerife", photo: "fotos_jogadores/04.png" },
+  { id: 5, name: "Rafa lucca", photo: "fotos_jogadores/5.png" },
+  { id: 6, name: "Rafinha", photo: "fotos_jogadores/06.png" },
+  { id: 7, name: "Gabriel", photo: "fotos_jogadores/07.png" },
+  { id: 8, name: "Juninho", photo: "fotos_jogadores/08.png" },
+  { id: 9, name: "Davi lucca", photo: "fotos_jogadores/09.png" },
+  { id: 10, name: "Ramalho", photo: "fotos_jogadores/10.png" },
+  { id: 11, name: "Miguel Duca", photo: "fotos_jogadores/11.png" },
+  { id: 12, name: "Pedro", photo: "fotos_jogadores/12.png" },
+  { id: 14, name: "Bernardo Marques", photo: "fotos_jogadores/14.png" },
+  { id: 15, name: "Moisés", photo: "fotos_jogadores/15.png" },
+  { id: 17, name: "Otto Pitombeira", photo: "fotos_jogadores/17.png" },
+  { id: 20, name: "Davizinho", photo: "fotos_jogadores/20.png" }
+].map(p => ({ ...p, displayName: `${p.id} - ${p.name}` }));
+
+const HOME_VENUE = "Sindicato dos Metalúrgicos";
+const HOME_ADDRESS = "R. Paulo Colin, 600, Jundiaí";
+
+const games = [
+  { round: "1ª Rodada", gameNum: "08", date: "15/03/2026", time: "16h15", home: "CLUBE BATALHA", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ginásio Batalha", address: "R. Prof. Vahia de Abreu, 540 - Vila Matilde, São Paulo", isHome: false, mapsQuery: "Batalha Sport Center SP", finalScoreHome: 2, finalScoreAway: 2, finalGoals: '{"17 - Otto Pitombeira":2}' },
+  { round: "2ª Rodada", gameNum: "16", date: "21/03/2026", time: "10h45", home: "METALÚRGICOS/JUNDIAÍ", away: "SANTO ANDRÉ FUTSAL", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 3, finalScoreAway: 2, finalGoals: '{"8 - Juninho":1, "12 - Pedro":1, "1 - Bernardo Zanini":1}' },
+  { round: "3ª Rodada", gameNum: "24", date: "28/03/2026", time: "10h15", home: "SER CAIEIRAS", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ginásio Ernesto Diogo", address: "Rua João Dártora, 218 - Centro, Caieiras", isHome: false, mapsQuery: "Ginásio Ernesto Diogo de Farias Caieiras", finalScoreHome: 0, finalScoreAway: 1, finalGoals: '{"17 - Otto Pitombeira":1}' },
+  { round: "4ª Rodada", gameNum: "41", date: "11/04/2026", time: "10h45", home: "METALÚRGICOS/JUNDIAÍ", away: "AD SUZANO", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 2, finalScoreAway: 4, finalGoals: '{"7 - Gabriel":1, "9 - Davi lucca":1}' },
+  { round: "5ª Rodada", gameNum: "57", date: "19/04/2026", time: "09h45", home: "IFA BONS DE BOLA", away: "METALÚRGICOS/JUNDIAÍ", venue: "Securitários", address: "R. Ioneji Matsubayashi, 982 - Itaquera, São Paulo", isHome: false, mapsQuery: "Centro Esportivo Sindicato Securitários Itaquera", finalScoreHome: 1, finalScoreAway: 6, finalGoals: '{"12 - Pedro":3, "8 - Juninho":2, "5 - Rafa lucca":1}' },
+  { round: "6ª Rodada", gameNum: "67", date: "25/04/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AE RIVER", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 3, finalScoreAway: 3, finalGoals: '{"17 - Otto Pitombeira":1, "12 - Pedro":1, "8 - Juninho":1}' },
+  { round: "7ª Rodada", gameNum: "78", date: "02/05/2026", time: "15h45", home: "ADEF FUTSAL", away: "METALÚRGICOS/JUNDIAÍ", venue: "Toca do Tigre", address: "R. Pará, 700 - Cotia, SP", isHome: false, mapsQuery: "R. Pará, 700 - Cotia, SP", finalScoreHome: 3, finalScoreAway: 2, finalGoals: '{"20 - Davizinho":1, "10 - Ramalho":1}' },
+  { round: "8ª Rodada", gameNum: "90", date: "09/05/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "WIMPRO VEGUS", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 7, finalScoreAway: 2, finalGoals: '{"12 - Pedro":3, "17 - Otto Pitombeira":1, "7 - Gabriel":1, "9 - Davi lucca":1, "5 - Rafa lucca":1}' },
+  { round: "9ª Rodada", gameNum: "106", date: "18/05/2026", time: "15h45", home: "GDR 7 DE SETEMBRO", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ginásio GDR", address: "R. Bom Jesus, 599 - Vila Reg. Feijó, São Paulo", isHome: false, mapsQuery: "GDR 7 de Setembro SP", finalScoreHome: 1, finalScoreAway: 4, finalGoals: '{"5 - Rafa lucca":1, "11 - Miguel Duca":2, "10 - Ramalho":1}' },
+  { round: "10ª Rodada", gameNum: "113", date: "23/05/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "MX7 FUTSAL", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 3, finalScoreAway: 2, finalGoals: '{"7 - Gabriel":1, "14 - Bernardo Marques":1, "17 - Otto Pitombeira":1}' },
+  { round: "11ª Rodada", gameNum: "122", date: "30/05/2026", time: "09h45", home: "ADC MERCEDES BENZ", away: "METALÚRGICOS/JUNDIAÍ", venue: "Arena Mercedes", address: "R. Brejaúva, 337 - Vila São José, Diadema", isHome: false, mapsQuery: "ADC Mercedes Benz Diadema", finalScoreHome: 0, finalScoreAway: 1, finalGoals: '{"Gol Contra":1}' },
+  { round: "12ª Rodada", gameNum: "136", date: "04/06/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "SPORT BENFICA MC", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "13ª Rodada", gameNum: "150", date: "06/06/2026", time: "15h45", home: "GR GREMETAL", away: "METALÚRGICOS/JUNDIAÍ", venue: "Jabaquara AC", address: "Av. Francisco Ferreira Canto, 351 - Caneleira, Santos", isHome: false, mapsQuery: "Jabaquara AC Santos" },
+  { round: "14ª Rodada", gameNum: "159", date: "13/06/2026", time: "09h45", home: "CAAS FUTMAX", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ginásio João Carlos", address: "Av. 31 de Março, 327 - Votorantim", isHome: false, mapsQuery: "Ginásio João Carlos Votorantim" },
+  { round: "15ª Rodada", gameNum: "179", date: "21/06/2026", time: "14h45", home: "METALÚRGICOS/JUNDIAÍ", away: "AE FRIBURGO", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "16ª Rodada", gameNum: "183", date: "27/06/2026", time: "09h45", home: "UNIÃO MAUÁ FUTSAL", away: "METALÚRGICOS/JUNDIAÍ", venue: "GE Mauaense", address: "R. Pedro de Toledo, 341 - Parque São Vicente, Mauá", isHome: false, mapsQuery: "GE Mauaense Mauá" },
+  { round: "17ª Rodada", gameNum: "196", date: "04/07/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AD SANTO ANDRÉ", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "18ª Rodada", gameNum: "210", date: "09/07/2026", time: "10h45", home: "OCIAN PRAIA CLUBE", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ocian Praia Clube", address: "R. Com. Otto Carlos Golanda, 80 - Praia Grande", isHome: false, mapsQuery: "Ocian Praia Clube" },
+  { round: "19ª Rodada", gameNum: "221", date: "01/08/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AE CHUTE FUTSAL", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "20ª Rodada", gameNum: "230", date: "08/08/2026", time: "09h45", home: "ADC MARVEL", away: "METALÚRGICOS/JUNDIAÍ", venue: "Arena Uniluz", address: "R. Batista Pereira, 275 - Macuco, Santos", isHome: false, mapsQuery: "Arena Uniluz Santos" },
+  { round: "21ª Rodada", gameNum: "247", date: "15/08/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "PAULISTA FC", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "22ª Rodada", gameNum: "260", date: "22/08/2026", time: "15h45", home: "CTC VILA EMA", away: "METALÚRGICOS/JUNDIAÍ", venue: "CTC Vila Ema", address: "R. Pinto da Luz, 705 - Vila Ema, São Paulo", isHome: false, mapsQuery: "CTC Vila Ema SP" },
+  { round: "23ª Rodada", gameNum: "269", date: "29/08/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AD NANDO GRANA", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" }
+];
+
+const CLASSIF_DATA = [
+  { pos: '1º', team: 'SANTO ANDRÉ FUTSAL', pts: 25, j: 10, v: 8, e: 1, d: 1, gp: 38, gc: 11, sg: 27 },
+  { pos: '2º', team: 'G.D.R. 7 DE SETEMBRO', pts: 25, j: 11, v: 8, e: 1, d: 2, gp: 46, gc: 26, sg: 20 },
+  { pos: '3º', team: 'ADEF/COTIA', pts: 25, j: 11, v: 8, e: 1, d: 2, gp: 36, gc: 17, sg: 19 },
+  { pos: '4º', team: 'A. UNIÃO MAUÁ', pts: 25, j: 10, v: 8, e: 1, d: 1, gp: 30, gc: 12, sg: 18 },
+  { pos: '5º', team: 'CLUBE BATALHA', pts: 25, j: 11, v: 8, e: 1, d: 2, gp: 33, gc: 16, sg: 17 },
+  { pos: '6º', team: 'METALÚRGICOS DE JUNDIAÍ', pts: 23, j: 11, v: 7, e: 2, d: 2, gp: 34, gc: 20, sg: 14 },
+  { pos: '7º', team: 'ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM', pts: 22, j: 10, v: 7, e: 1, d: 2, gp: 29, gc: 18, sg: 11 },
+  { pos: '8º', team: 'ADC MARVEL', pts: 22, j: 11, v: 7, e: 1, d: 3, gp: 20, gc: 15, sg: 5 },
+  { pos: '9º', team: 'SPORT BENFICA DE MOGI DAS CRUZES', pts: 19, j: 11, v: 6, e: 1, d: 4, gp: 37, gc: 27, sg: 10 },
+  { pos: '10º', team: 'ASSOCIAÇÃO DESPORTIVA NANDO GRANA', pts: 19, j: 11, v: 6, e: 1, d: 4, gp: 36, gc: 26, sg: 10 },
+  { pos: '11º', team: 'ASSOCIAÇÃO PAULISTA FUTEBOL CLUBE MOOCA', pts: 15, j: 11, v: 4, e: 3, d: 4, gp: 26, gc: 24, sg: 2 },
+  { pos: '12º', team: 'MX7 DIADEMA', pts: 14, j: 11, v: 4, e: 2, d: 5, gp: 27, gc: 27, sg: 0 },
+  { pos: '13º', team: 'ADC MERCEDES BENZ', pts: 14, j: 11, v: 4, e: 2, d: 5, gp: 19, gc: 19, sg: 0 },
+  { pos: '14º', team: 'INST. BONS DE BOLA', pts: 14, j: 11, v: 4, e: 2, d: 5, gp: 22, gc: 31, sg: -9 },
+  { pos: '15º', team: 'S.E.R. CAIEIRAS', pts: 12, j: 11, v: 3, e: 3, d: 5, gp: 18, gc: 19, sg: -1 },
+  { pos: '16º', team: 'A.D. SUZANO', pts: 12, j: 11, v: 3, e: 3, d: 5, gp: 20, gc: 24, sg: -4 },
+  { pos: '17º', team: 'ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL', pts: 11, j: 11, v: 3, e: 2, d: 6, gp: 24, gc: 31, sg: -7 },
+  { pos: '18º', team: 'CHUTE FUTSAL', pts: 10, j: 11, v: 3, e: 1, d: 7, gp: 22, gc: 38, sg: -16 },
+  { pos: '19º', team: 'CTC VILA EMA', pts: 9, j: 11, v: 3, e: 0, d: 8, gp: 22, gc: 33, sg: -11 },
+  { pos: '20º', team: 'AE FRIBURGO', pts: 9, j: 10, v: 2, e: 3, d: 5, gp: 16, gc: 32, sg: -16 },
+  { pos: '21º', team: 'OCIAN PRAIA CLUBE', pts: 8, j: 11, v: 2, e: 2, d: 7, gp: 12, gc: 21, sg: -9 },
+  { pos: '22º', team: 'GR GREMETAL', pts: 7, j: 11, v: 2, e: 1, d: 8, gp: 25, gc: 43, sg: -18 },
+  { pos: '23º', team: 'ASSOCIAçãO ESPORTIVA FUTMAX', pts: 6, j: 11, v: 2, e: 0, d: 9, gp: 15, gc: 38, sg: -23 },
+  { pos: '24º', team: 'AA WIMPRO GUARULHOS', pts: 1, j: 11, v: 0, e: 1, d: 10, gp: 12, gc: 51, sg: -39 }
+];
+
+const RANKING_GERAL_DATA = [
+  { pos: 1, team: 'SANTO ANDRÉ FUTSAL', pts: 86 },
+  { pos: 2, team: 'METALÚRGICOS DE JUNDIAÍ', pts: 90 },
+  { pos: 3, team: 'ASSOCIAÇÃO UNIÃO MAUÁ | A. UNIÃO MAUÁ', pts: 82 },
+  { pos: 4, team: 'ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM', pts: 81 },
+  { pos: 5, team: 'SPORT BENFICA DE MOGI DAS CRUZES', pts: 86 },
+  { pos: 6, team: 'CLUBE BATALHA E SERVICOS ADMINISTRATIVOS E TELE-ATENDIMENTO LTDA | BATALHA', pts: 85 },
+  { pos: 7, team: 'INSTITUTO FORMANDO ATLETAS BONS DE BOLA | INST. BONS DE BOLA', pts: 75 },
+  { pos: 8, team: 'CÍRCULO DE TRABALHADORES CRISTÃOS DE VILA EMA - CTC VILA EMA', pts: 71 },
+  { pos: 9, team: 'ASSOCIACAO DESPORTIVA S.F. | A.D. SUZANO', pts: 70 },
+  { pos: 10, team: 'A.D.E.F. ASSOCIAÇÃO DESPORTIVA EDUKA FUT | ADEF/COTIA', pts: 65 },
+  { pos: 11, team: 'ASSOCIAçãO DESPORTIVA CULTURAL MARVEL', pts: 65 },
+  { pos: 12, team: 'GRÊMIO DESPORTIVO RECREATIVO 7 DE SETEMBRO', pts: 63 },
+  { pos: 13, team: 'ASSOCIAÇÃO DESPORTIVA CLASSISTA MERCEDES BENZ | ADC MERCEDES BENZ', pts: 61 },
+  { pos: 14, team: 'ASSOCIAÇÃO DESPORTIVA NANDO GRANA', pts: 54 },
+  { pos: 15, team: 'ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL - AD SANTO ANDRÉ FUTSAL', pts: 54 },
+  { pos: 16, team: 'ASSOCIAÇÃO ESPORTIVA FRIBURGO | AE FRIBURGO', pts: 46 },
+  { pos: 17, team: 'ASSOCIAÇÃO ESPORTIVA CHUTE FUTSAL PARADA INGLESA - CHUTE FUTSAL', pts: 49 },
+  { pos: 18, team: 'LIFESPORTS GESTAO ESPORTIVA LTDA | MX7 DIADEMA', pts: 47 },
+  { pos: 19, team: 'OCIAN PRAIA CLUBE (A.A. PRAIA GRANDE) - MASCULINO - OCIAN PRAIA CLUBE', pts: 45 },
+  { pos: 20, team: 'SOCIEDADE ESPORTIVA E RECREATIVA DE CAIEIRAS | S.E.R. CAIEIRAS', pts: 43 },
+  { pos: 21, team: 'ASSOCIAÇÃO PAULISTA FUTEBOL CLUBE MOOCA - | ATIVO', pts: 42 },
+  { pos: 22, team: 'ASSOCIAçãO ESPORTIVA FUTMAX', pts: 33 },
+  { pos: 23, team: 'ASSOCIAÇÃO ATLÉTICA WIMPRO MENORES GUARULHOS - AA WIMPRO GUARULHOS', pts: 17 }
+];
+
+const monthNames = { '03': 'Março', '04': 'Abril', '05': 'Maio', '06': 'Junho', '07': 'Julho', '08': 'Agosto' };
+
+// =====================================================
+// LOGIC & RENDER
+// =====================================================
+function getStorageKey(gameNum) { return `result_game_${gameNum}`; }
+
+function loadResult(gameNum) {
+  try {
+    const local = localStorage.getItem(getStorageKey(gameNum));
+    if (local) return JSON.parse(local);
+    const game = games.find(g => g.gameNum === gameNum);
+    if (game && game.finalScoreHome !== undefined) {
+      return { homeScore: game.finalScoreHome, awayScore: game.finalScoreAway, goals: game.finalGoals || '' };
+    }
+    return null;
+  } catch { return null; }
+}
+
+function saveResultToStorage(gameNum, homeScore, awayScore, goals) {
+  localStorage.setItem(getStorageKey(gameNum), JSON.stringify({ homeScore, awayScore, goals }));
+}
+
+function clearResultFromStorage(gameNum) {
+  localStorage.removeItem(getStorageKey(gameNum));
+}
+
+function calcOutcome(game, homeScore, awayScore) {
+  const metalHome = game.home.includes('METALÚRGICOS');
+  const metalScore = metalHome ? homeScore : awayScore;
+  const oppScore = metalHome ? awayScore : homeScore;
+  if (metalScore > oppScore) return 'win';
+  if (metalScore < oppScore) return 'loss';
+  return 'draw';
+}
+
+function renderGames() {
+  const container = document.getElementById('gamesList');
+  const nextBanner = document.getElementById('nextBannerContainer');
+  let currentMonth = '';
+  let html = '';
+
+  const nextGame = games.find(g => loadResult(g.gameNum) === null);
+  if (nextGame) {
+    const isHome = nextGame.isHome;
+    const mapsLink = !isHome && nextGame.mapsQuery ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(nextGame.mapsQuery)}" target="_blank" class="nb-map-btn">📍 VER MAPA</a>` : '';
+    const addressLine = !isHome && nextGame.address ? `<div class="nb-address">${nextGame.address}</div>` : '';
+
+    nextBanner.style.display = 'flex';
+    nextBanner.innerHTML = `
+      <div class="nb-left">
+        <div class="nb-pulse"><div class="nb-dot"></div>Próximo jogo</div>
+        <div class="nb-match">${nextGame.home === 'METALÚRGICOS/JUNDIAÍ' ? '<span class="our">METALÚRGICOS</span>' : nextGame.home} × ${nextGame.away === 'METALÚRGICOS/JUNDIAÍ' ? '<span class="our">METALÚRGICOS</span>' : nextGame.away}</div>
+        <div class="nb-detail">📍 ${nextGame.venue} &nbsp;·&nbsp; ${isHome ? '🏠 Em casa' : '🚌 Fora de casa'}</div>
+        ${addressLine}
+        ${mapsLink ? `<div style="margin-top:10px;">${mapsLink}</div>` : ''}
+      </div>
+      <div class="nb-right">
+        <div class="nb-date">${nextGame.date.substring(0,5)}</div>
+        <div class="nb-time">${nextGame.time}</div>
+      </div>
+    `;
+  } else {
+    nextBanner.style.display = 'none';
+  }
+
+  games.forEach(game => {
+    const month = game.date.split('/')[1];
+    if (month !== currentMonth) {
+      if (currentMonth !== '') html += `</div></div>`;
+      currentMonth = month;
+      // Default to collapsed for all months
+      html += `
+        <div class="month-group">
+          <div class="month-header collapsed" onclick="this.nextElementSibling.classList.toggle('collapsed'); this.classList.toggle('collapsed');">
+            <span><span class="month-icon" style="margin-right:8px; display:inline-block;">📅</span>${monthNames[month]}</span>
+            <span class="month-icon toggle-icon">▼</span>
+          </div>
+          <div class="month-content collapsed">
+      `;
+    }
+
+    const isHome = game.isHome;
+    const res = loadResult(game.gameNum);
+    let rowClass = '', badge = '', score = '', goalsDisplay = '';
+    
+    if (res !== null) {
+      const outcome = calcOutcome(game, res.homeScore, res.awayScore);
+      rowClass = outcome;
+      score = `<div class="gr-score ${outcome}">${res.homeScore}×${res.awayScore}</div>`;
+      
+      const labels = { win: 'Vitória', loss: 'Derrota', draw: 'Empate' };
+      badge = `<span class="outcome-badge ${outcome}">${labels[outcome]}</span>`;
+      
+      if (res.goals) {
+        try {
+          const parsed = JSON.parse(res.goals);
+          const parts = [];
+          for (const [p, q] of Object.entries(parsed)) {
+            if (q > 0) parts.push(`⚽ ${p.split('-')[1]?.trim() || p} (${q})`);
+          }
+          if (parts.length) goalsDisplay = `<div class="goals-list">${parts.join(' &nbsp; ')}</div>`;
+        } catch(e){}
+      }
+    } else {
+      score = `<div class="gr-score pending">Pendente</div>`;
+    }
+
+    const btn = `<button class="btn-edit" onclick="openModal('${game.gameNum}')">✏️ Editar</button>`;
+    const mapsLink = !isHome && game.mapsQuery ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(game.mapsQuery)}" target="_blank" title="Ver no Mapa">📍 Mapa</a>` : '';
+
+    html += `
+      <div class="game-row ${rowClass}">
+        <div class="gr-round">${game.round}</div>
+        <div class="gr-teams">
+          <div class="gr-match">${game.home === 'METALÚRGICOS/JUNDIAÍ' ? '<span class="our">METALÚRGICOS</span>' : game.home} × ${game.away === 'METALÚRGICOS/JUNDIAÍ' ? '<span class="our">METALÚRGICOS</span>' : game.away}</div>
+          <div class="gr-info">${game.date.substring(0,5)} · ${game.time} · ${isHome ? 'Casa' : 'Fora'} ${mapsLink ? '· '+mapsLink : ''}</div>
+          ${goalsDisplay}
+          ${btn}
+        </div>
+        ${score}
+        <div class="gr-badge">${badge}</div>
+      </div>
+    `;
+  });
+
+  if (currentMonth !== '') html += `</div></div>`;
+  container.innerHTML = html;
+  
+  updateSummary();
+}
+
+function updateSummary() {
+  let w = 0, d = 0, l = 0, j = 0;
+  games.forEach(g => {
+    const r = loadResult(g.gameNum);
+    if (r) {
+      j++;
+      const o = calcOutcome(g, r.homeScore, r.awayScore);
+      if(o === 'win') w++; else if(o === 'draw') d++; else l++;
+    }
+  });
+  const pts = w*3 + d;
+  const perc = j > 0 ? ((pts / (j*3)) * 100).toFixed(1) : 0;
+  
+  document.getElementById('wc-w').textContent = w;
+  document.getElementById('wc-d').textContent = d;
+  document.getElementById('wc-l').textContent = l;
+  document.getElementById('wc-a').textContent = perc + '%';
+  
+  document.getElementById('stat-j').textContent = j;
+  document.getElementById('stat-pts').textContent = pts;
+  document.getElementById('stat-apr').textContent = perc + '%';
+  document.getElementById('stat-pos').textContent = CLASSIF_DATA.find(c => c.team.includes('METALÚRGICOS') || c.team.includes('METALURGICOS'))?.pos || '-';
+}
+
+function renderLastResults() {
+  const container = document.getElementById('lastGamesList');
+  const finishedGames = games.filter(g => loadResult(g.gameNum) !== null);
+  const allFinished = finishedGames.reverse();
+  
+  if (allFinished.length === 0) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--t3); text-align:center;">Nenhum resultado ainda.</div>';
+    return;
+  }
+
+  container.innerHTML = allFinished.map(g => {
+    const res = loadResult(g.gameNum);
+    const isHomeOur = g.home.includes('METALÚRGICOS') || g.home.includes('METALURGICOS');
+    const isAwayOur = g.away.includes('METALÚRGICOS') || g.away.includes('METALURGICOS');
+    return `
+      <div class="lg-row">
+        <div class="lg-teams">
+          <span class="${isHomeOur ? 'our' : ''}">${isHomeOur ? 'METALÚRGICOS' : cleanTeamName(g.home)}</span>
+          <span style="opacity:0.5;font-weight:400;font-size:10px;">vs</span>
+          <span class="${isAwayOur ? 'our' : ''}">${isAwayOur ? 'METALÚRGICOS' : cleanTeamName(g.away)}</span>
+        </div>
+        <div class="lg-score">${res.homeScore} × ${res.awayScore}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderArtilharia() {
+  const map = {};
+  games.forEach(g => {
+    const res = loadResult(g.gameNum);
+    if (res && res.goals) {
+      try {
+        const parsed = JSON.parse(res.goals);
+        for (const [pName, pGoals] of Object.entries(parsed)) {
+          if (pName.toLowerCase().includes('contra')) continue;
+          if (pGoals > 0) {
+            map[pName] = (map[pName] || 0) + pGoals;
+          }
+        }
+      } catch(e){}
+    }
+  });
+
+  const sorted = Object.entries(map).map(([name, goals]) => ({name, goals})).sort((a, b) => b.goals - a.goals);
+  
+  let html = '';
+  sorted.forEach((s, i) => {
+    const pObj = PLAYERS.find(p => p.displayName === s.name);
+    const photo = pObj ? pObj.photo : PLAYER_ICON;
+    const name = pObj ? pObj.name : s.name.split('-')[1]?.trim() || s.name;
+    const posClass = i === 0 ? 'gold' : '';
+    
+    html += `
+      <div class="scorer-row">
+        <div class="s-pos ${posClass}">${i+1}</div>
+        <div class="s-photo"><img src="${photo}" alt=""></div>
+        <div class="s-info"><div class="s-name">${name}</div></div>
+        <div class="s-goals-wrap"><div class="s-goals-num">${s.goals}</div></div>
+      </div>
+    `;
+  });
+  if(!html) html = '<div style="padding: 16px; font-size: 12px; color: var(--t3);">Nenhum gol registrado.</div>';
+  document.getElementById('artilhariaList').innerHTML = html;
+}
+
+function cleanTeamName(name) {
+  if (name.includes('|')) return name.split('|')[1].trim();
+  return name;
+}
+
+function renderClassif() {
+  let html = '';
+  CLASSIF_DATA.forEach(row => {
+    const isOur = row.team.includes('METALÚRGICOS') || row.team.includes('METALURGICOS');
+    html += `
+      <div class="classif-row ${isOur ? 'our' : ''}">
+        <div class="c-pos">${row.pos.replace('º','')}</div>
+        <div class="c-team">${cleanTeamName(row.team)}</div>
+        <div class="c-pts">${row.pts}</div>
+      </div>
+    `;
+  });
+  document.getElementById('classifList').innerHTML = html;
+}
+
+function renderRanking() {
+  let html = '';
+  RANKING_GERAL_DATA.forEach(row => {
+    const isOur = row.team.includes('METALÚRGICOS') || row.team.includes('METALURGICOS');
+    html += `
+      <div class="classif-row ${isOur ? 'our' : ''}">
+        <div class="c-pos">${row.pos}</div>
+        <div class="c-team">${cleanTeamName(row.team)}</div>
+        <div class="c-pts">${row.pts}</div>
+      </div>
+    `;
+  });
+  document.getElementById('rankingList').innerHTML = html;
+}
+
+// =====================================================
+// MODAL LOGIC
+// =====================================================
+let currentGameNum = null;
+
+function openModal(gameNum) {
+  currentGameNum = gameNum;
+  const game = games.find(g => g.gameNum === gameNum);
+  document.getElementById('modalTitle').textContent = `Jogo nº${game.gameNum}`;
+  document.getElementById('modalSubtitle').textContent = `${game.home} × ${game.away} · ${game.date}`;
+  document.getElementById('modalHomeLabel').textContent = game.home.includes('METAL') ? 'NÓS' : 'ELES';
+  document.getElementById('modalAwayLabel').textContent = game.away.includes('METAL') ? 'NÓS' : 'ELES';
+
+  const res = loadResult(gameNum);
+  document.getElementById('inputScoreHome').value = res ? res.homeScore : '';
+  document.getElementById('inputScoreAway').value = res ? res.awayScore : '';
+
+  let pGoals = {};
+  if (res && res.goals) {
+    try { pGoals = JSON.parse(res.goals); } catch(e){}
+  }
+
+  let goalsHtml = '';
+  PLAYERS.forEach(p => {
+    const count = pGoals[p.displayName] || 0;
+    goalsHtml += `
+      <div class="goal-row">
+        <div class="goal-player">
+          <img src="${p.photo}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
+          ${p.name}
+          <input type="hidden" class="g-name" value="${p.displayName}">
+        </div>
+        <div class="goal-controls">
+          <button onclick="changeGoal(this, -1)">-</button>
+          <span class="g-val">${count}</span>
+          <button onclick="changeGoal(this, 1)">+</button>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('goalsContainer').innerHTML = goalsHtml;
+  
+  document.getElementById('inputPassword').value = '';
+  document.getElementById('modalError').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function changeGoal(btn, delta) {
+  const span = btn.parentElement.querySelector('.g-val');
+  let val = parseInt(span.textContent) + delta;
+  if(val < 0) val = 0;
+  if(val > 20) val = 20;
+  span.textContent = val;
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function saveResult() {
+  if (document.getElementById('inputPassword').value !== RESULT_PASSWORD) {
+    document.getElementById('modalError').style.display = 'block';
+    return;
+  }
+  
+  const h = parseInt(document.getElementById('inputScoreHome').value);
+  const a = parseInt(document.getElementById('inputScoreAway').value);
+  if(isNaN(h) || isNaN(a)) {
+    document.getElementById('modalError').textContent = 'Placar inválido';
+    document.getElementById('modalError').style.display = 'block';
+    return;
+  }
+
+  const obj = {};
+  document.querySelectorAll('.goal-row').forEach(row => {
+    const name = row.querySelector('.g-name').value;
+    const count = parseInt(row.querySelector('.g-val').textContent);
+    if(count > 0) obj[name] = count;
+  });
+
+  saveResultToStorage(currentGameNum, h, a, JSON.stringify(obj));
+  closeModal();
+  init();
+}
+
+function clearResult() {
+  if (document.getElementById('inputPassword').value !== RESULT_PASSWORD) {
+    document.getElementById('modalError').style.display = 'block';
+    return;
+  }
+  clearResultFromStorage(currentGameNum);
+  closeModal();
+  init();
+}
+
+function init() {
+  renderGames();
+  renderLastResults();
+  renderArtilharia();
+  renderClassif();
+  renderRanking();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
