@@ -191,6 +191,12 @@ html.dark-mode .wdl-card.a { border-color: rgba(14, 165, 233, 0.25); background:
 .lg-teams { font-size: 11px; font-weight: 700; color: var(--t2); text-transform: uppercase; display: flex; flex: 1; justify-content: center; gap: 8px; align-items: center; }
 .lg-score { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 900; color: var(--t1); background: var(--s1); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); }
 .lg-teams span.our { color: var(--red); }
+.lg-row.w { border-color: var(--green-bd); background: var(--green-bg); }
+.lg-row.d { border-color: var(--amber-bd); background: var(--amber-bg); }
+.lg-row.l { border-color: var(--red-bd); background: var(--red-bg); }
+.lg-row.w .lg-score { color: var(--green); border-color: var(--green-bd); }
+.lg-row.d .lg-score { color: var(--amber); border-color: var(--amber-bd); }
+.lg-row.l .lg-score { color: var(--red); border-color: var(--red-bd); }
 
 /* ── NEXT GAME ── */
 .next-banner {
@@ -544,7 +550,7 @@ const games = [
   { round: "14ª Rodada", gameNum: "159", date: "13/06/2026", time: "09h45", home: "CAAS FUTMAX", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ginásio João Carlos", address: "Av. 31 de Março, 327 - Votorantim", isHome: false, mapsQuery: "Ginásio João Carlos Votorantim", finalScoreHome: 0, finalScoreAway: 5, finalGoals: '{"11 - Miguel Duca":1, "8 - Juninho":1, "5 - Rafa lucca":1, "14 - Bernardo Marques":1, "9 - Davi lucca":1}' },
   { round: "15ª Rodada", gameNum: "179", date: "21/06/2026", time: "14h45", home: "METALÚRGICOS/JUNDIAÍ", away: "AE FRIBURGO", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 6, finalScoreAway: 3, finalGoals: '{"12 - Pedro":1, "8 - Juninho":1, "11 - Miguel Duca":1, "1 - Bernardo Zanini":1, "20 - Davizinho":1, "7 - Gabriel":1}' },
   { round: "16ª Rodada", gameNum: "183", date: "27/06/2026", time: "09h45", home: "UNIÃO MAUÁ FUTSAL", away: "METALÚRGICOS/JUNDIAÍ", venue: "GE Mauaense", address: "R. Pedro de Toledo, 341 - Parque São Vicente, Mauá", isHome: false, mapsQuery: "GE Mauaense Mauá", finalScoreHome: 1, finalScoreAway: 4, finalGoals: '{"11 - Miguel Duca":1, "7 - Gabriel":1, "8 - Juninho":2}' },
-  { round: "17ª Rodada", gameNum: "196", date: "04/07/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AD SANTO ANDRÉ", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
+  { round: "17ª Rodada", gameNum: "196", date: "04/07/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AD SANTO ANDRÉ", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "", finalScoreHome: 2, finalScoreAway: 0, finalGoals: '{"1 - Bernardo Zanini":1, "8 - Juninho":1}' },
   { round: "18ª Rodada", gameNum: "210", date: "09/07/2026", time: "10h45", home: "OCIAN PRAIA CLUBE", away: "METALÚRGICOS/JUNDIAÍ", venue: "Ocian Praia Clube", address: "R. Com. Otto Carlos Golanda, 80 - Praia Grande", isHome: false, mapsQuery: "Ocian Praia Clube" },
   { round: "19ª Rodada", gameNum: "221", date: "01/08/2026", time: "10h15", home: "METALÚRGICOS/JUNDIAÍ", away: "AE CHUTE FUTSAL", venue: HOME_VENUE, address: HOME_ADDRESS, isHome: true, mapsQuery: "" },
   { round: "20ª Rodada", gameNum: "230", date: "08/08/2026", time: "09h45", home: "ADC MARVEL", away: "METALÚRGICOS/JUNDIAÍ", venue: "Arena Uniluz", address: "R. Batista Pereira, 275 - Macuco, Santos", isHome: false, mapsQuery: "Arena Uniluz Santos" },
@@ -554,56 +560,56 @@ const games = [
 ];
 
 const CLASSIF_DATA = [
-  { "pos": "1º", "team": "ADEF/COTIA", "pts": 38, "j": 16, "v": 12, "e": 2, "d": 2, "gp": 53, "gc": 21, "sg": 32 },
-  { "pos": "2º", "team": "CLUBE BATALHA", "pts": 37, "j": 16, "v": 12, "e": 1, "d": 3, "gp": 46, "gc": 21, "sg": 25 },
-  { "pos": "3º", "team": "METALÚRGICOS DE JUNDIAÍ ", "pts": 35, "j": 15, "v": 11, "e": 2, "d": 2, "gp": 54, "gc": 25, "sg": 29 },
-  { "pos": "4º", "team": "A. UNIÃO MAUÁ", "pts": 35, "j": 15, "v": 11, "e": 2, "d": 2, "gp": 43, "gc": 19, "sg": 24 },
-  { "pos": "5º", "team": "SANTO ANDRÉ FUTSAL", "pts": 34, "j": 15, "v": 11, "e": 1, "d": 3, "gp": 60, "gc": 28, "sg": 32 },
-  { "pos": "6º", "team": "ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM", "pts": 33, "j": 16, "v": 10, "e": 3, "d": 3, "gp": 55, "gc": 32, "sg": 23 },
-  { "pos": "7º", "team": "G.D.R. 7 DE SETEMBRO", "pts": 32, "j": 16, "v": 10, "e": 2, "d": 4, "gp": 57, "gc": 37, "sg": 20 },
-  { "pos": "8º", "team": "ADC MARVEL", "pts": 30, "j": 16, "v": 9, "e": 3, "d": 4, "gp": 29, "gc": 23, "sg": 6 },
-  { "pos": "9º", "team": "SPORT BENFICA DE MOGI DAS CRUZES ", "pts": 28, "j": 15, "v": 9, "e": 1, "d": 5, "gp": 54, "gc": 30, "sg": 24 },
-  { "pos": "10º", "team": "ASSOCIAÇÃO DESPORTIVA NANDO GRANA", "pts": 28, "j": 16, "v": 9, "e": 1, "d": 6, "gp": 51, "gc": 45, "sg": 6 },
-  { "pos": "11º", "team": "MX7 DIADEMA", "pts": 27, "j": 16, "v": 8, "e": 3, "d": 5, "gp": 46, "gc": 36, "sg": 10 },
-  { "pos": "12º", "team": "ADC MERCEDES BENZ", "pts": 26, "j": 16, "v": 8, "e": 2, "d": 6, "gp": 33, "gc": 26, "sg": 7 },
-  { "pos": "13º", "team": "ASSOCIAÇÃO PAULISTA FUTEBOL CLUBE MOOCA", "pts": 22, "j": 16, "v": 6, "e": 4, "d": 6, "gp": 39, "gc": 36, "sg": 3 },
-  { "pos": "14º", "team": "A.D. SUZANO", "pts": 21, "j": 16, "v": 6, "e": 3, "d": 7, "gp": 31, "gc": 34, "sg": -3 },
-  { "pos": "15º", "team": "S.E.R. CAIEIRAS", "pts": 18, "j": 16, "v": 5, "e": 3, "d": 8, "gp": 28, "gc": 36, "sg": -8 },
-  { "pos": "16º", "team": "INST. BONS DE BOLA", "pts": 18, "j": 16, "v": 5, "e": 3, "d": 8, "gp": 34, "gc": 49, "sg": -15 },
-  { "pos": "17º", "team": "ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL ", "pts": 14, "j": 16, "v": 4, "e": 2, "d": 10, "gp": 33, "gc": 55, "sg": -22 },
-  { "pos": "18º", "team": "GR GREMETAL", "pts": 13, "j": 16, "v": 4, "e": 1, "d": 11, "gp": 41, "gc": 58, "sg": -17 },
-  { "pos": "19º", "team": "AE FRIBURGO", "pts": 13, "j": 16, "v": 3, "e": 4, "d": 9, "gp": 28, "gc": 55, "sg": -27 },
+  { "pos": "1º", "team": "ADEF/COTIA", "pts": 38, "j": 17, "v": 12, "e": 2, "d": 3, "gp": 55, "gc": 25, "sg": 30 },
+  { "pos": "2º", "team": "METALÚRGICOS DE JUNDIAÍ ", "pts": 38, "j": 17, "v": 12, "e": 2, "d": 3, "gp": 57, "gc": 30, "sg": 27 },
+  { "pos": "3º", "team": "A. UNIÃO MAUÁ", "pts": 38, "j": 16, "v": 12, "e": 2, "d": 2, "gp": 46, "gc": 20, "sg": 26 },
+  { "pos": "4º", "team": "SANTO ANDRÉ FUTSAL", "pts": 37, "j": 16, "v": 12, "e": 1, "d": 3, "gp": 63, "gc": 29, "sg": 34 },
+  { "pos": "5º", "team": "CLUBE BATALHA", "pts": 37, "j": 17, "v": 12, "e": 1, "d": 4, "gp": 46, "gc": 22, "sg": 24 },
+  { "pos": "6º", "team": "ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM", "pts": 36, "j": 17, "v": 11, "e": 3, "d": 3, "gp": 56, "gc": 32, "sg": 24 },
+  { "pos": "7º", "team": "G.D.R. 7 DE SETEMBRO", "pts": 35, "j": 17, "v": 11, "e": 2, "d": 4, "gp": 62, "gc": 38, "sg": 24 },
+  { "pos": "8º", "team": "SPORT BENFICA DE MOGI DAS CRUZES ", "pts": 34, "j": 17, "v": 11, "e": 1, "d": 5, "gp": 65, "gc": 33, "sg": 32 },
+  { "pos": "9º", "team": "ASSOCIAÇÃO DESPORTIVA NANDO GRANA", "pts": 31, "j": 17, "v": 10, "e": 1, "d": 6, "gp": 55, "gc": 47, "sg": 8 },
+  { "pos": "10º", "team": "MX7 DIADEMA", "pts": 30, "j": 17, "v": 9, "e": 3, "d": 5, "gp": 49, "gc": 38, "sg": 11 },
+  { "pos": "11º", "team": "ADC MARVEL", "pts": 30, "j": 17, "v": 9, "e": 3, "d": 5, "gp": 31, "gc": 26, "sg": 5 },
+  { "pos": "12º", "team": "ADC MERCEDES BENZ", "pts": 29, "j": 17, "v": 9, "e": 2, "d": 6, "gp": 37, "gc": 26, "sg": 11 },
+  { "pos": "13º", "team": "A.D. SUZANO", "pts": 24, "j": 17, "v": 7, "e": 3, "d": 7, "gp": 34, "gc": 36, "sg": -2 },
+  { "pos": "14º", "team": "ASSOCIAÇÃO PAULISTA FUTEBOL CLUBE MOOCA", "pts": 22, "j": 17, "v": 6, "e": 4, "d": 7, "gp": 40, "gc": 41, "sg": -1 },
+  { "pos": "15º", "team": "S.E.R. CAIEIRAS", "pts": 18, "j": 17, "v": 5, "e": 3, "d": 9, "gp": 30, "gc": 39, "sg": -9 },
+  { "pos": "16º", "team": "INST. BONS DE BOLA", "pts": 18, "j": 17, "v": 5, "e": 3, "d": 9, "gp": 35, "gc": 52, "sg": -17 },
+  { "pos": "17º", "team": "GR GREMETAL", "pts": 16, "j": 17, "v": 5, "e": 1, "d": 11, "gp": 45, "gc": 60, "sg": -15 },
+  { "pos": "18º", "team": "ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL ", "pts": 14, "j": 17, "v": 4, "e": 2, "d": 11, "gp": 33, "gc": 57, "sg": -24 },
+  { "pos": "19º", "team": "AE FRIBURGO", "pts": 13, "j": 17, "v": 3, "e": 4, "d": 10, "gp": 30, "gc": 59, "sg": -29 },
   { "pos": "20º", "team": "CTC VILA EMA", "pts": 12, "j": 16, "v": 4, "e": 0, "d": 12, "gp": 36, "gc": 57, "sg": -21 },
-  { "pos": "21º", "team": "CHUTE FUTSAL", "pts": 11, "j": 16, "v": 3, "e": 2, "d": 11, "gp": 27, "gc": 53, "sg": -26 },
-  { "pos": "22º", "team": "OCIAN PRAIA CLUBE", "pts": 8, "j": 16, "v": 2, "e": 2, "d": 12, "gp": 16, "gc": 34, "sg": -18 },
+  { "pos": "21º", "team": "CHUTE FUTSAL", "pts": 11, "j": 17, "v": 3, "e": 2, "d": 12, "gp": 27, "gc": 57, "sg": -30 },
+  { "pos": "22º", "team": "OCIAN PRAIA CLUBE", "pts": 8, "j": 17, "v": 2, "e": 2, "d": 13, "gp": 18, "gc": 40, "sg": -22 },
   { "pos": "23º", "team": "AA WIMPRO GUARULHOS", "pts": 7, "j": 16, "v": 2, "e": 1, "d": 13, "gp": 19, "gc": 61, "sg": -42 },
-  { "pos": "24º", "team": "ASSOCIAçãO ESPORTIVA FUTMAX", "pts": 6, "j": 16, "v": 2, "e": 0, "d": 14, "gp": 18, "gc": 60, "sg": -42 }
+  { "pos": "24º", "team": "ASSOCIAçãO ESPORTIVA FUTMAX", "pts": 6, "j": 17, "v": 2, "e": 0, "d": 15, "gp": 19, "gc": 63, "sg": -44 }
 ];
 
 const RANKING_GERAL_DATA = [
-  { "pos": 1, "team": "SANTO ANDRE FUTEBOL CLUBE | SANTO ANDRÉ FUTSAL", "pts": 127 },
-  { "pos": 2, "team": "SINDICATO DOS METALURGICOS DE JUNDIAÍ", "pts": 121 },
-  { "pos": 3, "team": "SPORT BENFICA DE MOGI DAS CRUZES", "pts": 117 },
-  { "pos": 4, "team": "ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM", "pts": 124 },
-  { "pos": 5, "team": "ASSOCIAÇÃO UNIÃO MAUÁ | A. UNIÃO MAUÁ", "pts": 115 },
-  { "pos": 6, "team": "CLUBE BATALHA E SERVICOS ADMINISTRATIVOS E TELE-ATENDIMENTO LTDA |  BATALHA", "pts": 119 },
-  { "pos": 7, "team": "ASSOCIAÇÃO DESPORTIVA CLASSISTA MERCEDES BENZ | ADC MERCEDES BENZ", "pts": 108 },
-  { "pos": 8, "team": "INSTITUTO FORMANDO ATLETAS BONS DE BOLA | INST. BONS DE BOLA", "pts": 106 },
-  { "pos": 9, "team": "A.D.E.F. ASSOCIAÇÃO DESPORTIVA EDUKA FUT | ADEF/COTIA", "pts": 102 },
-  { "pos": 10, "team": "ASSOCIAçãO DESPORTIVA CULTURAL MARVEL", "pts": 101 },
-  { "pos": 11, "team": "ASSOCIACAO DESPORTIVA S.F. | A.D. SUZANO", "pts": 93 },
-  { "pos": 12, "team": "CÍRCULO DE TRABALHADORES CRISTÃOS DE VILA EMA - CTC VILA EMA", "pts": 93 },
-  { "pos": 13, "team": "GRÊMIO RECR. ESPORTIVO DOS METALÚRGICOS DE SANTOS -  GREMETAL", "pts": 91 },
-  { "pos": 14, "team": "GRÊMIO DESPORTIVO RECREATIVO 7 DE SETEMBRO", "pts": 90 },
-  { "pos": 15, "team": "ASSOCIAÇÃO DESPORTIVA NANDO GRANA", "pts": 83 },
-  { "pos": 16, "team": "ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL - AD SANTO ANDRÉ FUTSAL", "pts": 80 },
-  { "pos": 17, "team": "LIFESPORTS GESTAO ESPORTIVA LTDA | MX7 DIADEMA", "pts": 72 },
-  { "pos": 18, "team": "OCIAN PRAIA CLUBE (A.A. PRAIA GRANDE) - MASCULINO - OCIAN PRAIA CLUBE", "pts": 71 },
-  { "pos": 19, "team": "ASSOCIAÇÃO ESPORTIVA CHUTE FUTSAL PARADA INGLESA - CHUTE FUTSAL", "pts": 70 },
-  { "pos": 20, "team": "ASSOCIAÇÃO ESPORTIVA FRIBURGO | AE FRIBURGO", "pts": 66 },
-  { "pos": 21, "team": "SOCIEDADE ESPORTIVA E RECREATIVA DE CAIEIRAS | S.E.R. CAIEIRAS", "pts": 64 },
+  { "pos": 1, "team": "SANTO ANDRE FUTEBOL CLUBE | SANTO ANDRÉ FUTSAL", "pts": 134 },
+  { "pos": 2, "team": "SINDICATO DOS METALURGICOS DE JUNDIAÍ", "pts": 137 },
+  { "pos": 3, "team": "ASSOCIAÇÃO ESPORTIVA RIVER DO BELÉM | RIVER DO BELÉM", "pts": 133 },
+  { "pos": 4, "team": "SPORT BENFICA DE MOGI DAS CRUZES", "pts": 132 },
+  { "pos": 5, "team": "ASSOCIAÇÃO UNIÃO MAUÁ | A. UNIÃO MAUÁ", "pts": 119 },
+  { "pos": 6, "team": "CLUBE BATALHA E SERVICOS ADMINISTRATIVOS E TELE-ATENDIMENTO LTDA |  BATALHA", "pts": 122 },
+  { "pos": 7, "team": "ASSOCIAÇÃO DESPORTIVA CLASSISTA MERCEDES BENZ | ADC MERCEDES BENZ", "pts": 116 },
+  { "pos": 8, "team": "INSTITUTO FORMANDO ATLETAS BONS DE BOLA | INST. BONS DE BOLA", "pts": 110 },
+  { "pos": 9, "team": "ASSOCIAçãO DESPORTIVA CULTURAL MARVEL", "pts": 110 },
+  { "pos": 10, "team": "A.D.E.F. ASSOCIAÇÃO DESPORTIVA EDUKA FUT | ADEF/COTIA", "pts": 105 },
+  { "pos": 11, "team": "GRÊMIO DESPORTIVO RECREATIVO 7 DE SETEMBRO", "pts": 102 },
+  { "pos": 12, "team": "ASSOCIACAO DESPORTIVA S.F. | A.D. SUZANO", "pts": 100 },
+  { "pos": 13, "team": "GRÊMIO RECR. ESPORTIVO DOS METALÚRGICOS DE SANTOS -  GREMETAL", "pts": 97 },
+  { "pos": 14, "team": "CÍRCULO DE TRABALHADORES CRISTÃOS DE VILA EMA - CTC VILA EMA", "pts": 93 },
+  { "pos": 15, "team": "ASSOCIAÇÃO DESPORTIVA NANDO GRANA", "pts": 92 },
+  { "pos": 16, "team": "ASSOCIAÇÃO DESPORTIVA SANTO ANDRE FUTSAL - AD SANTO ANDRÉ FUTSAL", "pts": 81 },
+  { "pos": 17, "team": "LIFESPORTS GESTAO ESPORTIVA LTDA | MX7 DIADEMA", "pts": 75 },
+  { "pos": 18, "team": "OCIAN PRAIA CLUBE (A.A. PRAIA GRANDE) - MASCULINO - OCIAN PRAIA CLUBE", "pts": 74 },
+  { "pos": 19, "team": "ASSOCIAÇÃO ESPORTIVA FRIBURGO | AE FRIBURGO", "pts": 72 },
+  { "pos": 20, "team": "ASSOCIAÇÃO ESPORTIVA CHUTE FUTSAL PARADA INGLESA - CHUTE FUTSAL", "pts": 72 },
+  { "pos": 21, "team": "SOCIEDADE ESPORTIVA E RECREATIVA DE CAIEIRAS | S.E.R. CAIEIRAS", "pts": 68 },
   { "pos": 22, "team": "ASSOCIAÇÃO PAULISTA FUTEBOL CLUBE MOOCA - | ATIVO", "pts": 58 },
-  { "pos": 23, "team": "ASSOCIAçãO ESPORTIVA FUTMAX", "pts": 47 },
+  { "pos": 23, "team": "ASSOCIAçãO ESPORTIVA FUTMAX", "pts": 54 },
   { "pos": 24, "team": "ASSOCIAÇÃO ATLÉTICA WIMPRO MENORES GUARULHOS - AA WIMPRO GUARULHOS", "pts": 30 }
 ];
 
@@ -777,8 +783,19 @@ function renderLastResults() {
     const res = loadResult(g.gameNum);
     const isHomeOur = g.home.includes('METALÚRGICOS') || g.home.includes('METALURGICOS');
     const isAwayOur = g.away.includes('METALÚRGICOS') || g.away.includes('METALURGICOS');
+    
+    // Determine outcome from our team's perspective
+    let outcomeClass = '';
+    if (res) {
+      const ourScore = isHomeOur ? res.homeScore : res.awayScore;
+      const oppScore = isHomeOur ? res.awayScore : res.homeScore;
+      if (ourScore > oppScore) outcomeClass = 'w';
+      else if (ourScore === oppScore) outcomeClass = 'd';
+      else outcomeClass = 'l';
+    }
+
     return `
-      <div class="lg-row">
+      <div class="lg-row ${outcomeClass}">
         <div class="lg-teams">
           <span class="${isHomeOur ? 'our' : ''}">${isHomeOur ? 'METALÚRGICOS' : cleanTeamName(g.home)}</span>
           <span style="opacity:0.5;font-weight:400;font-size:10px;">vs</span>
