@@ -1000,6 +1000,37 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
 .bk-col { gap: 22px !important; }
 .src-link { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 700; text-decoration: underline; color: var(--t2); }
 
+﻿/* ══ HERO COMPACTO + VOLTA PRIMEIRO ══ */
+.leg-off { order: -1; }
+.hero-banner.copa { padding: 18px 18px; margin-bottom: 14px; }
+.hero-banner.copa .hero-title { font-size: clamp(20px, 4vw, 30px); margin-bottom: 6px; }
+.hero-banner.copa .hero-sub { margin-bottom: 12px; }
+.hero-versus { margin: 2px 0 12px; }
+.hv-team.our { font-size: clamp(15px, 3.6vw, 22px); }
+.hv-team:not(.our) { font-size: clamp(12px, 2.8vw, 16px); font-weight: 700; color: rgba(255,255,255,.8); }
+.hv-score { font-size: clamp(26px, 6vw, 40px); }
+.hero-stat-box { padding: 8px 8px; }
+.hero-stat-box .num { font-size: 17px; }
+@media (max-width: 600px) {
+  .hero-banner.copa { padding: 12px 12px; border-radius: 16px; }
+  .hero-banner.copa .hero-top-tag { font-size: 8px; padding: 3px 9px; margin-bottom: 6px; }
+  .hero-banner.copa .hero-title { font-size: 18px; margin-bottom: 4px; }
+  .hero-banner.copa .hero-sub { display: none; }
+  .hero-versus { margin: 4px 0 10px; gap: 8px; }
+  .hv-team.our { font-size: 14px; }
+  .hv-team:not(.our) { font-size: 11px; }
+  .hv-score { font-size: 28px; }
+  .hv-score small { font-size: 8px; margin-top: 3px; }
+  .hero-stats-row { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .hero-stat-box { padding: 6px 4px; border-radius: 9px; }
+  .hero-stat-box .num { font-size: 14px; }
+  .hero-stat-box .lbl { font-size: 7px; letter-spacing: 0; }
+  .hero-banner.copa::after { display: none; }
+  .legs-grid { gap: 10px; margin-bottom: 18px; }
+  .gm2 { padding: 9px 12px; }
+  .leg-head { padding: 10px 12px; }
+}
+
 .hide { display: none !important; }
 .note { font-size: 11px; color: var(--t2); padding: 10px 14px; background: var(--amber-bg); border: 1px solid var(--amber-bd); border-radius: 10px; margin-bottom: 16px; line-height: 1.5; }
 .footer { text-align: center; font-size: 10px; color: var(--t3); margin-top: 10px; line-height: 1.6; }
@@ -1043,9 +1074,7 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
   </div>
 </div>
 
-<div class="note" id="noteBox">
-  ⚠️ <strong>Atenção:</strong> a Federação organiza a Copa União (Torneio União) em quartas Ouro, Prata e Bronze, mas ainda não publicou o regulamento nem os cruzamentos das semifinais. Pontos somados (vitória 3, empate 1) e semifinais em ordem provisória.
-</div>
+
 
 <!-- NOSSO CONFRONTO -->
 <div class="section-head">
@@ -1086,11 +1115,16 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
   </div>
   <div class="glass-panel">
     <div class="panel-head">
-      <div class="panel-head-title">🏆 Classificação 1ª Fase (Sub 9)</div>
+      <div class="panel-head-title">🏆 Classificação Geral · 1ª Fase</div>
       <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" class="fed-link">Federação ↗</a>
     </div>
+    <div style="padding:6px 14px;font-size:10px;color:var(--t3);border-bottom:1px solid var(--border);">Soma dos pontos de Sub 7, 8, 9 e 10 ao fim da 1ª fase (23 jogos por categoria).</div>
     <div id="classifList" class="scroll-list"></div>
   </div>
+</div>
+
+<div class="note" style="margin-top:6px" id="noteBox">
+  ⚠️ <strong>Atenção:</strong> a Federação organiza a Copa União (Torneio União) em quartas Ouro, Prata e Bronze, mas ainda não publicou o regulamento nem os cruzamentos das semifinais. Pontos somados (vitória 3, empate 1) e semifinais em ordem provisória.
 </div>
 
 <div class="footer">
@@ -1271,6 +1305,14 @@ function renderLegs() {
       </div>`).join('');
 
   document.getElementById('legsGrid').innerHTML = `
+    <div class="glass-panel leg-panel leg-off">
+      <div class="leg-head">
+        <div><div class="leg-title">VOLTA · Sábado 24/10</div><div class="leg-sub">Na nossa casa</div></div>
+        <span class="pill next">Aguardando</span>
+      </div>
+      <div class="leg-rows">${voltaHtml}</div>
+      ${venueBox(VENUE_HOME)}
+    </div>
     <div class="glass-panel leg-panel">
       <div class="leg-head">
         <div><div class="leg-title">IDA · Domingo 18/10</div><div class="leg-sub">Na casa do Bons de Bola</div></div>
@@ -1279,14 +1321,7 @@ function renderLegs() {
       <div class="leg-rows">${idaHtml}</div>
       ${venueBox(VENUE_AWAY)}
     </div>
-    <div class="glass-panel leg-panel leg-off">
-      <div class="leg-head">
-        <div><div class="leg-title">VOLTA · Sábado 24/10</div><div class="leg-sub">Na nossa casa</div></div>
-        <span class="pill next">Aguardando</span>
-      </div>
-      <div class="leg-rows">${voltaHtml}</div>
-      ${venueBox(VENUE_HOME)}
-    </div>`;
+    `;
 }
 
 // estado do confronto: 'done' (2 pernas em todas as categorias), 'lead' (só ida), 'wait'
@@ -1428,37 +1463,15 @@ function renderArtilharia() {
   }).join('');
 }
 
-// ───────── CLASSIFICAÇÃO (1ª fase, Sub 9) ─────────
-const CLASSIF_FASE1 = [
-  { pos: "1º", team: "SANTO ANDRÉ FUTSAL", pts: 55, j: 23, v: 18, e: 1, d: 4, gp: 86, gc: 39, sg: 47 },
-  { pos: "2º", team: "A. UNIÃO MAUÁ", pts: 53, j: 23, v: 17, e: 2, d: 4, gp: 68, gc: 30, sg: 38 },
-  { pos: "3º", team: "METALÚRGICOS DE JUNDIAÍ", pts: 52, j: 23, v: 16, e: 4, d: 3, gp: 77, gc: 39, sg: 38 },
-  { pos: "4º", team: "ADEF/COTIA", pts: 50, j: 23, v: 16, e: 2, d: 5, gp: 71, gc: 37, sg: 34 },
-  { pos: "5º", team: "CLUBE BATALHA", pts: 47, j: 23, v: 15, e: 2, d: 6, gp: 60, gc: 33, sg: 27 },
-  { pos: "6º", team: "SPORT BENFICA DE MOGI", pts: 46, j: 23, v: 15, e: 1, d: 7, gp: 83, gc: 49, sg: 34 },
-  { pos: "7º", team: "RIVER DO BELÉM", pts: 46, j: 23, v: 14, e: 4, d: 5, gp: 69, gc: 40, sg: 29 },
-  { pos: "8º", team: "MX7 DIADEMA", pts: 43, j: 23, v: 13, e: 4, d: 6, gp: 65, gc: 50, sg: 15 },
-  { pos: "9º", team: "AD NANDO GRANA", pts: 41, j: 23, v: 13, e: 2, d: 8, gp: 69, gc: 57, sg: 12 },
-  { pos: "10º", team: "G.D.R. 7 DE SETEMBRO", pts: 39, j: 23, v: 12, e: 3, d: 8, gp: 73, gc: 55, sg: 18 },
-  { pos: "11º", team: "ADC MARVEL", pts: 38, j: 23, v: 11, e: 5, d: 7, gp: 42, gc: 37, sg: 5 },
-  { pos: "12º", team: "ADC MERCEDES BENZ", pts: 33, j: 23, v: 10, e: 3, d: 10, gp: 44, gc: 37, sg: 7 },
-  { pos: "13º", team: "A. PAULISTA FC MOOCA", pts: 33, j: 23, v: 9, e: 6, d: 8, gp: 55, gc: 53, sg: 2 },
-  { pos: "14º", team: "A.D. SUZANO", pts: 30, j: 23, v: 9, e: 3, d: 11, gp: 48, gc: 49, sg: -1 },
-  { pos: "15º", team: "GR GREMETAL", pts: 29, j: 23, v: 9, e: 2, d: 12, gp: 68, gc: 74, sg: -6 },
-  { pos: "16º", team: "INST. BONS DE BOLA", pts: 25, j: 23, v: 7, e: 4, d: 12, gp: 44, gc: 72, sg: -28 },
-  { pos: "17º", team: "CTC VILA EMA", pts: 24, j: 23, v: 8, e: 0, d: 15, gp: 50, gc: 69, sg: -19 },
-  { pos: "18º", team: "S.E.R. CAIEIRAS", pts: 24, j: 23, v: 7, e: 3, d: 13, gp: 46, gc: 59, sg: -13 },
-  { pos: "19º", team: "AD SANTO ANDRÉ FUTSAL", pts: 21, j: 23, v: 6, e: 3, d: 14, gp: 51, gc: 76, sg: -25 },
-  { pos: "20º", team: "AE FRIBURGO", pts: 19, j: 23, v: 5, e: 4, d: 14, gp: 44, gc: 80, sg: -36 },
-  { pos: "21º", team: "CHUTE FUTSAL", pts: 17, j: 23, v: 5, e: 2, d: 16, gp: 43, gc: 81, sg: -38 },
-  { pos: "22º", team: "OCIAN PRAIA CLUBE", pts: 14, j: 23, v: 4, e: 2, d: 17, gp: 25, gc: 52, sg: -27 },
-  { pos: "23º", team: "AE FUTMAX", pts: 10, j: 23, v: 3, e: 1, d: 19, gp: 27, gc: 78, sg: -51 },
-  { pos: "24º", team: "AA WIMPRO GUARULHOS", pts: 7, j: 23, v: 2, e: 1, d: 20, gp: 26, gc: 88, sg: -62 }
-];
+// ───────── CLASSIFICAÇÃO GERAL DA 1ª FASE (soma Sub 7 + 8 + 9 + 10) ─────────
+const CLASSIF_FASE1 = [{"pos":"1º","team":"SANTO ANDRÉ FUTSAL","pts":191,"j":92,"sg":174,"s7":50,"s8":31,"s9":55,"s10":55},{"pos":"2º","team":"METALÚRGICOS DE JUNDIAÍ","pts":189,"j":92,"sg":124,"s7":37,"s8":60,"s9":52,"s10":40},{"pos":"3º","team":"SPORT BENFICA DE MOGI","pts":180,"j":92,"sg":118,"s7":57,"s8":48,"s9":46,"s10":29},{"pos":"4º","team":"RIVER DO BELÉM","pts":177,"j":92,"sg":96,"s7":45,"s8":36,"s9":46,"s10":50},{"pos":"5º","team":"A. UNIÃO MAUÁ","pts":170,"j":92,"sg":68,"s7":30,"s8":42,"s9":53,"s10":45},{"pos":"6º","team":"CLUBE BATALHA","pts":157,"j":92,"sg":67,"s7":37,"s8":47,"s9":47,"s10":26},{"pos":"7º","team":"ADC MERCEDES BENZ","pts":156,"j":92,"sg":82,"s7":49,"s8":45,"s9":33,"s10":29},{"pos":"8º","team":"INST. BONS DE BOLA","pts":150,"j":92,"sg":53,"s7":62,"s8":38,"s9":25,"s10":25},{"pos":"9º","team":"ADC MARVEL","pts":145,"j":92,"sg":32,"s7":27,"s8":31,"s9":38,"s10":49},{"pos":"10º","team":"ADEF/COTIA","pts":140,"j":92,"sg":11,"s7":26,"s8":29,"s9":50,"s10":35},{"pos":"11º","team":"GR GREMETAL","pts":138,"j":92,"sg":38,"s7":56,"s8":18,"s9":29,"s10":35},{"pos":"12º","team":"A.D. SUZANO","pts":133,"j":92,"sg":24,"s7":40,"s8":45,"s9":30,"s10":18},{"pos":"13º","team":"CTC VILA EMA","pts":130,"j":92,"sg":-16,"s7":46,"s8":22,"s9":24,"s10":38},{"pos":"14º","team":"G.D.R. 7 DE SETEMBRO","pts":129,"j":92,"sg":-29,"s7":28,"s8":44,"s9":39,"s10":18},{"pos":"15º","team":"AD NANDO GRANA","pts":116,"j":92,"sg":-56,"s7":14,"s8":34,"s9":41,"s10":27},{"pos":"16º","team":"AD SANTO ANDRÉ FUTSAL","pts":114,"j":92,"sg":-20,"s7":43,"s8":20,"s9":21,"s10":30},{"pos":"17º","team":"AE FRIBURGO","pts":107,"j":92,"sg":-50,"s7":29,"s8":28,"s9":19,"s10":31},{"pos":"18º","team":"MX7 DIADEMA","pts":106,"j":92,"sg":-50,"s7":15,"s8":23,"s9":43,"s10":25},{"pos":"19º","team":"CHUTE FUTSAL","pts":101,"j":92,"sg":-77,"s7":22,"s8":26,"s9":17,"s10":36},{"pos":"20º","team":"OCIAN PRAIA CLUBE","pts":100,"j":92,"sg":-54,"s7":33,"s8":18,"s9":14,"s10":35},{"pos":"21º","team":"S.E.R. CAIEIRAS","pts":98,"j":92,"sg":-116,"s7":3,"s8":43,"s9":24,"s10":28},{"pos":"22º","team":"A. PAULISTA FC MOOCA","pts":91,"j":92,"sg":-92,"s7":19,"s8":3,"s9":33,"s10":36},{"pos":"23º","team":"AE FUTMAX","pts":85,"j":92,"sg":-148,"s7":19,"s8":37,"s9":10,"s10":19},{"pos":"24º","team":"AA WIMPRO GUARULHOS","pts":59,"j":92,"sg":-179,"s7":10,"s8":24,"s9":7,"s10":18}];
 function renderClassif() {
   document.getElementById('classifList').innerHTML = CLASSIF_FASE1.map(r => `
-    <div class="classif-row ${r.team.includes('METALÚRGICOS') ? 'our' : ''}">
-      <span class="c-pos">${parseInt(r.pos)}</span><span class="c-team">${r.team}</span><span class="c-pts">${r.pts}</span>
+    <div class="classif-row ${r.team.includes('METALÚRGICOS') ? 'our' : ''}" style="grid-template-columns:28px 1fr 38px;">
+      <span class="c-pos">${parseInt(r.pos)}</span>
+      <span style="min-width:0"><span class="c-team" style="display:block">${r.team}</span>
+        <span style="display:block;font-size:9px;color:var(--t3);font-weight:600;margin-top:1px;">S7 ${r.s7} · S8 ${r.s8} · S9 ${r.s9} · S10 ${r.s10} · SG ${r.sg > 0 ? '+' + r.sg : r.sg}</span></span>
+      <span class="c-pts">${r.pts}</span>
     </div>`).join('');
 }
 
