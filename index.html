@@ -1031,6 +1031,31 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
   .leg-head { padding: 10px 12px; }
 }
 
+
+.hero-when { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.35); color: #FBBF24; font-weight: 800; font-size: 12px; text-align: center; }
+.hero-banner.copa .hero-title { font-size: clamp(26px, 6vw, 44px); }
+.next-card2 { margin-bottom: 18px; overflow: hidden; border-left: 4px solid var(--gold); }
+.nc-body { padding: 16px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; text-align: center; }
+.nc-team { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 16px; }
+.nc-team.our { color: var(--red); }
+.nc-vs { font-size: 11px; font-weight: 800; color: var(--t3); }
+.nc-when { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: var(--s2); border-top: 1px solid var(--border); font-size: 12px; font-weight: 700; color: var(--t1); }
+.nc-when span { background: var(--s1); border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px; }
+.nc-when .tbd { color: var(--amber); border-color: var(--amber-bd); background: var(--amber-bg); }
+details.quartas-det { margin-bottom: 22px; border: 1px solid var(--border); border-radius: var(--r2); background: var(--s1); overflow: hidden; }
+details.quartas-det > summary { list-style: none; cursor: pointer; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 13px; color: var(--t1); }
+details.quartas-det > summary::-webkit-details-marker { display: none; }
+details.quartas-det .qd-sub { font-size: 10px; font-weight: 700; color: var(--t3); font-family: 'Inter', sans-serif; }
+details.quartas-det .qd-sub::after { content: ' ▾'; }
+details.quartas-det[open] .qd-sub::after { content: ' ▴'; }
+details.quartas-det > .legs-grid { padding: 0 12px 12px; margin-bottom: 0; }
+@media (max-width: 600px) { .hero-banner.copa .hero-title { font-size: 26px !important; } .hero-banner.copa .hero-sub { display: block; font-size: 11px; margin-bottom: 8px; } .nc-team { font-size: 13px; } }
+
+.cons { padding: 4px 14px 14px; font-size: 11px; color: var(--t2); line-height: 1.6; border-top: 1px dashed var(--border); margin: 0 10px; }
+.cons b { color: var(--t1); }
+.semi-foot { font-size: 12px; color: var(--t2); padding: 10px 14px; background: var(--gold-bg); border: 1px solid var(--gold-bd); border-radius: 12px; margin-bottom: 22px; line-height: 1.5; }
+.hero-when span { display: inline-block; }
+.nc-body { grid-template-columns: 1fr auto 1fr; }
 .hide { display: none !important; }
 .note { font-size: 11px; color: var(--t2); padding: 10px 14px; background: var(--amber-bg); border: 1px solid var(--amber-bd); border-radius: 10px; margin-bottom: 16px; line-height: 1.5; }
 .footer { text-align: center; font-size: 10px; color: var(--t3); margin-top: 10px; line-height: 1.6; }
@@ -1056,32 +1081,37 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
 
 <!-- HERO -->
 <div class="hero-banner copa">
-  <div class="hero-top-tag">🤝 Federação Paulista de Futsal · Iniciação A2 · Copa União</div>
-  <h1 class="hero-title">METALÚRGICOS JUNDIAÍ <span>COPA UNIÃO</span></h1>
-  <p class="hero-sub">Na Copa União os clubes se enfrentam em ida e volta e <strong>todas as categorias (Sub 7, 8, 9 e 10) jogam contra o mesmo adversário</strong>. A tabela abaixo é por clube: o que conta é a soma das quatro categorias.</p>
+  <div class="hero-top-tag">🔥 Chave Ouro · Copa União · Semifinal</div>
+  <h1 class="hero-title">AGORA É <span>SEMI!</span></h1>
+  <p class="hero-sub">Passamos pelo Bons de Bola com 5 vitórias e 3 empates em 8 jogos. Bora pra cima, Metalúrgicos! 🔴</p>
 
   <div class="hero-versus">
     <div class="hv-team our">METALÚRGICOS<br>DE JUNDIAÍ</div>
-    <div class="hv-score"><span id="heroPts">–</span><small>pts (3 pts/vitória)</small></div>
-    <div class="hv-team">INST. BONS<br>DE BOLA</div>
+    <div class="hv-score"><span>×</span><small>Semifinal · ida e volta</small></div>
+    <div class="hv-team"><span id="heroOpp">BENFICA MOGI</span></div>
   </div>
+
+  <div class="hero-when" id="heroWhen"></div>
 
   <div class="hero-stats-row">
-    <div class="hero-stat-box gold"><div class="num" id="hsRec">–</div><div class="lbl">V · E · D na ida</div></div>
+    <div class="hero-stat-box gold"><div class="num" id="heroPts">–</div><div class="lbl">Pts nas quartas</div></div>
+    <div class="hero-stat-box"><div class="num" id="hsRec">–</div><div class="lbl">V · E · D</div></div>
     <div class="hero-stat-box"><div class="num" id="hsGoals">–</div><div class="lbl">Gols (pró × contra)</div></div>
-    <div class="hero-stat-box silver"><div class="num">24/10</div><div class="lbl">Jogo da volta · em casa</div></div>
-    <div class="hero-stat-box"><div class="num" id="hsDays">–</div><div class="lbl">Dias para a volta</div></div>
+    <div class="hero-stat-box silver"><div class="num" id="hsNext">–</div><div class="lbl">Chave Ouro</div></div>
   </div>
 </div>
 
-
-
-<!-- NOSSO CONFRONTO -->
+<!-- PRÓXIMO CONFRONTO -->
 <div class="section-head">
-  <div class="section-title"><div class="icon-dot"></div>Nosso confronto — Metalúrgicos × Inst. Bons de Bola</div>
-  <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;">Todas as categorias</span>
+  <div class="section-title"><div class="icon-dot"></div>Próximo confronto — Semifinal Chave Ouro</div>
+  <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;">Sub 7 · 8 · 9 · 10</span>
 </div>
-<div class="legs-grid" id="legsGrid"></div>
+<div id="nextGame"></div>
+
+<details class="quartas-det">
+  <summary><span>✔ Quartas de final · vencemos o Bons de Bola</span><span class="qd-sub">ver ida e volta</span></summary>
+  <div class="legs-grid" id="legsGrid"></div>
+</details>
 
 <!-- CHAVEAMENTO OFICIAL -->
 <div class="bracket-section">
@@ -1090,9 +1120,9 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
     <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;">👆 Toque num confronto para ver o detalhe</span>
   </div>
   <div id="chaves"></div>
-  <a class="src-link" href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">🔗 Fonte: Federação → Sub 9 → Por chave → “Torneio União – Quartas Ouro / Prata / Bronze” ↗</a>
+  <a class="src-link" href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">🔗 Resultados: site da Federação (Torneio União) ↗ · Tabela das semifinais: Comunicado Oficial nº 113/26 – DT</a>
   <div class="legend" style="padding:10px 2px 0;">
-    <span class="chip ok">✔</span> classificado (ida e volta jogadas) · <span class="chip lead">ida</span> só a ida jogada. O número de cada clube é a soma de pontos das 4 categorias (vitória 3, empate 1); empate nos pontos desempata no saldo de gols (critério provisório). A Federação divide os 12 confrontos em quartas de final Ouro, Prata e Bronze; <b>os cruzamentos das semifinais ainda não foram publicados</b> e estão em ordem provisória.
+    <span class="chip ok">✔</span> classificado · O número de cada clube é a soma de pontos das 4 categorias (vitória 3, empate 1). Em caso de empate vale o regulamento da FPFS: mais gols marcados, menos sofridos, gol average e ranking.
   </div>
 </div>
 
@@ -1124,7 +1154,7 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
 </div>
 
 <div class="note" style="margin-top:6px" id="noteBox">
-  ⚠️ <strong>Atenção:</strong> a Federação organiza a Copa União (Torneio União) em quartas Ouro, Prata e Bronze, mas ainda não publicou o regulamento nem os cruzamentos das semifinais. Pontos somados (vitória 3, empate 1) e semifinais em ordem provisória.
+  ℹ️ Datas, horários e locais conforme o Comunicado Oficial nº 113/26 da FPFS (26/10/2026). O horário informado é o de início da rodada; Sub 7, 8, 9 e 10 jogam em sequência.
 </div>
 
 <div class="footer">
@@ -1132,7 +1162,7 @@ details.art-cat[open] .ac-chev { transform: rotate(180deg); }
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/903" target="_blank" rel="noopener">Sub 10</a> (Federação Paulista de Futsal / admfutsal).<br>
-  Atualizado em 19/10/2026 — resultados até 18/10. Placares de 24/10 entram quando a Federação publicar.
+  Atualizado em 26/10/2026 — resultados até 25/10. Semifinais: Comunicado Oficial nº 113/26.
 </div>
 
 <script>
@@ -1156,7 +1186,7 @@ const US = 'METALÚRGICOS', BONS = 'INST. BONS DE BOLA';
 const isUs = n => n.includes('METALÚRGICOS');
 
 const VENUE_AWAY = { name: 'Sindicato dos Securitários (Itaquera)', addr: 'R. Ioneji Matsubayashi, 982 - Itaquera, São Paulo - SP' };
-const VENUE_HOME = { name: 'Ginásio Metalúrgicos Jundiaí (Várzea e C. Limpo Pta)', addr: 'R. Paulo Colin, 600 - Vila Augusta, Jundiaí - SP' };
+const VENUE_HOME = { name: 'Ginásio do Sindicato dos Metalúrgicos de Jundiaí', addr: 'R. Paulo Colin, 600 - Vila Augusta, Jundiaí - SP' };
 const mapsUrl = a => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a);
 const wazeUrl = a => 'https://waze.com/ul?q=' + encodeURIComponent(a) + '&navigate=yes';
 const sumulaUrl = id => 'http://admfutsal.com.br/sumula_online/sumula_imprimir.php?id_jogo=' + id;
@@ -1171,15 +1201,15 @@ const TIES = [
   { a:'SER CAIEIRAS', b:'OCIAN PRAIA CLUBE', d1:'10/10', d2:'17/10', r:{ 7:[[1,5],[1,7]], 8:[[5,1],[1,4]], 9:[[3,1],[2,1]], 10:[[1,1],[2,2]] } },
   { a:'A. PAULISTA FC MOOCA', b:'CHUTE FUTSAL', d1:'10/10', d2:'18/10', r:{ 7:[[3,5],[1,2]], 8:[[3,2],[2,0]], 9:[[1,1],[3,1]], 10:[[3,3],[3,2]] } },
   { a:'AA WIMPRO GUARULHOS', b:'AE FRIBURGO', d1:'11/10', d2:'18/10', r:{ 7:[[1,3],[0,2]], 8:[[0,1],[0,1]], 9:[[0,5],[0,4]], 10:[[0,9],[0,10]] } },
-  { a:'CTC VILA EMA', b:'AD SUZANO', d1:'10/10', d2:'24/10', r:{ 7:[[2,2],null], 8:[[3,4],null], 9:[[4,3],null], 10:[[2,0],null] } },
-  { a:'AD SANTO ANDRÉ FUTSAL', b:'ADEF/COTIA', d1:'10/10', d2:'24/10', r:{ 7:[[8,7],null], 8:[[3,3],null], 9:[[2,2],null], 10:[[0,1],null] } },
-  { a:'A. UNIÃO MAUÁ', b:'RIVER DO BELÉM', d1:'10/10', d2:'24/10', r:{ 7:[[2,3],null], 8:[[1,1],null], 9:[[3,3],null], 10:[[1,2],null] } },
-  { a:'G.D.R. 7 DE SETEMBRO', b:'ADC MERCEDES BENZ', d1:'11/10', d2:'24/10', r:{ 7:[[2,6],null], 8:[[1,0],null], 9:[[1,3],null], 10:[[2,4],null] } },
-  { a:'CLUBE BATALHA', b:'SPORT BENFICA DE MOGI', d1:'11/10', d2:'24/10', r:{ 7:[[2,1],null], 8:[[1,2],null], 9:[[1,2],null], 10:[[2,3],null] } },
-  { a:'AD NANDO GRANA', b:'GR GREMETAL', d1:'11/10', d2:'24/10', r:{ 7:[[2,5],null], 8:[[1,4],null], 9:[[5,0],null], 10:[[4,2],null] } },
-  { a:'ADC MARVEL', b:'SANTO ANDRÉ FUTSAL', d1:'17/10', d2:'24/10', r:{ 7:[[2,5],null], 8:[[2,1],null], 9:[[0,0],null], 10:[[0,2],null] } },
-  { a:'AE FUTMAX', b:'MX7 DIADEMA', d1:'17/10', d2:'24/10', r:{ 7:[[0,1],null], 8:[[0,2],null], 9:[[1,4],null], 10:[[1,0],null] } },
-  { a:BONS, b:'METALÚRGICOS DE JUNDIAÍ', d1:'18/10', d2:'24/10', r:{ 7:[[3,3],null], 8:[[2,4],null], 9:[[1,1],null], 10:[[1,2],null] } }
+  { a:'CTC VILA EMA', b:'AD SUZANO', d1:'10/10', d2:'24/10', r:{ 7:[[2,2],[2,3]], 8:[[3,4],[2,4]], 9:[[4,3],[1,1]], 10:[[2,0],[5,1]] } },
+  { a:'AD SANTO ANDRÉ FUTSAL', b:'ADEF/COTIA', d1:'10/10', d2:'24/10', r:{ 7:[[8,7],[3,6]], 8:[[3,3],[1,1]], 9:[[2,2],[1,3]], 10:[[0,1],[5,5]] } },
+  { a:'A. UNIÃO MAUÁ', b:'RIVER DO BELÉM', d1:'10/10', d2:'24/10', r:{ 7:[[2,3],[1,4]], 8:[[1,1],[3,2]], 9:[[3,3],[3,1]], 10:[[1,2],[3,3]] } },
+  { a:'G.D.R. 7 DE SETEMBRO', b:'ADC MERCEDES BENZ', d1:'11/10', d2:'24/10', r:{ 7:[[2,6],[1,7]], 8:[[1,0],[2,2]], 9:[[1,3],[3,2]], 10:[[2,4],[2,3]] } },
+  { a:'CLUBE BATALHA', b:'SPORT BENFICA DE MOGI', d1:'11/10', d2:'24/10', r:{ 7:[[2,1],[2,5]], 8:[[1,2],[3,1]], 9:[[1,2],[5,6]], 10:[[2,3],[1,1]] } },
+  { a:'AD NANDO GRANA', b:'GR GREMETAL', d1:'11/10', d2:'24/10', r:{ 7:[[2,5],[0,3]], 8:[[1,4],[1,2]], 9:[[5,0],[2,2]], 10:[[4,2],[1,1]] } },
+  { a:'ADC MARVEL', b:'SANTO ANDRÉ FUTSAL', d1:'17/10', d2:'24/10', r:{ 7:[[2,5],[0,4]], 8:[[2,1],[3,3]], 9:[[0,0],[1,2]], 10:[[0,2],[2,3]] } },
+  { a:'AE FUTMAX', b:'MX7 DIADEMA', d1:'17/10', d2:'24/10', r:{ 7:[[0,1],[2,4]], 8:[[0,2],[4,2]], 9:[[1,4],[2,6]], 10:[[1,0],[1,4]] } },
+  { a:BONS, b:'METALÚRGICOS DE JUNDIAÍ', d1:'18/10', d2:'24/10', r:{ 7:[[3,3],[0,3]], 8:[[2,4],[2,2]], 9:[[1,1],[0,4]], 10:[[1,2],[0,1]] } }
 ];
 
 // ───────── NOSSOS JOGOS (com gols) ─────────
@@ -1200,10 +1230,18 @@ const IDA = [
 ];
 // Volta 24/10 — Ginásio dos Metalúrgicos (mandante: Metalúrgicos)
 const VOLTA = [
-  { cat:7,  time:'08:30' },
-  { cat:8,  time:'09:30' },
-  { cat:9,  time:'10:30' },
-  { cat:10, time:'11:30' }
+  { cat:7,  time:'08:30', sumula:146346, bons:0, us:3,
+    usGoals:[['Gregory Melo',5,1],['Enzo de Carvalho',6,1],['Vinicius Rafael',12,1]],
+    bonsGoals:[] },
+  { cat:8,  time:'09:30', sumula:146348, bons:2, us:2,
+    usGoals:[['Murilo Oliveira',7,1],['Benjamim Cierjacks',4,1]],
+    bonsGoals:[['William',19,1],['Lorenzo Thierry',77,1]] },
+  { cat:9,  time:'10:30', sumula:146350, bons:0, us:4,
+    usGoals:[['Pedro Dutra',10,2],['Miguel Duca',11,2]],
+    bonsGoals:[] },
+  { cat:10, time:'11:30', sumula:146352, bons:0, us:1,
+    usGoals:[['João Henrique',15,1]],
+    bonsGoals:[] }
 ];
 
 // ───────── CÁLCULOS ─────────
@@ -1236,19 +1274,56 @@ function clubStandings() {
     .sort((a,b) => b.pts - a.pts || b.sg - a.sg || b.gp - a.gp || a.team.localeCompare(b.team));
 }
 
+// ───────── PRÓXIMO JOGO (preencher quando a FPFS publicar) ─────────
+// Ex.: { date:'31/10', weekday:'Sábado', time:'09:00', venue:{ name:'...', addr:'...' } }
+const SEMI = {
+  opp: 'SPORT BENFICA MC', oppShort: 'BENFICA MOGI',
+  ida:   { wd:'Sábado', date:'31/10', time:'8h30', home:'SPORT BENFICA MC',
+           venue:{ name:'Ginásio Clube da Vila Santista (Mogi das Cruzes)', addr:'Clube da Vila Santista, Mogi das Cruzes - SP' } },
+  volta: { wd:'Sábado', date:'14/11', time:'8h30', home:'METALÚRGICOS DE JUNDIAÍ', venue: null }  // venue = VENUE_HOME (definido acima)
+};
+
 // ───────── HERO ─────────
 function renderHero() {
-  let p = 0, v = 0, e = 0, d = 0, gf = 0, ga = 0;
-  IDA.forEach(g => {
+  const all = IDA.concat(VOLTA);
+  let p = 0, q = 0, v = 0, e = 0, d = 0, gf = 0, ga = 0;
+  all.forEach(g => {
     gf += g.us; ga += g.bons;
-    if (g.us > g.bons) { p += 3; v++; } else if (g.us === g.bons) { p += 1; e++; } else d++;
+    if (g.us > g.bons) { p += 3; v++; } else if (g.us === g.bons) { p += 1; q += 1; e++; } else { q += 3; d++; }
   });
-  document.getElementById('heroPts').textContent = p + ' × ' + (IDA.reduce((s,g)=> s + (g.bons>g.us?3:g.bons===g.us?1:0),0));
+  document.getElementById('heroPts').textContent = p + ' × ' + q;
   document.getElementById('hsRec').textContent = `${v} · ${e} · ${d}`;
   document.getElementById('hsGoals').textContent = `${gf} × ${ga}`;
-  const today = new Date(); today.setHours(0,0,0,0);
-  const diff = Math.round((new Date(2026, 9, 24) - today) / 86400000);
-  document.getElementById('hsDays').textContent = diff > 0 ? diff : (diff === 0 ? 'HOJE' : '—');
+  document.getElementById('hsNext').textContent = '✔ Semi';
+  document.getElementById('heroOpp').textContent = SEMI.oppShort;
+  document.getElementById('heroWhen').innerHTML =
+    `<span>⚽ IDA · ${SEMI.ida.wd} ${SEMI.ida.date} · ${SEMI.ida.time} · ${SEMI.ida.venue.name.split(' (')[0]}</span><span>🏠 VOLTA · ${SEMI.volta.wd} ${SEMI.volta.date} · ${SEMI.volta.time} · nossa casa</span>`;
+}
+function semiPanel(tag, pill, leg, venue, home, away) {
+  return `
+    <div class="glass-panel leg-panel">
+      <div class="leg-head">
+        <div><div class="leg-title">${tag} · ${leg.wd} ${leg.date}</div><div class="leg-sub">${venue === VENUE_HOME ? 'Na nossa casa' : 'Na casa do Benfica Mogi'}</div></div>
+        <span class="pill next">${pill}</span>
+      </div>
+      <div class="leg-rows">
+        <div class="nc-body" style="padding:22px 16px;">
+          <div class="nc-team ${isUs(home) ? 'our' : ''}">${home.replace(' DE JUNDIAÍ','')}</div>
+          <div class="nc-vs">×</div>
+          <div class="nc-team ${isUs(away) ? 'our' : ''}">${away.replace(' DE JUNDIAÍ','')}</div>
+        </div>
+        <div class="nc-when"><span>📅 ${leg.wd} ${leg.date}</span><span>⏰ início ${leg.time}</span><span class="tbd">Sub 7 · 8 · 9 · 10 em sequência</span></div>
+      </div>
+      ${venueBox(venue)}
+    </div>`;
+}
+function renderNext() {
+  document.getElementById('nextGame').innerHTML = `
+    <div class="legs-grid" style="margin-bottom:10px">
+      ${semiPanel('IDA', 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ')}
+      ${semiPanel('VOLTA', 'Dia 14/11', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp)}
+    </div>
+    <div class="semi-foot">🏆 <b>Vencendo:</b> final em jogo único, 22/11, Ginásio Ciro I · <b>Perdendo:</b> disputa de 3º lugar (ida e volta, 21/11 a 06/12). Vence quem somar mais pontos nas 4 categorias; empate → mais gols marcados.</div>`;
 }
 
 // ───────── NOSSO CONFRONTO ─────────
@@ -1266,51 +1341,37 @@ function venueBox(v) {
       </div>
     </div>`;
 }
-function gdetBody(g) {
-  return `<div class="gdet-body">
-    <div class="gm-goals">
-      <div class="col"><b>Bons de Bola</b>${goalsHtml(g.bonsGoals)}</div>
-      <div class="col r"><b>⚽ Metalúrgicos</b>${goalsHtml(g.usGoals)}</div>
-    </div>
-    <div class="gm-sum"><a href="${sumulaUrl(g.sumula)}" target="_blank" rel="noopener">Ver súmula oficial ↗</a></div>
-  </div>`;
+function gdetBody(g, usLeft) {
+  const bons = `<div class="col${usLeft ? ' r' : ''}"><b>Bons de Bola</b>${goalsHtml(g.bonsGoals)}</div>`;
+  const us = `<div class="col${usLeft ? '' : ' r'}"><b>⚽ Metalúrgicos</b>${goalsHtml(g.usGoals)}</div>`;
+  return `<div class="gdet-body"><div class="gm-goals">${usLeft ? us + bons : bons + us}</div>
+    <div class="gm-sum"><a href="${sumulaUrl(g.sumula)}" target="_blank" rel="noopener">Ver súmula oficial ↗</a></div></div>`;
 }
-function renderLegs() {
-  const idaHtml = IDA.map(g => {
+function legRows(list, date, usHome) {
+  return list.map(g => {
     const cls = g.us > g.bons ? 'w' : g.us < g.bons ? 'l' : 'd';
+    const teams = usHome
+      ? `<div class="gm-team r our">METALÚRGICOS</div><div class="gm-score">${g.us} × ${g.bons}</div><div class="gm-team">${BONS}</div>`
+      : `<div class="gm-team r">${BONS}</div><div class="gm-score">${g.bons} × ${g.us}</div><div class="gm-team our">METALÚRGICOS</div>`;
     return `
       <details class="gm2 ${cls}">
         <summary>
-          <div class="gm-top"><span class="cat-tag c${g.cat}">${CAT_LABEL[g.cat]}</span><span class="gm-time">18/10 · ${g.time}</span></div>
-          <div class="gm-line">
-            <div class="gm-team r">${BONS}</div>
-            <div class="gm-score">${g.bons} × ${g.us}</div>
-            <div class="gm-team our">METALÚRGICOS</div>
-          </div>
+          <div class="gm-top"><span class="cat-tag c${g.cat}">${CAT_LABEL[g.cat]}</span><span class="gm-time">${date} · ${g.time}</span></div>
+          <div class="gm-line">${teams}</div>
           <div class="gm-more"><span class="mo-closed">⚽ ver quem fez os gols ▾</span><span class="mo-open">ocultar gols ▴</span></div>
         </summary>
-        ${gdetBody(g)}
+        ${gdetBody(g, usHome)}
       </details>`;
   }).join('');
-
-  const voltaHtml = VOLTA.map(g => `
-      <div class="gm2 off">
-        <div class="gm-top"><span class="cat-tag c${g.cat}">${CAT_LABEL[g.cat]}</span><span class="gm-time">24/10 · ${g.time}</span></div>
-        <div class="gm-line">
-          <div class="gm-team r our">METALÚRGICOS</div>
-          <div class="gm-score">– × –</div>
-          <div class="gm-team">${BONS}</div>
-        </div>
-        <div class="gm-more"><span>⚽ gols disponíveis após o jogo</span></div>
-      </div>`).join('');
-
+}
+function renderLegs() {
   document.getElementById('legsGrid').innerHTML = `
-    <div class="glass-panel leg-panel leg-off">
+    <div class="glass-panel leg-panel">
       <div class="leg-head">
         <div><div class="leg-title">VOLTA · Sábado 24/10</div><div class="leg-sub">Na nossa casa</div></div>
-        <span class="pill next">Aguardando</span>
+        <span class="pill done">Encerrado</span>
       </div>
-      <div class="leg-rows">${voltaHtml}</div>
+      <div class="leg-rows">${legRows(VOLTA, '24/10', true)}</div>
       ${venueBox(VENUE_HOME)}
     </div>
     <div class="glass-panel leg-panel">
@@ -1318,10 +1379,9 @@ function renderLegs() {
         <div><div class="leg-title">IDA · Domingo 18/10</div><div class="leg-sub">Na casa do Bons de Bola</div></div>
         <span class="pill done">Encerrado</span>
       </div>
-      <div class="leg-rows">${idaHtml}</div>
+      <div class="leg-rows">${legRows(IDA, '18/10', false)}</div>
       ${venueBox(VENUE_AWAY)}
-    </div>
-    `;
+    </div>`;
 }
 
 // estado do confronto: 'done' (2 pernas em todas as categorias), 'lead' (só ida), 'wait'
@@ -1330,20 +1390,23 @@ function tieState(t) {
   const played = legs.filter(Boolean).length;
   return played === 8 ? 'done' : played > 0 ? 'lead' : 'wait';
 }
-function tieWinner(t) { // 'a' | 'b' | null  (pontos; desempate: saldo de gols)
+function tieWinner(t) { // regulamento: mais pontos nas 4 categorias; 1) mais gols marcados; 2) menos sofridos; 3) gol average; 4) ranking (mandante da volta)
   const s = tieSummary(t, 'ALL');
   if (s.pa !== s.pb) return { w: s.pa > s.pb ? 'a' : 'b', byGoals: false };
   if (s.ga !== s.gb) return { w: s.ga > s.gb ? 'a' : 'b', byGoals: true };
-  return { w: null, byGoals: false };
+  return { w: 'b', byGoals: true, byRank: true };
 }
 const SHORT = { 'SPORT BENFICA DE MOGI':'BENFICA MOGI','A. PAULISTA FC MOOCA':'PAULISTA MOOCA','AA WIMPRO GUARULHOS':'WIMPRO','AD SANTO ANDRÉ FUTSAL':'AD SANTO ANDRÉ','G.D.R. 7 DE SETEMBRO':'GDR 7 SET','ADC MERCEDES BENZ':'MERCEDES BENZ','OCIAN PRAIA CLUBE':'OCIAN PRAIA','INST. BONS DE BOLA':'BONS DE BOLA','METALÚRGICOS DE JUNDIAÍ':'METALÚRGICOS','A. UNIÃO MAUÁ':'UNIÃO MAUÁ','SANTO ANDRÉ FUTSAL':'SANTO ANDRÉ FS' };
 const sh = n => SHORT[n] || n;
 
 // 12 confrontos = quartas Ouro / Prata / Bronze (índices em TIES). Ordem provisória: [QF1, QF2 | QF3, QF4]
 const CHAVES = [
-  { key:'OURO',   icon:'🥇', cls:'ouro',   open:true,  qf:[9, 5, 7, 11] },
-  { key:'PRATA',  icon:'🥈', cls:'prata',  open:false, qf:[3, 4, 6, 8] },
-  { key:'BRONZE', icon:'🥉', cls:'bronze', open:false, qf:[0, 1, 2, 10] }
+  { key:'OURO', icon:'🥇', cls:'ouro', open:true, qf:[9, 5, 7, 11], sf:['31/10 · 14/11','31/10 · 14/11'], final:'22/11 · Ciro I',
+    cons:['Jogo 7 · ADC Marvel × A. União Mauá — ida 31/10 8h30 · volta 14/11 8h30','Jogo 8 · Inst. Bons de Bola × Clube Batalha — ida 01/11 9h00 · volta 15/11 14h30'] },
+  { key:'PRATA', icon:'🥈', cls:'prata', open:false, qf:[3, 4, 6, 8], sf:['31/10 · 14/11','31/10 · 14/11'], final:'29/11 · Ciro I',
+    cons:['Jogo 7 · AD Santo André × AD Suzano — ida 31/10 14h30 · volta 14/11 15h00','Jogo 8 · AD Nando Grana × GDR 7 de Setembro — ida 01/11 14h30 · volta 15/11 14h30'] },
+  { key:'BRONZE', icon:'🥉', cls:'bronze', open:false, qf:[0, 2, 1, 10], sf:['31/10 · 15/11','31/10 · 14/11'], final:'28/11 · Ciro I',
+    cons:['Jogo 7 · AA Wimpro × SER Caieiras — ida 01/11 8h30 · volta 14/11 8h30','Jogo 8 · AE Futmax × AE Chute Futsal — ida 31/10 14h30 · volta 15/11 14h30'] }
 ];
 
 function matchCard(ti, label) {
@@ -1371,14 +1434,14 @@ function advCard(label, tiA, tiB, nameA, nameB, topExtra) {
   };
   const A = pick(tiA, nameA), B = pick(tiB, nameB);
   const r = x => `<div class="mt-t ${x.tbd ? 'tbd' : ''} ${!x.tbd && isUs(x.n) ? 'our' : ''}" title="${x.n}"><span class="nm">${x.tbd ? x.n : '✔ ' + sh(x.n)}</span><span class="sc">–</span></div>`;
-  return `<div class="mt tbdcard"><div class="mt-top"><span>${label}</span><span>a confirmar</span></div>${r(A)}<div class="mt-vs"><span>VS</span></div>${r(B)}</div>`;
+  return `<div class="mt tbdcard"><div class="mt-top"><span>${label}</span><span>${topExtra || 'a confirmar'}</span></div>${r(A)}<div class="mt-vs"><span>VS</span></div>${r(B)}</div>`;
 }
 
 function chaveHtml(ch) {
   const [q1, q2, q3, q4] = ch.qf;
-  const sfA = advCard('Semifinal 1', q1, q2, 'Venc. QF1', 'Venc. QF2');
-  const sfB = advCard('Semifinal 2', q3, q4, 'Venc. QF3', 'Venc. QF4');
-  const fin = `<div class="trophy">🏆</div><div class="mt final"><div class="mt-top"><span>Final ${ch.key}</span><span>a confirmar</span></div>
+  const sfA = advCard('Semifinal 1', q1, q2, 'Venc. QF1', 'Venc. QF2', ch.sf[0]);
+  const sfB = advCard('Semifinal 2', q3, q4, 'Venc. QF3', 'Venc. QF4', ch.sf[1]);
+  const fin = `<div class="trophy">🏆</div><div class="mt final"><div class="mt-top"><span>Final ${ch.key}</span><span>${ch.final}</span></div>
       <div class="mt-t tbd"><span class="nm">Venc. Semi 1</span><span class="sc">–</span></div><div class="mt-vs"><span>VS</span></div><div class="mt-t tbd"><span class="nm">Venc. Semi 2</span><span class="sc">–</span></div></div>`;
   return `<div class="bk-scroll"><div class="bk">
     <div class="bk-h">Quartas</div><div></div><div class="bk-h">Semifinal</div><div></div><div class="bk-h">Final</div><div></div><div class="bk-h">Semifinal</div><div></div><div class="bk-h">Quartas</div>
@@ -1400,7 +1463,7 @@ function renderChaves() {
     const hasUs = ch.qf.some(i => isUs(TIES[i].a) || isUs(TIES[i].b));
     return `<details class="chave ${ch.cls}" ${ch.open ? 'open' : ''}>
       <summary><span>${ch.icon} Chave ${ch.key.charAt(0) + ch.key.slice(1).toLowerCase()} ${hasUs ? '· 🔴 Metalúrgicos' : ''}</span><span class="sm">${done}/4 quartas encerradas</span></summary>
-      ${chaveHtml(ch)}</details>`;
+      ${chaveHtml(ch)}<div class="cons"><b>Disputa de 5º a 8º</b>${ch.cons.map(c => `<div>${c}</div>`).join('')}<div style="margin-top:4px">Final (1º/2º): <b>${ch.final.replace(' · ', ' · Ginásio ')}</b>, jogo único · 3º/4º, 5º/6º e 7º/8º: ida e volta de 21/11 a 06/12.</div></div></details>`;
   }).join('');
 }
 
@@ -1421,7 +1484,7 @@ function openTie(i) {
   if (st === 'done') {
     const W = tieWinner(t);
     res = W.w
-      ? `<div class="md-res">✔ <b>${t[W.w]}</b> avança — ${s.pa} × ${s.pb} em pontos${W.byGoals ? ` (empate nos pontos; desempate pelo saldo de gols: ${s.ga} × ${s.gb})` : ''}.</div>`
+      ? `<div class="md-res">✔ <b>${t[W.w]}</b> avança — ${s.pa} × ${s.pb} em pontos${W.byGoals ? ` (empate nos pontos; critério de desempate: mais gols marcados, ${s.ga} × ${s.gb})` : ''}.</div>`
       : `<div class="md-res wait">Empate total em pontos e gols — aguardando critério da FPFS.</div>`;
   } else {
     res = `<div class="md-res wait">${st === 'lead' ? 'Só a ida foi jogada.' : 'Ainda não começou.'} Parcial: ${t.a} ${s.pa} × ${s.pb} ${t.b}. Volta em ${t.d2}.</div>`;
@@ -1446,7 +1509,7 @@ function renderArtilharia() {
   const el = document.getElementById('artilhariaList');
   el.innerHTML = [7, 8, 9, 10].map(cat => {
     const arr = [];
-    IDA.filter(g => g.cat === cat).forEach(g => g.usGoals.forEach(([n, num, q]) => arr.push({ name:n, num, goals:q })));
+    IDA.concat(VOLTA).filter(g => g.cat === cat).forEach(g => g.usGoals.forEach(([n, num, q]) => { const x = arr.find(y => y.num === num); if (x) x.goals += q; else arr.push({ name:n, num, goals:q }); }));
     arr.sort((a, b) => b.goals - a.goals);
     const total = arr.reduce((s, x) => s + x.goals, 0);
     const rows = arr.length ? arr.map((s, idx) => `
@@ -1476,7 +1539,7 @@ function renderClassif() {
 }
 
 // ───────── INIT ─────────
-renderHero(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
+renderHero(); renderNext(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
 </script>
 </body>
 </html>
