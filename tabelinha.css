@@ -221,3 +221,13 @@ html.dark-mode .wdl-card, html.dark-mode .wdl-card.a { background: var(--s1); bo
   .bk-scroll { padding: 18px 16px 22px; overflow-x: hidden; }
   .bk-col { gap: 14px; }
 }
+
+/* ── Painéis de estatísticas acompanham o conteúdo (sem bloco branco vazio) ── */
+.stats-cols .glass-panel { height: auto; max-height: 500px; }
+
+/* ── Aviso do Waze ── */
+.tf-toast { position: fixed; left: 12px; right: 12px; bottom: 16px; z-index: 50; max-width: 420px; margin: 0 auto; padding: 12px 14px;
+  background: var(--t1); color: var(--bg); border-radius: 14px; font-size: 13px; line-height: 1.4; box-shadow: 0 10px 30px rgba(0,0,0,.3);
+  display: flex; align-items: center; gap: 12px; }
+.tf-toast a { flex: none; font-weight: 800; color: var(--yel); text-decoration: underline; text-underline-offset: 3px; }
+.tf-toast button { flex: none; background: none; border: 0; color: inherit; font-size: 18px; line-height: 1; opacity: .7; cursor: pointer; }

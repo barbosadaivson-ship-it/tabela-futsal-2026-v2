@@ -36,3 +36,30 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+/* Waze: no Android tenta abrir o app; se não abrir, avisa. No iPhone e no computador usa o link universal. */
+(function () {
+  var ua = navigator.userAgent || '';
+  var android = /Android/i.test(ua);
+  function toast(web) {
+    var old = document.querySelector('.tf-toast'); if (old) old.remove();
+    var t = document.createElement('div'); t.className = 'tf-toast'; t.setAttribute('role', 'status');
+    t.innerHTML = '<span>Parece que você não tem o Waze instalado.</span><a href="' + web + '" target="_blank" rel="noopener">Abrir no navegador</a><button aria-label="Fechar">×</button>';
+    t.querySelector('button').onclick = function () { t.remove(); };
+    document.body.appendChild(t);
+    setTimeout(function () { if (t.parentNode) t.remove(); }, 9000);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="waze.com/ul"]');
+    if (!a || !android) return;
+    e.preventDefault();
+    var q = new URL(a.href).searchParams.get('q') || '';
+    var left = false;
+    var mark = function () { left = true; };
+    document.addEventListener('visibilitychange', mark, { once: true });
+    window.addEventListener('pagehide', mark, { once: true });
+    window.addEventListener('blur', mark, { once: true });
+    window.location.href = 'waze://?q=' + encodeURIComponent(q) + '&navigate=yes';
+    setTimeout(function () { if (!left && !document.hidden) toast(a.href); }, 1800);
+  });
+})();
