@@ -1135,24 +1135,24 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css">
+<link rel="stylesheet" href="tabelinha.css?v=7">
 </head>
 <body>
 
 <div class="orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 
 <!-- MARCA -->
-<div class="brand-row"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
+<div class="brand-row"><div class="brand-wrap"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
   <svg width="38" height="38" viewBox="48 48 160 160" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M82.43,104.48v-5.88c0-15.68,7.84-23.52,23.52-23.52h58.8c15.68,0,23.52,7.84,23.52,23.52v58.8c0,15.68-7.84,23.52-23.52,23.52h-58.8c-15.68,0-23.52-7.84-23.52-23.52v-5.88" stroke-width="11"/><path d="M67.73,118.79h64.68M67.73,137.05h49.98" stroke-width="11"/><path d="M188.27,89.78c-21.11,0-38.22,17.11-38.22,38.22s17.11,38.22,38.22,38.22" stroke-width="8.5"/></g><circle cx="150.05" cy="128" r="9.86" fill="var(--ball)"/></svg>
   <span class="bw">tabelinha<span>futsal</span></span></a>
   <span class="brand-sub">Metalúrgicos de Jundiaí · Sub 9</span></div>
+  <a class="fed-btn" href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener"><span class="fed-lbl">Dados da </span>Federação ↗</a></div>
 <!-- NAV -->
 <div class="nav-row">
   <div class="nav-links">
     <a href="primeira-fase.html" class="nav-pill-btn">1ª fase</a>
     <a href="finais.html" class="nav-pill-btn">Finais</a>
     <a href="index.html" class="nav-pill-btn active">Copa União</a>
-    <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" class="nav-pill-btn">Federação FPFS ↗</a>
   </div>
   <div class="theme-switch-wrapper">
     <span style="font-size:14px;">☀️</span>
@@ -1163,49 +1163,39 @@ html.dark-mode .modal { background: #1D1B19; }
 
 <!-- HERO -->
 <div class="hero-banner copa">
-  <div class="hero-top-tag">🔥 Chave Ouro · Copa União · Semifinal</div>
-  <h1 class="hero-title">AGORA É <span>SEMI!</span></h1>
-  <p class="hero-sub">Passamos pelo Bons de Bola com 5 vitórias e 3 empates em 8 jogos. Bora pra cima, Metalúrgicos! 🔴</p>
-
-  <div class="hero-versus">
-    <div class="hv-team our">METALÚRGICOS<br>DE JUNDIAÍ</div>
-    <div class="hv-score"><span>×</span><small>Semifinal · ida e volta</small></div>
-    <div class="hv-team"><span id="heroOpp">BENFICA MOGI</span></div>
-  </div>
-
-  <div class="hero-when" id="heroWhen"></div>
-
-  <div class="hero-stats-row">
-    <div class="hero-stat-box gold"><div class="num" id="heroPts">–</div><div class="lbl">Pts nas quartas</div></div>
-    <div class="hero-stat-box"><div class="num" id="hsRec">–</div><div class="lbl">V · E · D</div></div>
-    <div class="hero-stat-box"><div class="num" id="hsGoals">–</div><div class="lbl">Gols (pró × contra)</div></div>
-    <div class="hero-stat-box silver"><div class="num" id="hsNext">–</div><div class="lbl">Chave Ouro</div></div>
+  <div class="hero-top-tag">Copa União · Chave Ouro</div>
+  <div class="court">
+    <div class="half half-main">
+      <h1 class="half-hero">AGORA É <span>SEMI!</span></h1>
+      <div class="vs-line"><span class="our">METALÚRGICOS</span><i>×</i><span id="heroOpp">BENFICA MOGI</span></div>
+      <div class="half-when" id="heroWhen"></div>
+    </div>
+    <div class="half half-past">
+      <div class="half-tag">Últimos resultados · quartas</div>
+      <div class="past-line">Vencemos o Bons de Bola: <b id="heroPts">–</b> em pontos</div>
+      <div class="half-row"><span><b id="hsRec">–</b> V · E · D</span><span><b id="hsGoals">–</b> gols</span></div>
+    </div>
   </div>
 </div>
 
 <!-- PRÓXIMO CONFRONTO -->
 <div class="section-head">
-  <div class="section-title"><div class="icon-dot"></div>Próximo confronto — Semifinal Chave Ouro</div>
-  <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;">Sub 7 · 8 · 9 · 10</span>
+  <div class="section-title"><div class="icon-dot"></div>Próximos jogos</div>
 </div>
 <div id="nextGame"></div>
 
 <details class="quartas-det">
-  <summary><span>✔ Quartas de final · vencemos o Bons de Bola</span><span class="qd-sub">ver ida e volta</span></summary>
+  <summary><span>Quartas · vencemos o Bons de Bola</span><span class="qd-sub">detalhes</span></summary>
   <div class="legs-grid" id="legsGrid"></div>
 </details>
 
 <!-- CHAVEAMENTO OFICIAL -->
 <div class="bracket-section">
   <div class="section-head">
-    <div class="section-title"><div class="icon-dot" style="background:#FFD60A;"></div>Chaveamento — Copa União (Torneio União)</div>
-    <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;">👆 Toque num confronto para ver o detalhe</span>
+    <div class="section-title"><div class="icon-dot" style="background:#FFD60A;"></div>Chaveamento</div>
   </div>
   <div id="chaves"></div>
-  <a class="src-link" href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">🔗 Resultados: site da Federação (Torneio União) ↗ · Tabela das semifinais: Comunicado Oficial nº 113/26 – DT</a>
-  <div class="legend" style="padding:10px 2px 0;">
-    <span class="chip ok">✔</span> classificado · O número de cada clube é a soma de pontos das 4 categorias (vitória 3, empate 1). Em caso de empate vale o regulamento da FPFS: mais gols marcados, menos sofridos, gol average e ranking.
-  </div>
+  <div class="legend" style="padding:10px 2px 0;">Pontos = soma das 4 categorias (vitória 3, empate 1). Toque num confronto para ver o detalhe. <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" style="text-decoration:underline">Fonte ↗</a></div>
 </div>
 
 <!-- MODAL DETALHE -->
@@ -1222,29 +1212,24 @@ html.dark-mode .modal { background: #1D1B19; }
 </div>
 <div class="stats-cols">
   <div class="glass-panel">
-    <div class="panel-head"><div class="panel-head-title">⚽ Artilharia Copa União</div><span style="font-size:10px;color:var(--t3);font-weight:700;">toque na categoria</span></div>
+    <div class="panel-head"><div class="panel-head-title">Artilharia</div></div>
     <div id="artilhariaList" class="scroll-list"></div>
   </div>
   <div class="glass-panel">
     <div class="panel-head">
-      <div class="panel-head-title">🏆 Classificação Geral · 1ª Fase</div>
-      <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" class="fed-link">Federação ↗</a>
+      <div class="panel-head-title">Classificação · 1ª fase</div>
+      <span style="font-size:10px;color:var(--t3);font-weight:700;">4 categorias somadas</span>
     </div>
-    <div style="padding:6px 14px;font-size:10px;color:var(--t3);border-bottom:1px solid var(--border);">Soma dos pontos de Sub 7, 8, 9 e 10 ao fim da 1ª fase (23 jogos por categoria).</div>
     <div id="classifList" class="scroll-list"></div>
   </div>
 </div>
 
-<div class="note" style="margin-top:6px" id="noteBox">
-  ℹ️ Datas, horários e locais conforme o Comunicado Oficial nº 113/26 da FPFS (26/10/2026). O horário informado é o de início da rodada; Sub 7, 8, 9 e 10 jogam em sequência.
-</div>
-
 <div class="footer">
-  Dados: <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
+  Atualizado em 26/10 · Fonte: Federação Paulista de Futsal ·
+  <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
-  <a href="https://eventos.admfutsal.com.br/evento/903" target="_blank" rel="noopener">Sub 10</a> (Federação Paulista de Futsal / admfutsal).<br>
-  Atualizado em 26/10/2026 — resultados até 25/10. Semifinais: Comunicado Oficial nº 113/26.
+  <a href="https://eventos.admfutsal.com.br/evento/903" target="_blank" rel="noopener">Sub 10</a>
 </div>
 
 <script>
@@ -1378,36 +1363,37 @@ function renderHero() {
   document.getElementById('heroPts').textContent = p + ' × ' + q;
   document.getElementById('hsRec').textContent = `${v} · ${e} · ${d}`;
   document.getElementById('hsGoals').textContent = `${gf} × ${ga}`;
-  document.getElementById('hsNext').textContent = '✔ Semi';
   document.getElementById('heroOpp').textContent = SEMI.oppShort;
   document.getElementById('heroWhen').innerHTML =
-    `<span>⚽ IDA · ${SEMI.ida.wd} ${SEMI.ida.date} · ${SEMI.ida.time} · ${SEMI.ida.venue.name.split(' (')[0]}</span><span>🏠 VOLTA · ${SEMI.volta.wd} ${SEMI.volta.date} · ${SEMI.volta.time} · nossa casa</span>`;
+    `<span>Ida · ${SEMI.ida.date} · ${SEMI.ida.time}</span><span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span>`;
 }
-function semiPanel(tag, pill, leg, venue, home, away) {
+function semiPanel(tag, pill, leg, venue, home, away, open) {
+  const mine = venue === VENUE_HOME;
   return `
-    <div class="glass-panel leg-panel">
-      <div class="leg-head">
-        <div><div class="leg-title">${tag} · ${leg.wd} ${leg.date}</div><div class="leg-sub">${venue === VENUE_HOME ? 'Na nossa casa' : 'Na casa do Benfica Mogi'}</div></div>
-        <span class="pill next">${pill}</span>
+    <details class="glass-panel leg-fold" ${open ? 'open' : ''}>
+      <summary>
+        <span class="lf-title">${tag} · ${leg.date}</span>
+        <span class="lf-sub">${mine ? 'Nossa casa' : 'Casa do Benfica'}</span>
+        ${pill ? `<span class="lf-pill">${pill}</span>` : ''}
+      </summary>
+      <div class="lf-body">
+        <div class="lf-match"><span class="${isUs(home) ? 'our' : ''}">${home.replace(' DE JUNDIAÍ','')}</span><i>×</i><span class="${isUs(away) ? 'our' : ''}">${away.replace(' DE JUNDIAÍ','')}</span></div>
+        <div class="lf-when">Início ${leg.time} · Sub 7 a 10 em sequência</div>
+        <div class="lf-venue">${venue.name}</div>
+        <div class="lf-links"><a href="${mapsUrl(venue.addr)}" target="_blank" rel="noopener">Mapa</a><a href="${wazeUrl(venue.addr)}" target="_blank" rel="noopener">Waze</a></div>
       </div>
-      <div class="leg-rows">
-        <div class="nc-body" style="padding:22px 16px;">
-          <div class="nc-team ${isUs(home) ? 'our' : ''}">${home.replace(' DE JUNDIAÍ','')}</div>
-          <div class="nc-vs">×</div>
-          <div class="nc-team ${isUs(away) ? 'our' : ''}">${away.replace(' DE JUNDIAÍ','')}</div>
-        </div>
-        <div class="nc-when"><span>📅 ${leg.wd} ${leg.date}</span><span>⏰ início ${leg.time}</span><span class="tbd">Sub 7 · 8 · 9 · 10 em sequência</span></div>
-      </div>
-      ${venueBox(venue)}
-    </div>`;
+    </details>`;
 }
 function renderNext() {
+  // a ida fica aberta até o dia do jogo passar; depois a volta assume
+  const [d, mo] = SEMI.ida.date.split('/').map(Number);
+  const idaPassed = new Date() > new Date(new Date().getFullYear(), mo - 1, d, 23, 59);
   document.getElementById('nextGame').innerHTML = `
-    <div class="legs-grid" style="margin-bottom:10px">
-      ${semiPanel('IDA', 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ')}
-      ${semiPanel('VOLTA', 'Dia 14/11', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp)}
+    <div class="next-stack">
+      ${semiPanel('Ida', idaPassed ? '' : 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ', !idaPassed)}
+      ${semiPanel('Volta', idaPassed ? 'Próximo' : '', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, idaPassed)}
     </div>
-    <div class="semi-foot">🏆 <b>Vencendo:</b> final em jogo único, 22/11, Ginásio Ciro I · <b>Perdendo:</b> disputa de 3º lugar (ida e volta, 21/11 a 06/12). Vence quem somar mais pontos nas 4 categorias; empate → mais gols marcados.</div>`;
+    <div class="semi-foot">Quem vencer vai à final (22/11). Quem perder disputa o 3º lugar.</div>`;
 }
 
 // ───────── NOSSO CONFRONTO ─────────
@@ -1418,18 +1404,18 @@ function goalsHtml(arr) {
 function venueBox(v) {
   return `
     <div class="venue-box">
-      <div><div class="vn">📍 ${v.name}</div><div class="va">${v.addr}</div></div>
+      <div class="vn">${v.name}</div>
       <div class="nav-btns">
-        <a class="nav-btn" href="${mapsUrl(v.addr)}" target="_blank" rel="noopener">🗺️ Google Maps</a>
-        <a class="nav-btn waze" href="${wazeUrl(v.addr)}" target="_blank" rel="noopener">🚗 Waze</a>
+        <a class="nav-btn" href="${mapsUrl(v.addr)}" target="_blank" rel="noopener">Mapa</a>
+        <a class="nav-btn waze" href="${wazeUrl(v.addr)}" target="_blank" rel="noopener">Waze</a>
       </div>
     </div>`;
 }
 function gdetBody(g, usLeft) {
   const bons = `<div class="col${usLeft ? ' r' : ''}"><b>Bons de Bola</b>${goalsHtml(g.bonsGoals)}</div>`;
-  const us = `<div class="col${usLeft ? '' : ' r'}"><b>⚽ Metalúrgicos</b>${goalsHtml(g.usGoals)}</div>`;
+  const us = `<div class="col${usLeft ? '' : ' r'}"><b>Metalúrgicos</b>${goalsHtml(g.usGoals)}</div>`;
   return `<div class="gdet-body"><div class="gm-goals">${usLeft ? us + bons : bons + us}</div>
-    <div class="gm-sum"><a href="${sumulaUrl(g.sumula)}" target="_blank" rel="noopener">Ver súmula oficial ↗</a></div></div>`;
+    <div class="gm-sum"><a href="${sumulaUrl(g.sumula)}" target="_blank" rel="noopener">Súmula ↗</a></div></div>`;
 }
 function legRows(list, date, usHome) {
   return list.map(g => {
@@ -1442,7 +1428,7 @@ function legRows(list, date, usHome) {
         <summary>
           <div class="gm-top"><span class="cat-tag c${g.cat}">${CAT_LABEL[g.cat]}</span><span class="gm-time">${date} · ${g.time}</span></div>
           <div class="gm-line">${teams}</div>
-          <div class="gm-more"><span class="mo-closed">⚽ ver quem fez os gols ▾</span><span class="mo-open">ocultar gols ▴</span></div>
+          <div class="gm-more"><span class="mo-closed">gols ▾</span><span class="mo-open">ocultar ▴</span></div>
         </summary>
         ${gdetBody(g, usHome)}
       </details>`;
@@ -1452,16 +1438,14 @@ function renderLegs() {
   document.getElementById('legsGrid').innerHTML = `
     <div class="glass-panel leg-panel">
       <div class="leg-head">
-        <div><div class="leg-title">VOLTA · Sábado 24/10</div><div class="leg-sub">Na nossa casa</div></div>
-        <span class="pill done">Encerrado</span>
+        <div><div class="leg-title">Volta · 24/10</div><div class="leg-sub">Nossa casa</div></div>
       </div>
       <div class="leg-rows">${legRows(VOLTA, '24/10', true)}</div>
       ${venueBox(VENUE_HOME)}
     </div>
     <div class="glass-panel leg-panel">
       <div class="leg-head">
-        <div><div class="leg-title">IDA · Domingo 18/10</div><div class="leg-sub">Na casa do Bons de Bola</div></div>
-        <span class="pill done">Encerrado</span>
+        <div><div class="leg-title">Ida · 18/10</div><div class="leg-sub">Casa do Bons de Bola</div></div>
       </div>
       <div class="leg-rows">${legRows(IDA, '18/10', false)}</div>
       ${venueBox(VENUE_AWAY)}
@@ -1502,9 +1486,9 @@ function matchCard(ti, label) {
     else if (st === 'lead' && ((k === 'a' && s.pa > s.pb) || (k === 'b' && s.pb > s.pa))) c = 'lead';
     return `<div class="mt-t ${our ? 'our' : ''} ${c}" title="${t[k]}"><span class="nm">${st === 'done' && W.w === k ? '✔ ' : ''}${sh(t[k])}</span><span class="sc">${s.played ? (k === 'a' ? s.pa : s.pb) : '–'}</span></div>`;
   };
-  const tag = st === 'done' ? '<span class="mt-ok">✔ FIM</span>' : st === 'lead' ? '<span class="mt-ld">IDA</span>' : '<span>a jogar</span>';
+  const tag = st === 'done' ? '<span class="mt-ok">FIM</span>' : st === 'lead' ? '<span class="mt-ld">IDA</span>' : '<span>a jogar</span>';
   return `<div class="mt click ${isUs(t.a) || isUs(t.b) ? 'is-metal' : ''}" onclick="openTie(${ti})" tabindex="0" onkeydown="if(event.key==='Enter')openTie(${ti})">
-    <div class="mt-top"><span>${label} · volta ${t.d2}</span>${tag}</div>
+    <div class="mt-top"><span>${label} · ${t.d2}</span>${tag}</div>
     ${row('a')}<div class="mt-vs"><span>VS</span></div>${row('b')}</div>`;
 }
 // participante que avança (ou "Venc. QFn")
@@ -1546,8 +1530,8 @@ function renderChaves() {
     const done = ch.qf.filter(i => tieState(TIES[i]) === 'done').length;
     const hasUs = ch.qf.some(i => isUs(TIES[i].a) || isUs(TIES[i].b));
     return `<details class="chave ${ch.cls}" ${ch.open ? 'open' : ''}>
-      <summary><span>${ch.icon} Chave ${ch.key.charAt(0) + ch.key.slice(1).toLowerCase()} ${hasUs ? '· 🔴 Metalúrgicos' : ''}</span><span class="sm">${done}/4 quartas encerradas</span></summary>
-      ${chaveHtml(ch)}<div class="cons"><b>Disputa de 5º a 8º</b>${ch.cons.map(c => `<div>${c}</div>`).join('')}<div style="margin-top:4px">Final (1º/2º): <b>${ch.final.replace(' · ', ' · Ginásio ')}</b>, jogo único · 3º/4º, 5º/6º e 7º/8º: ida e volta de 21/11 a 06/12.</div></div></details>`;
+      <summary><span>${ch.icon} Chave ${ch.key.charAt(0) + ch.key.slice(1).toLowerCase()} ${hasUs ? '· Metalúrgicos' : ''}</span><span class="sm">${done}/4 quartas</span></summary>
+      ${chaveHtml(ch)}</details>`;
   }).join('');
 }
 
@@ -1568,14 +1552,14 @@ function openTie(i) {
   if (st === 'done') {
     const W = tieWinner(t);
     res = W.w
-      ? `<div class="md-res">✔ <b>${t[W.w]}</b> avança — ${s.pa} × ${s.pb} em pontos${W.byGoals ? ` (empate nos pontos; critério de desempate: mais gols marcados, ${s.ga} × ${s.gb})` : ''}.</div>`
-      : `<div class="md-res wait">Empate total em pontos e gols — aguardando critério da FPFS.</div>`;
+      ? `<div class="md-res"><b>${t[W.w]}</b> avança · ${s.pa} × ${s.pb} em pontos${W.byGoals ? ` · desempate nos gols (${s.ga} × ${s.gb})` : ''}</div>`
+      : `<div class="md-res wait">Empate total · aguardando critério da FPFS.</div>`;
   } else {
-    res = `<div class="md-res wait">${st === 'lead' ? 'Só a ida foi jogada.' : 'Ainda não começou.'} Parcial: ${t.a} ${s.pa} × ${s.pb} ${t.b}. Volta em ${t.d2}.</div>`;
+    res = `<div class="md-res wait">${st === 'lead' ? 'Só a ida foi jogada' : 'Ainda não começou'} · parcial ${s.pa} × ${s.pb} · volta ${t.d2}</div>`;
   }
   document.getElementById('modalBody').innerHTML = `
     <div class="md-title">${t.a} × ${t.b}</div>
-    <div class="md-sub">Quartas de final · Chave ${(CHAVES.find(c=>c.qf.includes(i))||{key:''}).key} · Ida ${t.d1} (mandante: ${t.a}) · Volta ${t.d2} (mandante: ${t.b})</div>
+    <div class="md-sub">Quartas · Chave ${(CHAVES.find(c=>c.qf.includes(i))||{key:''}).key} · Ida ${t.d1} · Volta ${t.d2}</div>
     <table class="md-table">
       <thead><tr><th>Cat.</th><th>Ida<br>${t.a.split(' ')[0]} × ${t.b.split(' ')[0]}</th><th>Volta<br>${t.b.split(' ')[0]} × ${t.a.split(' ')[0]}</th><th>Pts<br>${t.a.split(' ')[0]} × ${t.b.split(' ')[0]}</th></tr></thead>
       <tbody>${rows}<tr class="tot"><td>Total</td><td colspan="2" style="text-align:right">Gols: ${s.ga} × ${s.gb}</td><td class="sc">${s.pa} × ${s.pb}</td></tr></tbody>
@@ -1625,7 +1609,7 @@ function renderClassif() {
 // ───────── INIT ─────────
 renderHero(); renderNext(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
 </script>
-<script src="tabelinha.js"></script>
+<script src="tabelinha.js?v=2"></script>
 </body>
 </html>
 

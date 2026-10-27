@@ -960,23 +960,23 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css">
+<link rel="stylesheet" href="tabelinha.css?v=7">
 </head>
 <body>
 
 <div class="orbs"></div>
 
 <!-- MARCA -->
-<div class="brand-row"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
+<div class="brand-row"><div class="brand-wrap"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
   <svg width="38" height="38" viewBox="48 48 160 160" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M82.43,104.48v-5.88c0-15.68,7.84-23.52,23.52-23.52h58.8c15.68,0,23.52,7.84,23.52,23.52v58.8c0,15.68-7.84,23.52-23.52,23.52h-58.8c-15.68,0-23.52-7.84-23.52-23.52v-5.88" stroke-width="11"/><path d="M67.73,118.79h64.68M67.73,137.05h49.98" stroke-width="11"/><path d="M188.27,89.78c-21.11,0-38.22,17.11-38.22,38.22s17.11,38.22,38.22,38.22" stroke-width="8.5"/></g><circle cx="150.05" cy="128" r="9.86" fill="var(--ball)"/></svg>
   <span class="bw">tabelinha<span>futsal</span></span></a>
   <span class="brand-sub">Metalúrgicos de Jundiaí · Sub 9</span></div>
+  <a class="fed-btn" href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener"><span class="fed-lbl">Dados da </span>Federação ↗</a></div>
 <div class="nav-row">
   <div class="nav-links">
     <a href="primeira-fase.html" class="nav-pill-btn">1ª fase</a>
     <a href="finais.html" class="nav-pill-btn active">Finais</a>
     <a href="index.html" class="nav-pill-btn">Copa União</a>
-    <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" class="nav-pill-btn">Federação FPFS ↗</a>
   </div>
   <div class="theme-switch-wrapper">
     <span style="font-size:14px;">☀️</span>
@@ -1002,7 +1002,7 @@ html.dark-mode .modal { background: #1D1B19; }
 <!-- CAMPEÕES -->
 <div class="section-head">
   <div class="section-title"><div class="icon-dot"></div>Campeões das fases finais</div>
-  <span style="font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase;">Ouro · Prata · Bronze</span>
+  <span style="font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase;">Empate: avança o melhor colocado</span>
 </div>
 <div class="champ-grid" id="champGrid"></div>
 
@@ -1332,15 +1332,10 @@ const isM = n => /METALÚRGICOS/.test(n || '');
 const catClass = c => c.toLowerCase().replace(' ', '');
 const by = (cat, chave, rnd) => GAMES.filter(g => g.cat === cat && g.chave === chave && g.rnd === rnd);
 
-// Vencedor: pelo placar; em empate (pênaltis), quem aparece na fase seguinte. Final empatada sem dado = null.
-const PEN_WINNER = { 'SUB 10|OURO|F': 'SANTO ANDRÉ FUTSAL' }; // pênaltis: informado pelo clube, súmula não traz o dado
+// Vencedor: pelo placar. Não há pênaltis nas finais: em empate, avança o melhor colocado na 1ª fase (o mandante).
 function winner(g) {
   if (g.hs !== g.as) return g.hs > g.as ? g.home : g.away;
-  const next = g.rnd === 'QF' ? 'SF' : g.rnd === 'SF' ? 'F' : null;
-  if (!next) return PEN_WINNER[g.cat + '|' + g.chave + '|' + g.rnd] || null;
-  const names = by(g.cat, g.chave, next).flatMap(x => [x.home, x.away]);
-  const h = names.includes(g.home), a = names.includes(g.away);
-  return h && !a ? g.home : a && !h ? g.away : null;
+  return g.home;
 }
 const loserOf = g => { const w = winner(g); return w ? (w === g.home ? g.away : g.home) : null; };
 function cleanName(name) { return name || 'A definir'; }
@@ -1357,9 +1352,9 @@ function renderChampions() {
         const score = `${f.hs}×${f.as}`;
         return `<div class="champ-row">
           <span class="champ-ch"><i class="ic ic-medal ${medal[ch]}"></i> ${ch}</span>
-          <span class="champ-name ${isM(w) ? 'our' : ''}">${w || 'Final empatada · pênaltis'}</span>
+          <span class="champ-name ${isM(w) ? 'our' : ''}">${w}</span>
           <span class="champ-sc">${score}</span>
-          <span class="champ-vice">${w ? 'vice: ' + v : f.home + ' × ' + f.away + ' (vencedor nos pênaltis a confirmar)'}</span>
+          <span class="champ-vice">vice: ${v}${f.hs === f.as ? ' · empate, avança o melhor colocado' : ''}</span>
         </div>`;
       }).join('')}
     </div>`).join('');
@@ -1387,7 +1382,7 @@ function renderMetalAgenda() {
           const opp = isM(g.home) ? g.away : g.home;
           const my = isM(g.home) ? g.hs : g.as, th = isM(g.home) ? g.as : g.hs;
           const win = isM(winner(g));
-          const pen = g.hs === g.as ? ' · pênaltis' : '';
+          const pen = g.hs === g.as ? ' · empate (melhor colocado avança)' : '';
           return `<div class="camp-row">
             <span class="camp-rnd">${RND_NAME[g.rnd]} · ${g.date}</span>
             <span class="camp-vs">${my}×${th} ${opp}${pen}</span>
@@ -1433,7 +1428,7 @@ function renderBracket() {
       <div class="b-match-card ${g.metal ? 'is-metal' : ''}">
         <div class="b-match-meta">
           <span class="dt">${title} · ${g.date} · ${g.time}</span>
-          <span class="gym">${g.hs === g.as ? 'pênaltis' : g.gym}</span>
+          <span class="gym">${g.hs === g.as ? 'vantagem do empate' : g.gym}</span>
         </div>
         ${row(g.home, g.hs)}${row(g.away, g.as)}
       </div>`;
@@ -1472,7 +1467,7 @@ function renderBracket() {
       <div class="bracket-col-f">
         <div class="trophy-badge">🏆</div>
         ${card(fin, 'FINAL ' + selectedChave)}
-        <div class="champ-line ${champ ? '' : 'muted'}">${champ ? 'Campeão: <strong class="' + (isM(champ) ? 'our' : '') + '">' + champ + '</strong>' : 'Decidida nos pênaltis · vencedor a confirmar'}</div>
+        <div class="champ-line">Campeão: <strong class="${isM(champ) ? 'our' : ''}">${champ}</strong>${fin.hs === fin.as ? ' · vantagem do empate' : ''}</div>
       </div>
     </div>
   `;
@@ -1631,7 +1626,7 @@ function renderSchedule() {
           <span style="${isM(g.home) ? 'color:var(--red); font-weight:800;' : ''}">${g.home}</span>
           <strong class="sched-score">${g.hs} × ${g.as}</strong>
           <span style="${isM(g.away) ? 'color:var(--red); font-weight:800;' : ''}">${g.away}</span>
-          ${g.hs === g.as ? '<span style="font-size:9px; color:var(--t3);"> · pênaltis</span>' : ''}
+          ${g.hs === g.as ? '<span style="font-size:9px; color:var(--t3);"> · vantagem do empate</span>' : ''}
         </td>
         <td><div style="font-size:11px; font-weight:600; color:var(--t2);">${g.gym}</div></td>
       </tr>`).join('');
@@ -1653,6 +1648,6 @@ function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
-<script src="tabelinha.js"></script>
+<script src="tabelinha.js?v=2"></script>
 </body>
 </html>
