@@ -1135,7 +1135,7 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=8">
+<link rel="stylesheet" href="tabelinha.css?v=9">
 </head>
 <body>
 
@@ -1217,15 +1217,15 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
   <div class="glass-panel">
     <div class="panel-head">
-      <div class="panel-head-title">Classificação · 1ª fase</div>
-      <span style="font-size:10px;color:var(--t3);font-weight:700;">4 categorias somadas</span>
+      <div class="panel-head-title">Ranking geral</div>
+      <span style="font-size:10px;color:var(--t3);font-weight:700;">Federação · até 27/10</span>
     </div>
     <div id="classifList" class="scroll-list"></div>
   </div>
 </div>
 
 <div class="footer">
-  Atualizado em 26/10 · Fonte: Federação Paulista de Futsal ·
+  Atualizado em 27/10 · Fonte: Federação Paulista de Futsal ·
   <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
@@ -1594,15 +1594,19 @@ function renderArtilharia() {
   }).join('');
 }
 
-// ───────── CLASSIFICAÇÃO GERAL DA 1ª FASE (soma Sub 7 + 8 + 9 + 10) ─────────
-const CLASSIF_FASE1 = [{"pos":"1º","team":"SANTO ANDRÉ FUTSAL","pts":191,"j":92,"sg":174,"s7":50,"s8":31,"s9":55,"s10":55},{"pos":"2º","team":"METALÚRGICOS DE JUNDIAÍ","pts":189,"j":92,"sg":124,"s7":37,"s8":60,"s9":52,"s10":40},{"pos":"3º","team":"SPORT BENFICA DE MOGI","pts":180,"j":92,"sg":118,"s7":57,"s8":48,"s9":46,"s10":29},{"pos":"4º","team":"RIVER DO BELÉM","pts":177,"j":92,"sg":96,"s7":45,"s8":36,"s9":46,"s10":50},{"pos":"5º","team":"A. UNIÃO MAUÁ","pts":170,"j":92,"sg":68,"s7":30,"s8":42,"s9":53,"s10":45},{"pos":"6º","team":"CLUBE BATALHA","pts":157,"j":92,"sg":67,"s7":37,"s8":47,"s9":47,"s10":26},{"pos":"7º","team":"ADC MERCEDES BENZ","pts":156,"j":92,"sg":82,"s7":49,"s8":45,"s9":33,"s10":29},{"pos":"8º","team":"INST. BONS DE BOLA","pts":150,"j":92,"sg":53,"s7":62,"s8":38,"s9":25,"s10":25},{"pos":"9º","team":"ADC MARVEL","pts":145,"j":92,"sg":32,"s7":27,"s8":31,"s9":38,"s10":49},{"pos":"10º","team":"ADEF/COTIA","pts":140,"j":92,"sg":11,"s7":26,"s8":29,"s9":50,"s10":35},{"pos":"11º","team":"GR GREMETAL","pts":138,"j":92,"sg":38,"s7":56,"s8":18,"s9":29,"s10":35},{"pos":"12º","team":"A.D. SUZANO","pts":133,"j":92,"sg":24,"s7":40,"s8":45,"s9":30,"s10":18},{"pos":"13º","team":"CTC VILA EMA","pts":130,"j":92,"sg":-16,"s7":46,"s8":22,"s9":24,"s10":38},{"pos":"14º","team":"G.D.R. 7 DE SETEMBRO","pts":129,"j":92,"sg":-29,"s7":28,"s8":44,"s9":39,"s10":18},{"pos":"15º","team":"AD NANDO GRANA","pts":116,"j":92,"sg":-56,"s7":14,"s8":34,"s9":41,"s10":27},{"pos":"16º","team":"AD SANTO ANDRÉ FUTSAL","pts":114,"j":92,"sg":-20,"s7":43,"s8":20,"s9":21,"s10":30},{"pos":"17º","team":"AE FRIBURGO","pts":107,"j":92,"sg":-50,"s7":29,"s8":28,"s9":19,"s10":31},{"pos":"18º","team":"MX7 DIADEMA","pts":106,"j":92,"sg":-50,"s7":15,"s8":23,"s9":43,"s10":25},{"pos":"19º","team":"CHUTE FUTSAL","pts":101,"j":92,"sg":-77,"s7":22,"s8":26,"s9":17,"s10":36},{"pos":"20º","team":"OCIAN PRAIA CLUBE","pts":100,"j":92,"sg":-54,"s7":33,"s8":18,"s9":14,"s10":35},{"pos":"21º","team":"S.E.R. CAIEIRAS","pts":98,"j":92,"sg":-116,"s7":3,"s8":43,"s9":24,"s10":28},{"pos":"22º","team":"A. PAULISTA FC MOOCA","pts":91,"j":92,"sg":-92,"s7":19,"s8":3,"s9":33,"s10":36},{"pos":"23º","team":"AE FUTMAX","pts":85,"j":92,"sg":-148,"s7":19,"s8":37,"s9":10,"s10":19},{"pos":"24º","team":"AA WIMPRO GUARULHOS","pts":59,"j":92,"sg":-179,"s7":10,"s8":24,"s9":7,"s10":18}];
+// ───────── RANKING GERAL DA FEDERAÇÃO (Iniciação A2, Sub 7 + 8 + 9 + 10, até 27/10) ─────────
+// Total = índice técnico + bonificações + negativos (é ele que define a posição)
+const RANKING = [{"pos":1,"team":"SANTO ANDRÉ FUTSAL","pts":233,"j":110,"v":73,"e":14,"d":23,"gp":430,"gc":230,"sg":200,"it":2118,"bonus":4950,"neg":-2,"total":7066},{"pos":2,"team":"RIVER DO BELÉM","pts":203,"j":108,"v":63,"e":14,"d":31,"gp":346,"gc":248,"sg":98,"it":1880,"bonus":3950,"neg":-7,"total":5823},{"pos":3,"team":"SPORT BENFICA DE MOGI","pts":208,"j":108,"v":65,"e":13,"d":30,"gp":356,"gc":237,"sg":119,"it":1926,"bonus":3800,"neg":-18,"total":5708},{"pos":4,"team":"METALÚRGICOS DE JUNDIAÍ","pts":215,"j":107,"v":65,"e":20,"d":22,"gp":347,"gc":213,"sg":134,"it":2009,"bonus":3500,"neg":-11,"total":5498},{"pos":5,"team":"CLUBE BATALHA","pts":179,"j":109,"v":54,"e":17,"d":38,"gp":293,"gc":222,"sg":71,"it":1642,"bonus":3790,"neg":-7,"total":5425},{"pos":6,"team":"ADC MERCEDES BENZ","pts":196,"j":110,"v":61,"e":13,"d":36,"gp":306,"gc":195,"sg":111,"it":1782,"bonus":3850,"neg":-222,"total":5410},{"pos":7,"team":"A. UNIÃO MAUÁ","pts":182,"j":106,"v":55,"e":17,"d":34,"gp":278,"gc":219,"sg":59,"it":1717,"bonus":3100,"neg":-2,"total":4815},{"pos":8,"team":"ADC MARVEL","pts":163,"j":107,"v":48,"e":19,"d":40,"gp":229,"gc":198,"sg":31,"it":1523,"bonus":2850,"neg":-24,"total":4349},{"pos":9,"team":"INST. BONS DE BOLA","pts":167,"j":109,"v":49,"e":20,"d":40,"gp":307,"gc":262,"sg":45,"it":1532,"bonus":2720,"neg":-1,"total":4251},{"pos":10,"team":"GR GREMETAL","pts":162,"j":107,"v":49,"e":15,"d":43,"gp":305,"gc":267,"sg":38,"it":1514,"bonus":1540,"neg":-1,"total":3053},{"pos":11,"team":"A.D. SUZANO","pts":155,"j":107,"v":44,"e":23,"d":40,"gp":284,"gc":263,"sg":21,"it":1449,"bonus":1530,"neg":-8,"total":2971},{"pos":12,"team":"CTC VILA EMA","pts":150,"j":107,"v":46,"e":12,"d":49,"gp":256,"gc":275,"sg":-19,"it":1402,"bonus":1360,"neg":-14,"total":2748},{"pos":13,"team":"AD SANTO ANDRÉ FUTSAL","pts":136,"j":108,"v":40,"e":16,"d":52,"gp":294,"gc":315,"sg":-21,"it":1259,"bonus":1510,"neg":-32,"total":2737},{"pos":14,"team":"ADEF/COTIA","pts":156,"j":105,"v":47,"e":15,"d":43,"gp":279,"gc":267,"sg":12,"it":1486,"bonus":1080,"neg":-2,"total":2564},{"pos":15,"team":"S.E.R. CAIEIRAS","pts":121,"j":107,"v":35,"e":16,"d":56,"gp":220,"gc":341,"sg":-121,"it":1131,"bonus":1430,"neg":-2,"total":2559},{"pos":16,"team":"G.D.R. 7 DE SETEMBRO","pts":139,"j":105,"v":42,"e":13,"d":50,"gp":262,"gc":313,"sg":-51,"it":1324,"bonus":1080,"neg":-24,"total":2380},{"pos":17,"team":"MX7 DIADEMA","pts":137,"j":108,"v":40,"e":17,"d":51,"gp":267,"gc":297,"sg":-30,"it":1269,"bonus":910,"neg":-2,"total":2177},{"pos":18,"team":"AD NANDO GRANA","pts":127,"j":105,"v":38,"e":13,"d":54,"gp":269,"gc":329,"sg":-60,"it":1210,"bonus":820,"neg":-4,"total":2026},{"pos":19,"team":"AE FRIBURGO","pts":135,"j":105,"v":42,"e":9,"d":54,"gp":272,"gc":295,"sg":-23,"it":1286,"bonus":580,"neg":-8,"total":1858},{"pos":20,"team":"AE FUTMAX","pts":106,"j":109,"v":31,"e":13,"d":65,"gp":168,"gc":330,"sg":-162,"it":972,"bonus":770,"neg":-3,"total":1739},{"pos":21,"team":"CHUTE FUTSAL","pts":112,"j":105,"v":33,"e":13,"d":59,"gp":243,"gc":323,"sg":-80,"it":1067,"bonus":660,"neg":-6,"total":1721},{"pos":22,"team":"A. PAULISTA FC MOOCA","pts":105,"j":104,"v":31,"e":12,"d":61,"gp":237,"gc":343,"sg":-106,"it":1010,"bonus":680,"neg":-4,"total":1686},{"pos":23,"team":"OCIAN PRAIA CLUBE","pts":114,"j":105,"v":32,"e":18,"d":55,"gp":227,"gc":277,"sg":-50,"it":1086,"bonus":580,"neg":-30,"total":1636},{"pos":24,"team":"AA WIMPRO GUARULHOS","pts":71,"j":107,"v":21,"e":8,"d":78,"gp":155,"gc":371,"sg":-216,"it":664,"bonus":580,"neg":-83,"total":1161}];
+const fmt = n => n.toLocaleString('pt-BR');
+const sgn = n => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n));
 function renderClassif() {
-  document.getElementById('classifList').innerHTML = CLASSIF_FASE1.map(r => `
-    <div class="classif-row ${r.team.includes('METALÚRGICOS') ? 'our' : ''}" style="grid-template-columns:28px 1fr 38px;">
-      <span class="c-pos">${parseInt(r.pos)}</span>
+  document.getElementById('classifList').innerHTML = RANKING.map(r => `
+    <div class="classif-row ${r.team.includes('METALÚRGICOS') ? 'our' : ''}" style="grid-template-columns:28px 1fr auto;">
+      <span class="c-pos">${r.pos}</span>
       <span style="min-width:0"><span class="c-team" style="display:block">${r.team}</span>
-        <span style="display:block;font-size:9px;color:var(--t3);font-weight:600;margin-top:1px;">S7 ${r.s7} · S8 ${r.s8} · S9 ${r.s9} · S10 ${r.s10} · SG ${r.sg > 0 ? '+' + r.sg : r.sg}</span></span>
-      <span class="c-pts">${r.pts}</span>
+        <span class="c-sub">${r.pts} pts · ${r.j} j · ${r.v}V ${r.e}E ${r.d}D</span>
+        <span class="c-sub">Bonif. ${sgn(r.bonus)} · Negativos ${sgn(r.neg)}</span></span>
+      <span class="c-pts" style="text-align:right">${fmt(r.total)}</span>
     </div>`).join('');
 }
 

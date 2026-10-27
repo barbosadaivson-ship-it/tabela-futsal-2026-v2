@@ -231,3 +231,4 @@ html.dark-mode .wdl-card, html.dark-mode .wdl-card.a { background: var(--s1); bo
   display: flex; align-items: center; gap: 12px; }
 .tf-toast a { flex: none; font-weight: 800; color: var(--yel); text-decoration: underline; text-underline-offset: 3px; }
 .tf-toast button { flex: none; background: none; border: 0; color: inherit; font-size: 18px; line-height: 1; opacity: .7; cursor: pointer; }
+.c-sub { display: block; font-size: 10px; color: var(--t3); font-weight: 600; margin-top: 1px; }
