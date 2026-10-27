@@ -1,0 +1,95 @@
+/* Tabelinha Futsal · camada comum às três páginas (1ª fase, Finais, Copa União).
+   Carregada depois do CSS de cada página: cores, ícones, filtros e chaveamento seguem o mesmo padrão. */
+
+:root { --c7: #8A8173; --c8: #FFD60A; --c9: #FB2C42; --c10: #0D0D0D; --bronze: #B4570A; --gold-ink: #C99A00; }
+html.dark-mode { --c7: #BDB3A4; --c10: #FBF7F0; --bronze: #FFA24A; }
+
+/* ── Ícones de linha (substituem os emojis; ver tabelinha.js) ── */
+.ic { display: inline-block; width: 1.05em; height: 1.05em; vertical-align: -.17em; background: currentColor; flex: none;
+  -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.ic-pin    { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"); }
+.ic-cal    { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E"); }
+.ic-clock  { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E"); }
+.ic-trophy { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17c0 .6-.5 1-1 1.2-1.2.6-2 2-2 3.8M14 14.7V17c0 .6.5 1 1 1.2 1.2.6 2 2 2 3.8M18 2H6v7a6 6 0 0 0 12 0V2Z'/%3E%3C/svg%3E"); }
+.ic-medal  { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='15' r='6'/%3E%3Cpath d='m8.2 3 2.6 6M15.8 3l-2.6 6'/%3E%3C/svg%3E"); }
+.ic-m1 { color: var(--gold-ink); } .ic-m2 { color: var(--c7); } .ic-m3 { color: var(--bronze); }
+.ic-ball   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m12 8 3.8 2.8-1.5 4.4H9.7l-1.5-4.4Z'/%3E%3C/svg%3E"); }
+.ic-home   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 11 9-8 9 8M5 10v10h14V10'/%3E%3C/svg%3E"); }
+.ic-bus    { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 17V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11M4 17h16M4 17v3h3v-3M17 17v3h3v-3M4 11h16'/%3E%3C/svg%3E"); }
+.ic-map    { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3ZM9 3v15M15 6v15'/%3E%3C/svg%3E"); }
+.ic-link   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1'/%3E%3C/svg%3E"); }
+.ic-star   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z'/%3E%3C/svg%3E"); }
+.ic-chart  { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V10M10 20V4M16 20v-8M22 20H2'/%3E%3C/svg%3E"); }
+.ic-list   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01'/%3E%3C/svg%3E"); }
+.ic-pencil { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 20 1-4L16 5l3 3L8 19ZM14 7l3 3'/%3E%3C/svg%3E"); }
+.ic-check  { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 12 5 5L20 6'/%3E%3C/svg%3E"); width: .9em; height: .9em; }
+.ic-sun    { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E"); }
+.ic-moon   { --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z'/%3E%3C/svg%3E"); }
+.ic-dot    { -webkit-mask: none; mask: none; width: .55em; height: .55em; border-radius: 50%; background: var(--red); vertical-align: .05em; }
+.theme-switch-wrapper .ic { width: 15px; height: 15px; color: var(--t2); }
+.trophy-badge { color: var(--gold-ink); animation: none; }
+.trophy-badge .ic { width: 30px; height: 30px; }
+
+/* ── Categorias: ponto de cor + texto, igual em todas as páginas ── */
+.cat-tag, .mc-cat-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--t2) !important; font-weight: 800; }
+.cat-tag::before, .mc-cat-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c7); flex: none; }
+.cat-tag.c8::before, .mc-cat-badge.sub8::before { background: var(--c8); box-shadow: 0 0 0 1px rgba(13,13,13,.18); }
+.cat-tag.c9::before, .mc-cat-badge.sub9::before { background: var(--c9); }
+.cat-tag.c10::before, .mc-cat-badge.sub10::before { background: var(--c10); }
+.mc-chave-pill.ouro, .sched-badge.ouro { color: var(--gold) !important; }
+.mc-chave-pill.prata, .sched-badge.prata { color: var(--silver) !important; }
+.sched-badge.bronze { color: var(--bronze) !important; }
+
+/* ── Cartões de jogo e de chaveamento: mesmo desenho ── */
+.tie-card, .mt, .b-match-card { background: var(--s1); border: 0 !important; border-radius: 14px; box-shadow: var(--shadow); }
+.tie-card.is-metal, .mt.is-metal, .b-match-card.is-metal { background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
+.b-match-meta { border-bottom: 0; }
+.b-match-meta .gym { color: var(--t2); font-weight: 700; }
+.b-team-row { font-size: 12px; font-weight: 700; }
+.b-team-row.our { color: var(--red); font-weight: 900; }
+.b-team-row .score-box { background: transparent; border: 0; width: auto; min-width: 22px; height: auto; font-size: 15px; font-weight: 700; }
+.bracket-controls { background: transparent; border: 0; padding: 0; }
+.bracket-venue-callout { background: transparent; border: 0; border-radius: 0; box-shadow: inset 3px 0 0 var(--red); padding: 4px 0 4px 16px; margin: 16px 14px; }
+
+/* ── Filtros (categoria / chave / fase): pílula, ativa em amarelo, igual ao menu do topo ── */
+.ptab, .filter-btn { padding: 6px 12px; min-height: 0; border: 0; border-radius: 999px; font-size: 11px; font-weight: 700;
+  color: var(--t2); background: transparent; box-shadow: none; text-transform: none; letter-spacing: 0; }
+.ptab:hover, .filter-btn:hover { background: var(--s2); color: var(--t1); }
+.ptab.active, .filter-btn.active, .filter-btn.gold.active, .filter-btn.silver.active, .filter-btn.bronze.active {
+  background: var(--yel); color: #0D0D0D; border: 0; box-shadow: none; border-radius: 999px; }
+.filter-btn.gold::before, .filter-btn.silver::before, .filter-btn.bronze::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.filter-btn.gold::before { background: var(--gold-ink); } .filter-btn.silver::before { background: var(--c7); } .filter-btn.bronze::before { background: var(--bronze); }
+
+/* ── Painéis de números da 1ª fase: sem tintas, só o número colorido ── */
+.wdl-card, .wdl-card.w, .wdl-card.d, .wdl-card.l, .wdl-card.a { background: var(--s1); border: 0; }
+.wdl-card.a .wdl-num { color: var(--t1); }
+
+.filter-btn .ic { display: none; }
+.section-title .icon-dot { background: var(--red) !important; }
+html.dark-mode .wdl-card, html.dark-mode .wdl-card.a { background: var(--s1); border: 0; }
+
+/* ── Finais: campeões, campanha e placares ── */
+.champ-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.champ-card { padding: 16px 18px; }
+.champ-row { display: grid; grid-template-columns: 82px 1fr auto; column-gap: 10px; align-items: baseline; padding: 9px 0; box-shadow: inset 0 -1px 0 var(--border); }
+.champ-row:last-child { box-shadow: none; }
+.champ-ch { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; color: var(--t2); }
+.champ-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.1; }
+.champ-name.our, .champ-line .our { color: var(--red); }
+.champ-sc { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--t1); }
+.champ-vice { grid-column: 2 / 4; font-size: 11px; color: var(--t3); }
+.camp-fate { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; margin: 10px 0 6px; }
+.camp-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 8px 0; box-shadow: inset 0 -1px 0 var(--border); font-size: 12px; }
+.camp-row:last-child { box-shadow: none; }
+.camp-rnd { grid-column: 1 / 3; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--t3); }
+.camp-vs { font-weight: 700; }
+.camp-res { font-size: 11px; font-weight: 800; }
+.camp-res.win { color: var(--green); } .camp-res.lose { color: var(--red); }
+.b-team-row.win .t-name { font-weight: 900; }
+.b-team-row.win .score-box { color: var(--red); }
+.b-team-row.lose { opacity: .55; }
+.champ-line { text-align: center; font-size: 12px; margin-top: 8px; color: var(--t2); }
+.champ-line.muted { color: var(--t3); font-size: 11px; }
+.sched-score { margin: 0 4px; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; }
+.day-tab-btn#btnOnlyMetal { color: var(--red); }
+.day-tab-btn#btnOnlyMetal.active { background: var(--red); color: #fff; }

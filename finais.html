@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tabelinha Futsal · Finais — Metalúrgicos Jundiaí Sub 9</title>
+<meta name="theme-color" content="#FFD60A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  /* LIGHT MODE (Default) */
+  --bg: #F4F5F7;
+  --s1: #FFFFFF;
+  --s2: #F8F9FA;
+  --t1: #0D0D0D;
+  --t2: #4B5563;
+  --t3: #9CA3AF;
+  --red: #D9042B; --red-bg: rgba(217,4,43,.06); --red-bd: rgba(217,4,43,.18);
+  --green: #16A34A; --green-bg: rgba(22,163,74,.06); --green-bd: rgba(22,163,74,.2);
+  --amber: #C07A00; --amber-bg: rgba(192,122,0,.06); --amber-bd: rgba(192,122,0,.2);
+  --gold: #D97706; --gold-bg: rgba(217, 119, 6, 0.1); --gold-bd: rgba(217, 119, 6, 0.25);
+  --silver: #64748B; --silver-bg: rgba(100, 116, 139, 0.1); --silver-bd: rgba(100, 116, 139, 0.25);
+  --border: #E5E7EB; --border2: #D1D5DB;
+  --r: 12px; --r2: 16px; --r3: 20px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+html.dark-mode {
+  /* DARK MODE (Glassmorphism) */
+  --bg: #0a0014;
+  --s1: rgba(255, 255, 255, 0.06);
+  --s2: rgba(255, 255, 255, 0.1);
+  --t1: #ffffff;
+  --t2: rgba(255, 255, 255, 0.75);
+  --t3: rgba(255, 255, 255, 0.45);
+  --red: #FF5A6E; --red-bg: rgba(217,4,43,.15); --red-bd: rgba(217,4,43,.35);
+  --green: #4ade80; --green-bg: rgba(34,197,94,.1); --green-bd: rgba(34,197,94,.25);
+  --amber: #FFD60A; --amber-bg: rgba(251,191,36,.1); --amber-bd: rgba(251,191,36,.25);
+  --gold: #FFD60A; --gold-bg: rgba(251, 191, 36, 0.15); --gold-bd: rgba(251, 191, 36, 0.35);
+  --silver: #E3DACB; --silver-bg: rgba(203, 213, 225, 0.12); --silver-bd: rgba(203, 213, 225, 0.3);
+  --border: rgba(255, 255, 255, 0.12); --border2: rgba(255, 255, 255, 0.2);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 14px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* MOBILE OPTIMIZATION BASE */
+@media (max-width: 600px) {
+  body {
+    padding: 12px 10px 40px;
+  }
+}
+
+/* ── ORBS BACKGROUND ── */
+.orbs { display: none; position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+html.dark-mode .orbs { display: block; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .5; animation: float-orb 14s ease-in-out infinite alternate; }
+.orb1 { width: 500px; height: 500px; background: radial-gradient(circle, #D9042B 0%, transparent 70%); top: -150px; left: -100px; }
+.orb2 { width: 450px; height: 450px; background: radial-gradient(circle, #4f46e5 0%, transparent 70%); top: 30%; right: -120px; }
+.orb3 { width: 380px; height: 380px; background: radial-gradient(circle, #0D0D0D 0%, transparent 70%); bottom: -80px; left: 20%; }
+@keyframes float-orb {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(20px,-20px) scale(1.04); }
+  100% { transform: translate(-10px,10px) scale(.98); }
+}
+
+/* ── UTILS & PANELS ── */
+.glass-panel {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+html.dark-mode .glass-panel {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── NAV ROW ── */
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nav-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t2);
+  background: var(--s1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+.nav-pill-btn:hover {
+  color: var(--red);
+  border-color: var(--red-bd);
+  transform: translateY(-1px);
+}
+.nav-pill-btn.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  box-shadow: 0 4px 12px rgba(217,4,43,0.25);
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background-color: rgba(0,0,0,0.15); transition: .3s; border-radius: 24px;
+}
+.slider:before {
+  position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+  background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+html.dark-mode .slider { background-color: rgba(255,255,255,0.3); }
+html.dark-mode .slider:before { transform: translateX(20px); }
+
+/* ── HERO BANNER ── */
+.hero-banner {
+  background: linear-gradient(135deg, #180309 0%, #2a050f 45%, #0D0D0D 100%);
+  border-radius: var(--r3);
+  padding: 24px 22px;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.12);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.hero-banner::after {
+  content: 'MATA-MATA';
+  position: absolute;
+  right: -20px;
+  bottom: -25px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(60px, 10vw, 100px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -2px;
+  pointer-events: none;
+}
+.hero-top-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 59, 98, 0.2);
+  border: 1px solid rgba(255, 59, 98, 0.4);
+  color: #FF5A7E;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(22px, 4.5vw, 38px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -.5px;
+  margin-bottom: 8px;
+}
+.hero-title span { color: #FF5A6E; }
+.hero-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 680px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+}
+.hero-stat-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-align: center;
+}
+.hero-stat-box .num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFF;
+  line-height: 1;
+}
+.hero-stat-box .lbl {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 4px;
+  font-weight: 700;
+}
+.hero-stat-box.gold .num { color: #FFD60A; }
+.hero-stat-box.silver .num { color: #E3DACB; }
+
+/* ── SECTION HEAD ── */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--t1);
+}
+.section-title .icon-dot {
+  width: 4px;
+  height: 16px;
+  background: var(--red);
+  border-radius: 2px;
+}
+
+/* ── AGENDA FERIADÃO 07/09 ── */
+.metal-agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.metal-card {
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid var(--red);
+  background: var(--s1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.metal-card.ouro { border-left-color: #FFD60A; }
+.metal-card.prata { border-left-color: #8A8173; }
+
+.mc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.mc-cat-badge {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: .5px;
+}
+.mc-cat-badge.sub9 { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bd); }
+.mc-cat-badge.sub8 { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-bd); }
+.mc-cat-badge.sub7 { background: var(--silver-bg); color: var(--silver); border: 1px solid var(--silver-bd); }
+.mc-cat-badge.sub10 { background: transparent; color: var(--c10); border: 1px solid transparent; }
+
+.mc-chave-pill {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.mc-chave-pill.ouro { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-bd); }
+.mc-chave-pill.prata { background: var(--silver-bg); color: var(--silver); border: 1px solid var(--silver-bd); }
+
+.mc-matchup {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.mc-matchup .our { color: var(--red); }
+.mc-matchup .vs { font-size: 11px; opacity: 0.5; font-weight: 600; margin: 0 4px; }
+
+.mc-info-list {
+  font-size: 11px;
+  color: var(--t2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mc-info-item strong { color: var(--t1); }
+.mc-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 11px;
+  margin-top: 8px;
+}
+.mc-map-link:hover { text-decoration: underline; }
+
+/* ── BRACKET SECTION & CONTROLS ── */
+.bracket-section { margin-bottom: 24px; }
+.bracket-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+  background: var(--s1);
+  padding: 10px 14px;
+  border-radius: var(--r2);
+  border: 1px solid var(--border);
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--t3);
+  margin-right: 2px;
+}
+.filter-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t2);
+  background: var(--s2);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+  min-height: 34px;
+}
+.filter-btn:hover { background: var(--border); color: var(--t1); }
+.filter-btn.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  box-shadow: 0 3px 8px rgba(217,4,43,0.25);
+}
+.filter-btn.gold.active {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.filter-btn.silver.active {
+  background: #6B6358;
+  border-color: #6B6358;
+}
+.filter-btn.bronze.active {
+  background: #B4570A;
+  border-color: #B4570A;
+}
+
+/* ── BRACKET TREE (RESPONSIVE TOUCH SCROLL) ── */
+.bracket-tree-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 18px 10px;
+}
+.bracket-tree {
+  display: grid;
+  grid-template-columns: 270px 50px 250px 50px 250px;
+  align-items: center;
+  min-width: 870px;
+  margin: 0 auto;
+}
+.bracket-col-title {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--t3);
+  margin-bottom: 12px;
+}
+.bracket-col-qf { display: flex; flex-direction: column; gap: 14px; }
+.bracket-col-sf { display: flex; flex-direction: column; gap: 90px; }
+.bracket-col-f { display: flex; flex-direction: column; justify-content: center; }
+
+.b-match-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 8px 10px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.b-match-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border2);
+}
+.b-match-card.is-metal {
+  border: 2px solid var(--red);
+  background: linear-gradient(to right, var(--red-bg), var(--s1));
+}
+.b-match-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--t3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px dashed var(--border);
+}
+.b-match-meta .dt { color: var(--t2); }
+.b-match-meta .gym { color: var(--red); font-weight: 800; }
+
+.b-team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t1);
+}
+.b-team-row.our { color: var(--red); font-weight: 800; }
+.b-team-row .t-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 6px;
+}
+.b-team-row .score-box {
+  width: 22px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.b-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+.trophy-badge {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 6px;
+  animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ── BRACKET VENUE CALLOUT (INSIDE BRACKET CARD) ── */
+.bracket-venue-callout {
+  margin: 16px 14px 14px;
+  padding: 16px 20px;
+  border-radius: var(--r2);
+  background: linear-gradient(135deg, rgba(217,4,43,0.08) 0%, var(--s2) 100%);
+  border: 1.5px solid var(--red-bd);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 14px rgba(217,4,43,0.12);
+}
+.bvc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.bvc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--t1);
+  margin-bottom: 3px;
+}
+.bvc-address {
+  font-size: 11px;
+  color: var(--t2);
+  font-weight: 500;
+}
+.bvc-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--red);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  box-shadow: 0 4px 12px rgba(217,4,43,0.3);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
+}
+.bvc-map-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* ── GAVETA RETRÁTIL TABELA ── */
+.btn-toggle-full-table {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--s1);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--t1);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+.btn-toggle-full-table:hover { background: var(--s2); border-color: var(--border2); }
+.acc-chevron { transition: transform 0.3s ease; font-size: 11px; opacity: 0.7; }
+.btn-toggle-full-table.open .acc-chevron { transform: rotate(180deg); }
+
+.day-tabs-wrapper { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.day-tab-btn {
+  padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700;
+  background: var(--s1); border: 1px solid var(--border); color: var(--t2); transition: all 0.2s;
+}
+.day-tab-btn.active { background: var(--t1); color: var(--s1); border-color: var(--t1); }
+
+.schedule-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--r2);
+  border: 1px solid var(--border);
+  background: var(--s1);
+  box-shadow: var(--shadow);
+}
+.sched-table { width: 100%; border-collapse: collapse; font-size: 11px; text-align: left; min-width: 580px; }
+.sched-table th {
+  padding: 10px 12px; background: var(--s2); border-bottom: 1px solid var(--border);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--t3);
+}
+.sched-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--t2); }
+.sched-table tr.is-metal-row { background: var(--red-bg); font-weight: 700; }
+.sched-table tr.is-metal-row td { color: var(--t1); }
+.sched-badge {
+  display: inline-flex; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 800; text-transform: uppercase;
+}
+.sched-badge.ouro { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-bd); }
+.sched-badge.prata { background: var(--silver-bg); color: var(--silver); border: 1px solid var(--silver-bd); }
+.sched-badge.bronze { background: rgba(180,87,10, 0.1); color: #B4570A; border: 1px solid rgba(180,87,10, 0.25); }
+
+/* ── 3 COLS ESTATÍSTICAS (ARTILHARIA + ÚLTIMOS RESULTADOS + CLASSIFICAÇÃO) ── */
+.stats-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+@media (max-width: 768px) {
+  .stats-cols { grid-template-columns: 1fr; }
+}
+
+.stats-cols .glass-panel {
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+}
+.panel-head {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.panel-head-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--t1);
+}
+.panel-head-title::before {
+  content: ''; width: 3px; height: 14px; background: var(--red); border-radius: 2px;
+}
+.scroll-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-list::-webkit-scrollbar { width: 5px; }
+.scroll-list::-webkit-scrollbar-track { background: transparent; }
+.scroll-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ARTILHARIA (INDEX STYLE - EQUAL RESPECT FOR ALL PLAYERS) */
+.scorer-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.scorer-row:last-child { border-bottom: none; }
+.scorer-row:hover { background: var(--s2); }
+.s-pos {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--t3);
+  width: 22px;
+  text-align: center;
+}
+.s-photo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.s-photo img { width: 100%; height: 100%; object-fit: cover; }
+.s-info { flex: 1; min-width: 0; }
+.s-name { font-size: 13px; font-weight: 600; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-goals-wrap { display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
+.s-goals-num { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 900; color: var(--red); line-height: 1; }
+.s-goals-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; font-weight: 700; }
+
+/* ÚLTIMOS RESULTADOS */
+.last-games-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 14px;
+}
+.lg-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--s2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.lg-teams {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t2);
+  text-transform: uppercase;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+}
+.lg-teams span.our { color: var(--red); }
+.lg-score {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--t1);
+  background: var(--s1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.lg-row.w { border-color: var(--green-bd); background: var(--green-bg); }
+.lg-row.d { border-color: var(--amber-bd); background: var(--amber-bg); }
+.lg-row.l { border-color: var(--red-bd); background: var(--red-bg); }
+.lg-row.w .lg-score { color: var(--green); border-color: var(--green-bd); }
+.lg-row.d .lg-score { color: var(--amber); border-color: var(--amber-bd); }
+.lg-row.l .lg-score { color: var(--red); border-color: var(--red-bd); }
+
+/* CLASSIFICAÇÃO LIST */
+.classif-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.classif-row:last-child { border-bottom: none; }
+.classif-row.our { background: var(--red-bg); border-left: 3px solid var(--red); }
+.c-pos {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800;
+  background: var(--s2); color: var(--t2); border: 1px solid var(--border);
+}
+.classif-row.our .c-pos { background: var(--red); color: #fff; border-color: var(--red); }
+.c-team { font-weight: 600; color: var(--t2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.classif-row.our .c-team { color: var(--red); font-weight: 800; }
+.c-pts { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 900; color: var(--t1); text-align: right; }
+.classif-row.our .c-pts { color: var(--red); }
+
+.fed-link {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--t2);
+  background: var(--s2);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.fed-link:hover { background: var(--t2); color: var(--s1); }
+
+:root {
+  /* ID Tabelinha Futsal — paleta C */
+  --bg: #FBF7F0;
+  --s1: #FFFFFF;
+  --s2: #F1EADF;
+  --t1: #0D0D0D;
+  --t2: #5E564B;
+  --t3: #8A8173;
+  --brand: #FB2C42; --yel: #FFD60A; --ball: #FB2C42;
+  --red: #D9042B; --red-bg: rgba(217,4,43,.07); --red-bd: rgba(217,4,43,.2);
+  --green: #17766B; --green-bg: rgba(30,140,128,.1); --green-bd: rgba(30,140,128,.28);
+  --amber: #9A4B00; --amber-bg: rgba(255,138,31,.12); --amber-bd: rgba(255,138,31,.32);
+  --gold: #8A6A00; --gold-bg: rgba(255,214,10,.22); --gold-bd: rgba(255,214,10,.6);
+  --silver: #6B6358; --silver-bg: rgba(107,99,88,.1); --silver-bd: rgba(107,99,88,.25);
+  --border: rgba(13,13,13,.08); --border2: rgba(13,13,13,.14);
+  --r: 12px; --r2: 18px; --r3: 24px;
+  --shadow: 0 1px 2px rgba(60,40,20,.06), 0 6px 18px rgba(60,40,20,.06);
+  --shadow-lg: 0 14px 34px -10px rgba(60,40,20,.22);
+}
+
+html.dark-mode {
+  --bg: #121110;
+  --s1: #1D1B19;
+  --s2: #2A2724;
+  --t1: #FBF7F0;
+  --t2: #BDB3A4;
+  --t3: #8B8174;
+  --brand: #E8172E; --ball: #FFD60A;
+  --red: #FF5A6E; --red-bg: rgba(255,90,110,.14); --red-bd: rgba(255,90,110,.35);
+  --green: #4CC4B5; --green-bg: rgba(76,196,181,.12); --green-bd: rgba(76,196,181,.3);
+  --amber: #FFA24A; --amber-bg: rgba(255,162,74,.12); --amber-bd: rgba(255,162,74,.3);
+  --gold: #FFD60A; --gold-bg: rgba(255,214,10,.14); --gold-bd: rgba(255,214,10,.35);
+  --silver: #BDB3A4; --silver-bg: rgba(189,179,164,.12); --silver-bd: rgba(189,179,164,.3);
+  --border: rgba(251,247,240,.1); --border2: rgba(251,247,240,.18);
+  --shadow: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-lg: 0 14px 34px rgba(0,0,0,.45);
+}
+
+/* ── NAV ROW ── */
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nav-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t2);
+  background: var(--s1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+.nav-pill-btn:hover {
+  color: var(--red);
+  border-color: var(--red-bd);
+  transform: translateY(-1px);
+}
+.nav-pill-btn.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  box-shadow: 0 4px 12px rgba(217,4,43,0.25);
+}
+
+
+
+/* ── Páginas 1ª fase / Finais ── */
+.top-bar { background-color: var(--brand); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' fill='none' stroke='white' stroke-opacity='.16' stroke-width='2'%3E%3Crect x='14' y='14' width='372' height='272' rx='8'/%3E%3Cpath d='M200 14V286'/%3E%3Ccircle cx='200' cy='150' r='48'/%3E%3Cpath d='M14 96a64 64 0 0 1 0 108M386 96a64 64 0 0 0 0 108'/%3E%3C/svg%3E"); background-size: cover; background-position: center; border: 0; box-shadow: 0 14px 34px -10px rgba(251,44,66,.55); }
+html.dark-mode .top-bar { background-color: var(--brand); border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.tb-badge { background: none; border: 0; padding: 0; color: #FFD60A; }
+.tb-title { font-weight: 700; letter-spacing: 0; }
+.tb-stat { background: transparent; border: 0; padding: 4px 0; }
+.tb-stat .n { font-size: 26px; }
+.tb-stat .l { color: rgba(255,255,255,.88); }
+.wdl-card, .wdl-card.w, .wdl-card.d, .wdl-card.l, .wdl-card.a { border: 0; }
+.lg-row, .lg-row.w, .lg-row.d, .lg-row.l { border: 0; background: transparent; padding-left: 0; padding-right: 0; }
+.lg-score, .lg-row.w .lg-score, .lg-row.d .lg-score, .lg-row.l .lg-score { background: transparent; border: 0; padding: 0; }
+.next-banner { border: 0; }
+.nb-pulse, .nb-right { background: transparent; border: 0; padding-left: 0; padding-right: 0; }
+/* ── ID Tabelinha Futsal · aplicada sem mudar a estrutura da página ── */
+.orbs { display: none !important; }
+html.dark-mode .glass-panel { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.brand { display: flex; align-items: center; gap: 9px; color: var(--t1); line-height: 1; }
+.brand svg { display: block; flex: none; }
+.brand .bw { display: flex; align-items: baseline; gap: 5px; font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 30px; text-transform: lowercase; }
+.brand .bw span { font-weight: 400; color: var(--t3); }
+.brand-sub { font-size: 12px; font-weight: 600; color: var(--t2); }
+.nav-pill-btn.active { background: var(--yel); color: #0D0D0D; border-color: transparent; box-shadow: none; }
+.nav-pill-btn:hover { color: var(--t1); border-color: var(--border2); }
+.hero-banner {
+  background-color: var(--brand);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' fill='none' stroke='white' stroke-opacity='.16' stroke-width='2'%3E%3Crect x='14' y='14' width='372' height='272' rx='8'/%3E%3Cpath d='M200 14V286'/%3E%3Ccircle cx='200' cy='150' r='48'/%3E%3Cpath d='M14 96a64 64 0 0 1 0 108M386 96a64 64 0 0 0 0 108'/%3E%3C/svg%3E");
+  background-size: cover; background-position: center; border: 0;
+  box-shadow: 0 14px 34px -10px rgba(251,44,66,.55);
+}
+.hero-banner::after { color: rgba(255,255,255,.07); }
+.hero-top-tag { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.32); color: #FFD60A; }
+.hero-banner .hero-title { font-weight: 700; letter-spacing: 0; font-size: clamp(30px, 6.4vw, 52px); }
+.hero-banner .hero-title span, .hero-banner.copa .hero-title span { color: #FFD60A; }
+.hero-sub { color: rgba(255,255,255,.92); }
+.hero-stat-box { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.22); }
+.hero-stat-box .num { font-size: 26px; }
+.hero-stat-box .lbl { color: rgba(255,255,255,.88); }
+.hero-stat-box.gold .num { color: #FFD60A; }
+.hero-stat-box.silver .num { color: #FFFFFF; }
+.hv-team.our { color: #FFD60A; font-size: clamp(18px, 4vw, 26px); }
+.hv-team:not(.our) { color: rgba(255,255,255,.95); }
+.hv-score { font-size: clamp(34px, 9vw, 60px); }
+.hv-score small { color: rgba(255,255,255,.85); }
+.hero-when { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.28); color: #FFD60A; }
+.metal-card.ouro { border-left-color: #FFD60A; }
+html.dark-mode .modal { background: #1D1B19; }
+.gm-score { font-size: 21px; }
+.c-pts { font-size: 15px; }
+.s-goals-num { font-size: 18px; }
+.ac-n { font-size: 17px; }
+.nc-team { font-size: 18px; }
+.tie-team .ts, .mt-t .sc, .md-table td.sc { font-size: 14px; }
+
+/* ── Menos caixas: o conteúdo respira sobre o fundo, sem moldura atrás de cada texto ── */
+.glass-panel, .tie-card, .mt, details.chave, details.quartas-det { border: 0; box-shadow: var(--shadow); }
+.nav-pill-btn { border: 0; }
+.mc-cat-badge, .mc-chave-pill, .sched-badge, .cat-tag { background: transparent !important; border: 0 !important; padding-left: 0; padding-right: 0; }
+.pill, .chip { border: 0; }
+.gm-score, .tie-team .ts, .mt-t .sc, .md-table td.sc { background: transparent; border: 0; padding: 0; min-width: 0; height: auto; }
+.nc-when span { background: transparent; border: 0; padding: 0; }
+.hero-when { background: transparent; border: 0; padding: 0; }
+.hero-stat-box { background: transparent; border: 0; padding: 4px 0; }
+.note, .semi-foot, .md-res { background: transparent; border: 0; padding: 0; }
+
+/* ── Menos caixas, segunda passada: placares, etiquetas e faixas viram texto sobre o fundo ── */
+.hero-top-tag { background: none; border: 0; padding: 0; }
+.mt-top, .tie-meta { background: transparent; border-bottom: 0; }
+.mt-t.win .sc, .tie-team.win .ts { background: transparent !important; color: var(--red) !important; border: 0 !important; }
+.mt-t.lead .sc, .tie-team.lead .ts { background: transparent !important; color: var(--amber) !important; border: 0 !important; }
+.next-card { background: transparent; border: 0; padding: 0; }
+.nc-when, .venue-box { background: transparent; border-top: 0; }
+.nc-when .tbd { background: transparent; border: 0; }
+.leg-head { border-bottom: 0; }
+.pill.done, .pill.next { background: transparent; border: 0; padding-left: 0; padding-right: 0; }
+.ptab { background: transparent; border: 0; }
+.ptab.active { background: transparent; color: var(--red); box-shadow: inset 0 -2px 0 var(--red); border-radius: 0; }
+.chip.ok, .chip.lead, .chip.wait { background: transparent; border: 0; padding-left: 0; padding-right: 0; }
+.tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
+.mt.final { border: 0; }
+</style>
+<link rel="stylesheet" href="tabelinha.css">
+</head>
+<body>
+
+<div class="orbs"></div>
+
+<!-- MARCA -->
+<div class="brand-row"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
+  <svg width="38" height="38" viewBox="48 48 160 160" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M82.43,104.48v-5.88c0-15.68,7.84-23.52,23.52-23.52h58.8c15.68,0,23.52,7.84,23.52,23.52v58.8c0,15.68-7.84,23.52-23.52,23.52h-58.8c-15.68,0-23.52-7.84-23.52-23.52v-5.88" stroke-width="11"/><path d="M67.73,118.79h64.68M67.73,137.05h49.98" stroke-width="11"/><path d="M188.27,89.78c-21.11,0-38.22,17.11-38.22,38.22s17.11,38.22,38.22,38.22" stroke-width="8.5"/></g><circle cx="150.05" cy="128" r="9.86" fill="var(--ball)"/></svg>
+  <span class="bw">tabelinha<span>futsal</span></span></a>
+  <span class="brand-sub">Metalúrgicos de Jundiaí · Sub 9</span></div>
+<div class="nav-row">
+  <div class="nav-links">
+    <a href="primeira-fase.html" class="nav-pill-btn">1ª fase</a>
+    <a href="finais.html" class="nav-pill-btn active">Finais</a>
+    <a href="index.html" class="nav-pill-btn">Copa União</a>
+    <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener" class="nav-pill-btn">Federação FPFS ↗</a>
+  </div>
+  <div class="theme-switch-wrapper">
+    <span style="font-size:14px;">☀️</span>
+    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" onchange="toggleTheme()"><span class="slider round"></span></label>
+    <span style="font-size:14px;">🌙</span>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-top-tag">Federação Paulista de Futsal · Iniciação A2 · Encerrado</div>
+  <h1 class="hero-title">METALÚRGICOS JUNDIAÍ <span>FASES FINAIS</span></h1>
+  <p class="hero-sub">As fases finais terminaram em 20/09. O Metalúrgicos foi <strong>vice-campeão do Sub 8 na Chave Ouro</strong>, chegou às semifinais do Sub 7 na Prata e caiu nas quartas do Sub 9 e do Sub 10, ambos na Ouro.</p>
+
+  <div class="hero-stats-row">
+    <div class="hero-stat-box gold"><div class="num">Vice</div><div class="lbl">Sub 8 · Chave Ouro</div></div>
+    <div class="hero-stat-box silver"><div class="num">Semi</div><div class="lbl">Sub 7 · Chave Prata</div></div>
+    <div class="hero-stat-box"><div class="num">Quartas</div><div class="lbl">Sub 9 · Chave Ouro</div></div>
+    <div class="hero-stat-box"><div class="num">Quartas</div><div class="lbl">Sub 10 · Chave Ouro</div></div>
+  </div>
+</div>
+
+<!-- CAMPEÕES -->
+<div class="section-head">
+  <div class="section-title"><div class="icon-dot"></div>Campeões das fases finais</div>
+  <span style="font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase;">Ouro · Prata · Bronze</span>
+</div>
+<div class="champ-grid" id="champGrid"></div>
+
+<!-- CAMPANHA METALÚRGICOS -->
+<div class="section-head">
+  <div class="section-title">
+    <div class="icon-dot"></div>
+    Campanha do Metalúrgicos
+  </div>
+  <span style="font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase;">05 a 20/09 · Ginásio Pres. Ciro I e II</span>
+</div>
+
+<div class="metal-agenda-grid" id="metalAgendaGrid">
+  <!-- Injetado via JS -->
+</div>
+
+<!-- CHAVEAMENTO & ÁRVORE DO MATA-MATA (COM GINÁSIO EMBUTIDO) -->
+<div class="bracket-section">
+  <div class="section-head">
+    <div class="section-title">
+      <div class="icon-dot" style="background:#FFD60A;"></div>
+      Chaveamento Oficial & Árvore de Confrontos
+    </div>
+  </div>
+
+  <div class="glass-panel">
+    <div class="bracket-controls">
+      <div class="filter-group">
+        <span class="filter-label">Categoria:</span>
+        <button class="filter-btn active" onclick="setCategory('SUB 9', this)">SUB 09</button>
+        <button class="filter-btn" onclick="setCategory('SUB 8', this)">SUB 08</button>
+        <button class="filter-btn" onclick="setCategory('SUB 7', this)">SUB 07</button>
+        <button class="filter-btn" onclick="setCategory('SUB 10', this)">SUB 10</button>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Chave:</span>
+        <button class="filter-btn gold active" onclick="setChave('OURO', this)">Chave Ouro 🏆</button>
+        <button class="filter-btn silver" onclick="setChave('PRATA', this)">Chave Prata 🥈</button>
+        <button class="filter-btn bronze" onclick="setChave('BRONZE', this)">Chave Bronze 🥉</button>
+      </div>
+    </div>
+
+    <div class="bracket-tree-container">
+      <div class="bracket-tree" id="bracketTree">
+        <!-- Injetado via JS -->
+      </div>
+    </div>
+
+    <!-- LOCALIZAÇÃO / GINÁSIO (DENTRO DO BLOCO DO CHAVEAMENTO) -->
+    <div class="bracket-venue-callout">
+      <div class="bvc-left">
+        <div class="bvc-tag">📍 GINÁSIO OFICIAL DAS FINAIS (FPFS)</div>
+        <div class="bvc-title">Ginásio Presidente Ciro I e II — Federação Paulista de Futsal</div>
+        <div class="bvc-address">Av. Condessa Elizabeth de Robiano, 5120 - Jardim América da Penha, São Paulo - SP</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Condessa+Elizabeth+de+Robiano+5120+Jardim+America+da+Penha+Sao+Paulo" target="_blank" class="bvc-map-btn">
+        📍 Abrir no Google Maps →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- GAVETA RETRÁTIL TABELA FPFS (MOVIDA PARA ENTRE O CHAVEAMENTO E OS BLOCOS) -->
+<div style="margin-bottom: 24px;">
+  <button class="btn-toggle-full-table" onclick="toggleFullTable(this)">
+    <span style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:16px;">📋</span>
+      <span>Todos os 84 jogos das fases finais</span>
+    </span>
+    <span class="acc-chevron" id="accChevron">▼ Expandir</span>
+  </button>
+
+  <div class="full-table-content" id="fullTableContent" style="display:none; margin-top:12px;">
+    <div class="day-tabs-wrapper" id="dayTabs"></div>
+
+    <div class="schedule-table-wrap">
+      <table class="sched-table">
+        <thead>
+          <tr>
+            <th>Data / Hora</th>
+            <th>Chave</th>
+            <th>Cat.</th>
+            <th>Fase</th>
+            <th>Confronto</th>
+            <th>Local / Ginásio</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleTableBody">
+          <!-- Injetado via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 3 BOXES DE ESTATÍSTICAS (ARTILHARIA, ÚLTIMOS RESULTADOS E CLASSIFICAÇÃO) -->
+<div class="section-head">
+  <div class="section-title">
+    <div class="icon-dot"></div>
+    Desempenho & Estatísticas da 1ª Fase
+  </div>
+</div>
+
+<div class="stats-cols">
+
+  <!-- BOX 1: ARTILHARIA SUB 9 -->
+  <div class="glass-panel">
+    <div class="panel-head">
+      <div class="panel-head-title">⚽ Artilharia Sub 9 (71 Gols)</div>
+    </div>
+    <div id="artilhariaList" class="scroll-list">
+      <!-- Injetado via JS -->
+    </div>
+  </div>
+
+  <!-- BOX 2: ÚLTIMOS RESULTADOS (1ª FASE) -->
+  <div class="glass-panel">
+    <div class="panel-head">
+      <div class="panel-head-title">📊 Últimos Resultados (Sub 9)</div>
+      <a href="primeira-fase.html" class="fed-link">Ver Todos ↗</a>
+    </div>
+    <div id="lastGamesList" class="scroll-list last-games-container">
+      <!-- Injetado via JS -->
+    </div>
+  </div>
+
+  <!-- BOX 3: CLASSIFICAÇÃO SUB 9 (1ª FASE) -->
+  <div class="glass-panel">
+    <div class="panel-head">
+      <div class="panel-head-title">🏆 Classificação Sub 9 (1ª Fase)</div>
+      <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" class="fed-link">Federação ↗</a>
+    </div>
+    <div id="classifList" class="scroll-list">
+      <!-- Injetado via JS -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// =====================================================
+// THEME LOGIC
+// =====================================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const cb = document.getElementById('themeCheckbox');
+  if (cb.checked) {
+    html.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
+}
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark-mode');
+  document.getElementById('themeCheckbox').checked = true;
+}
+
+// =====================================================
+// PLAYERS DATA & PHOTOS (REFERÊNCIA CORRETA DO INDEX)
+// =====================================================
+const PLAYERS = [
+  { id: 1, name: "Bernardo Zanini", photo: "fotos_jogadores/01.png" },
+  { id: 2, name: "Miguel", photo: "fotos_jogadores/02.png" },
+  { id: 3, name: "Caio", photo: "fotos_jogadores/03.png" },
+  { id: 4, name: "Xerife", photo: "fotos_jogadores/04.png" },
+  { id: 6, name: "Rafinha", photo: "fotos_jogadores/06.png" },
+  { id: 7, name: "Gabriel", photo: "fotos_jogadores/07.png" },
+  { id: 8, name: "Juninho", photo: "fotos_jogadores/08.png" },
+  { id: 9, name: "Davi lucca", photo: "fotos_jogadores/09.png" },
+  { id: 10, name: "Pedro Dutra", photo: "fotos_jogadores/12.png" },
+  { id: 11, name: "Miguel Duca", photo: "fotos_jogadores/11.png" },
+  { id: 12, name: "Rafa lucca", photo: "fotos_jogadores/5.png" },
+  { id: 13, name: "Ramalho", photo: "fotos_jogadores/10.png" },
+  { id: 14, name: "Bernardo Marques", photo: "fotos_jogadores/14.png" },
+  { id: 15, name: "Moisés", photo: "fotos_jogadores/15.png" },
+  { id: 17, name: "Otto Pitombeira", photo: "fotos_jogadores/17.png" },
+  { id: 20, name: "Davizinho", photo: "fotos_jogadores/20.png" }
+].map(p => ({ ...p, displayName: `${p.id} - ${p.name}` }));
+
+// =====================================================
+// DADOS DOS JOGOS DA 1ª FASE (PARA ARTILHARIA E ÚLTIMOS RESULTADOS)
+// =====================================================
+const FIRST_FASE_GAMES = [
+  { gameNum: "08", date: "15/03", home: "CLUBE BATALHA", away: "METALÚRGICOS", homeScore: 2, awayScore: 2, finalGoals: '{"17 - Otto Pitombeira":2}' },
+  { gameNum: "16", date: "21/03", home: "METALÚRGICOS", away: "SANTO ANDRÉ FUTSAL", homeScore: 3, awayScore: 2, finalGoals: '{"8 - Juninho":1, "10 - Pedro Dutra":1, "1 - Bernardo Zanini":1}' },
+  { gameNum: "24", date: "28/03", home: "SER CAIEIRAS", away: "METALÚRGICOS", homeScore: 0, awayScore: 1, finalGoals: '{"17 - Otto Pitombeira":1}' },
+  { gameNum: "41", date: "11/04", home: "METALÚRGICOS", away: "AD SUZANO", homeScore: 2, awayScore: 4, finalGoals: '{"7 - Gabriel":1, "9 - Davi lucca":1}' },
+  { gameNum: "57", date: "19/04", home: "IFA BONS DE BOLA", away: "METALÚRGICOS", homeScore: 1, awayScore: 6, finalGoals: '{"10 - Pedro Dutra":3, "8 - Juninho":2, "12 - Rafa lucca":1}' },
+  { gameNum: "67", date: "25/04", home: "METALÚRGICOS", away: "AE RIVER", homeScore: 3, awayScore: 3, finalGoals: '{"17 - Otto Pitombeira":1, "10 - Pedro Dutra":1, "8 - Juninho":1}' },
+  { gameNum: "78", date: "02/05", home: "ADEF FUTSAL", away: "METALÚRGICOS", homeScore: 3, awayScore: 2, finalGoals: '{"20 - Davizinho":1, "13 - Ramalho":1}' },
+  { gameNum: "90", date: "09/05", home: "METALÚRGICOS", away: "WIMPRO VEGUS", homeScore: 7, awayScore: 2, finalGoals: '{"10 - Pedro Dutra":3, "17 - Otto Pitombeira":1, "7 - Gabriel":1, "9 - Davi lucca":1, "12 - Rafa lucca":1}' },
+  { gameNum: "106", date: "18/05", home: "GDR 7 DE SETEMBRO", away: "METALÚRGICOS", homeScore: 1, awayScore: 4, finalGoals: '{"12 - Rafa lucca":1, "11 - Miguel Duca":2, "13 - Ramalho":1}' },
+  { gameNum: "113", date: "23/05", home: "METALÚRGICOS", away: "MX7 FUTSAL", homeScore: 3, awayScore: 2, finalGoals: '{"7 - Gabriel":1, "14 - Bernardo Marques":1, "17 - Otto Pitombeira":1}' },
+  { gameNum: "122", date: "30/05", home: "ADC MERCEDES BENZ", away: "METALÚRGICOS", homeScore: 0, awayScore: 1, finalGoals: '{"Gol Contra":1}' },
+  { gameNum: "136", date: "04/06", home: "METALÚRGICOS", away: "SPORT BENFICA MC", homeScore: 1, awayScore: 5, finalGoals: '{"7 - Gabriel":1}' },
+  { gameNum: "150", date: "06/06", home: "GR GREMETAL", away: "METALÚRGICOS", homeScore: 1, awayScore: 5, finalGoals: '{"11 - Miguel Duca":2, "10 - Pedro Dutra":2, "14 - Bernardo Marques":1}' },
+  { gameNum: "159", date: "13/06", home: "CAAS FUTMAX", away: "METALÚRGICOS", homeScore: 0, awayScore: 5, finalGoals: '{"11 - Miguel Duca":1, "8 - Juninho":1, "12 - Rafa lucca":1, "14 - Bernardo Marques":1, "9 - Davi lucca":1}' },
+  { gameNum: "179", date: "21/06", home: "METALÚRGICOS", away: "AE FRIBURGO", homeScore: 6, awayScore: 3, finalGoals: '{"10 - Pedro Dutra":1, "8 - Juninho":1, "11 - Miguel Duca":1, "1 - Bernardo Zanini":1, "20 - Davizinho":1, "7 - Gabriel":1}' },
+  { gameNum: "183", date: "27/06", home: "UNIÃO MAUÁ", away: "METALÚRGICOS", homeScore: 1, awayScore: 4, finalGoals: '{"11 - Miguel Duca":1, "7 - Gabriel":1, "8 - Juninho":2}' },
+  { gameNum: "196", date: "04/07", home: "METALÚRGICOS", away: "AD SANTO ANDRÉ", homeScore: 2, awayScore: 0, finalGoals: '{"1 - Bernardo Zanini":1, "8 - Juninho":1}' },
+  { gameNum: "210", date: "09/07", home: "OCIAN PRAIA CLUBE", away: "METALÚRGICOS", homeScore: 0, awayScore: 2, finalGoals: '{"10 - Pedro Dutra":1, "9 - Davi lucca":1}' },
+  { gameNum: "221", date: "01/08", home: "METALÚRGICOS", away: "AE CHUTE FUTSAL", homeScore: 7, awayScore: 2, finalGoals: '{"11 - Miguel Duca":1, "7 - Gabriel":1, "1 - Bernardo Zanini":1, "12 - Rafa lucca":1, "4 - Xerife":1, "13 - Ramalho":1, "20 - Davizinho":1}' },
+  { gameNum: "230", date: "08/08", home: "ADC MARVEL", away: "METALÚRGICOS", homeScore: 3, awayScore: 3, finalGoals: '{"17 - Otto Pitombeira":2, "12 - Rafa lucca":1}' },
+  { gameNum: "247", date: "15/08", home: "METALÚRGICOS", away: "PAULISTA FC", homeScore: 4, awayScore: 2, finalGoals: '{"11 - Miguel Duca":1, "10 - Pedro Dutra":1, "13 - Ramalho":2}' },
+  { gameNum: "260", date: "22/08", home: "CTC VILA EMA", away: "METALÚRGICOS", homeScore: 1, awayScore: 3, finalGoals: '{"13 - Ramalho":1, "10 - Pedro Dutra":1, "9 - Davi lucca":1}' },
+  { gameNum: "269", date: "29/08", home: "METALÚRGICOS", away: "AD NANDO GRANA", homeScore: 1, awayScore: 1, finalGoals: '{"17 - Otto Pitombeira":1}' }
+];
+
+// =====================================================
+// CLASSIFICAÇÃO SUB 9 DA 1ª FASE
+// =====================================================
+const CLASSIF_DATA = [
+  { pos: "1º", team: "SANTO ANDRÉ FUTSAL", pts: 55 },
+  { pos: "2º", team: "A. UNIÃO MAUÁ", pts: 53 },
+  { pos: "3º", team: "METALÚRGICOS DE JUNDIAÍ", pts: 52 },
+  { pos: "4º", team: "ADEF/COTIA", pts: 50 },
+  { pos: "5º", team: "CLUBE BATALHA", pts: 47 },
+  { pos: "6º", team: "SPORT BENFICA DE MOGI", pts: 46 },
+  { pos: "7º", team: "RIVER DO BELÉM", pts: 46 },
+  { pos: "8º", team: "MX7 DIADEMA", pts: 43 },
+  { pos: "9º", team: "AD NANDO GRANA", pts: 41 },
+  { pos: "10º", team: "G.D.R. 7 DE SETEMBRO", pts: 39 }
+];
+
+// =====================================================
+// RESULTADOS OFICIAIS DAS FASES FINAIS (FPFS · eventos 900–903 · jogos de 05/09 a 20/09)
+// cat | chave | fase | data | hora | ginásio | mandante | gols | gols | visitante
+// =====================================================
+const FIN_RAW = `
+SUB 7|BRONZE|QF|05/09|11:00|I|AP FC MOOCA|0|7|AD NANDO GRANA
+SUB 7|BRONZE|QF|05/09|14:45|I|CHUTE FUTSAL|0|2|AA WIMPRO
+SUB 7|PRATA|QF|05/09|11:00|II|AD SUZANO|2|2|ADC MARVEL
+SUB 7|PRATA|QF|06/09|08:30|I|OCIAN PRAIA CLUBE|3|0|A. UNIÃO MAUÁ
+SUB 7|BRONZE|QF|06/09|13:30|I|ADEF/COTIA|6|1|SER CAIEIRAS
+SUB 7|BRONZE|QF|06/09|14:45|I|AE FUTMAX|4|2|MX7 DIADEMA
+SUB 7|PRATA|QF|06/09|08:30|II|CLUBE BATALHA|4|0|GDR 7 DE SETEMBRO
+SUB 7|OURO|QF|06/09|13:30|II|SANTO ANDRÉ FUTSAL|3|4|ADC MERCEDES BENZ
+SUB 7|PRATA|QF|07/09|16:00|I|METALÚRGICOS DE JUNDIAÍ|6|2|AE FRIBURGO
+SUB 7|OURO|QF|07/09|08:30|II|GR GREMETAL|5|2|CTC VILA EMA
+SUB 7|OURO|QF|07/09|09:45|II|INST. BONS DE BOLA|2|1|AD SANTO ANDRÉ FUTSAL
+SUB 7|OURO|QF|07/09|13:30|II|SPORT BENFICA MC|6|1|RIVER DO BELÉM
+SUB 7|BRONZE|SF|12/09|09:45|I|ADEF/COTIA|1|5|AA WIMPRO
+SUB 7|BRONZE|SF|12/09|12:15|I|AE FUTMAX|3|1|AD NANDO GRANA
+SUB 7|OURO|SF|12/09|08:30|II|SPORT BENFICA MC|4|0|GR GREMETAL
+SUB 7|OURO|SF|12/09|14:45|II|INST. BONS DE BOLA|1|2|ADC MERCEDES BENZ
+SUB 7|PRATA|SF|13/09|13:30|I|AD SUZANO|6|4|OCIAN PRAIA CLUBE
+SUB 7|PRATA|SF|13/09|14:45|I|CLUBE BATALHA|5|3|METALÚRGICOS DE JUNDIAÍ
+SUB 7|BRONZE|F|13/09|09:00|II|AE FUTMAX|1|2|AA WIMPRO
+SUB 7|OURO|F|19/09|09:00|II|SPORT BENFICA MC|1|10|ADC MERCEDES BENZ
+SUB 7|PRATA|F|20/09|09:00|II|AD SUZANO|4|3|CLUBE BATALHA
+SUB 8|BRONZE|QF|05/09|13:30|I|CHUTE FUTSAL|6|0|AP FC MOOCA
+SUB 8|BRONZE|QF|05/09|16:00|I|AA WIMPRO|4|3|OCIAN PRAIA CLUBE
+SUB 8|PRATA|QF|05/09|17:15|I|AD NANDO GRANA|2|5|SANTO ANDRÉ FUTSAL
+SUB 8|OURO|QF|05/09|12:15|II|ADC MERCEDES BENZ|3|1|AD SUZANO
+SUB 8|PRATA|QF|05/09|12:15|I|RIVER DO BELÉM|1|0|ADC MARVEL
+SUB 8|OURO|QF|06/09|09:45|II|CLUBE BATALHA|4|2|GDR 7 DE SETEMBRO
+SUB 8|OURO|QF|06/09|11:00|II|SPORT BENFICA MC|1|3|SER CAIEIRAS
+SUB 8|PRATA|QF|06/09|17:15|II|AE FUTMAX|3|2|ADEF/COTIA
+SUB 8|BRONZE|QF|07/09|11:00|I|CTC VILA EMA|2|0|AD SANTO ANDRÉ FUTSAL
+SUB 8|BRONZE|QF|07/09|13:30|I|MX7 DIADEMA|2|2|GR GREMETAL
+SUB 8|PRATA|QF|07/09|11:00|II|INST. BONS DE BOLA|1|1|AE FRIBURGO
+SUB 8|OURO|QF|07/09|14:45|II|METALÚRGICOS DE JUNDIAÍ|2|2|A. UNIÃO MAUÁ
+SUB 8|OURO|SF|12/09|13:30|II|CLUBE BATALHA|0|2|ADC MERCEDES BENZ
+SUB 8|OURO|SF|12/09|16:00|II|METALÚRGICOS DE JUNDIAÍ|2|1|SER CAIEIRAS
+SUB 8|BRONZE|SF|12/09|08:30|I|AA WIMPRO|0|1|CTC VILA EMA
+SUB 8|BRONZE|SF|12/09|16:00|I|CHUTE FUTSAL|3|5|MX7 DIADEMA
+SUB 8|PRATA|SF|13/09|11:00|I|RIVER DO BELÉM|3|1|INST. BONS DE BOLA
+SUB 8|PRATA|SF|13/09|17:15|I|AE FUTMAX|2|5|SANTO ANDRÉ FUTSAL
+SUB 8|BRONZE|F|13/09|10:30|II|CTC VILA EMA|0|4|MX7 DIADEMA
+SUB 8|OURO|F|19/09|10:30|II|METALÚRGICOS DE JUNDIAÍ|1|2|ADC MERCEDES BENZ
+SUB 8|PRATA|F|20/09|10:30|II|RIVER DO BELÉM|2|5|SANTO ANDRÉ FUTSAL
+SUB 9|PRATA|QF|05/09|09:45|I|ADC MARVEL|4|1|AD SUZANO
+SUB 9|PRATA|QF|05/09|13:30|II|AD NANDO GRANA|1|2|INST. BONS DE BOLA
+SUB 9|PRATA|QF|05/09|17:15|II|GDR 7 DE SETEMBRO|0|2|GR GREMETAL
+SUB 9|BRONZE|QF|06/09|09:45|I|AD SANTO ANDRÉ FUTSAL|3|2|OCIAN PRAIA CLUBE
+SUB 9|BRONZE|QF|06/09|16:00|I|SER CAIEIRAS|1|4|AE FUTMAX
+SUB 9|PRATA|QF|06/09|17:15|I|ADC MERCEDES BENZ|1|0|AP FC MOOCA
+SUB 9|OURO|QF|06/09|12:15|II|ADEF/COTIA|0|2|CLUBE BATALHA
+SUB 9|OURO|QF|06/09|16:00|II|SANTO ANDRÉ FUTSAL|3|1|MX7 DIADEMA
+SUB 9|OURO|QF|07/09|12:15|II|METALÚRGICOS DE JUNDIAÍ|2|5|SPORT BENFICA MC
+SUB 9|OURO|QF|07/09|16:00|II|A. UNIÃO MAUÁ|1|1|RIVER DO BELÉM
+SUB 9|BRONZE|QF|07/09|09:45|I|CTC VILA EMA|4|1|AA WIMPRO
+SUB 9|BRONZE|QF|07/09|17:15|I|AE FRIBURGO|3|2|CHUTE FUTSAL
+SUB 9|OURO|SF|12/09|09:45|II|SANTO ANDRÉ FUTSAL|5|2|SPORT BENFICA MC
+SUB 9|OURO|SF|12/09|12:15|II|A. UNIÃO MAUÁ|0|3|CLUBE BATALHA
+SUB 9|BRONZE|SF|12/09|11:00|I|CTC VILA EMA|0|2|AE FUTMAX
+SUB 9|BRONZE|SF|12/09|14:45|I|AD SANTO ANDRÉ FUTSAL|2|0|AE FRIBURGO
+SUB 9|PRATA|SF|13/09|09:45|I|ADC MERCEDES BENZ|3|1|GR GREMETAL
+SUB 9|PRATA|SF|13/09|12:15|I|ADC MARVEL|4|0|INST. BONS DE BOLA
+SUB 9|BRONZE|F|13/09|12:00|II|AD SANTO ANDRÉ FUTSAL|3|0|AE FUTMAX
+SUB 9|OURO|F|19/09|12:00|II|SANTO ANDRÉ FUTSAL|1|0|CLUBE BATALHA
+SUB 9|PRATA|F|20/09|12:00|II|ADC MARVEL|2|0|ADC MERCEDES BENZ
+SUB 10|BRONZE|QF|05/09|08:30|I|AD NANDO GRANA|0|2|AD SUZANO
+SUB 10|OURO|QF|05/09|08:30|II|ADC MARVEL|4|1|CTC VILA EMA
+SUB 10|OURO|QF|05/09|09:45|II|RIVER DO BELÉM|3|0|AP FC MOOCA
+SUB 10|PRATA|QF|05/09|14:45|II|GR GREMETAL|3|2|ADC MERCEDES BENZ
+SUB 10|OURO|QF|05/09|16:00|II|SANTO ANDRÉ FUTSAL|1|0|CHUTE FUTSAL
+SUB 10|PRATA|QF|06/09|14:45|II|ADEF/COTIA|2|4|SER CAIEIRAS
+SUB 10|BRONZE|QF|06/09|11:00|I|CLUBE BATALHA|0|1|GDR 7 DE SETEMBRO
+SUB 10|BRONZE|QF|06/09|12:15|I|MX7 DIADEMA|5|0|AE FUTMAX
+SUB 10|BRONZE|QF|07/09|08:30|I|INST. BONS DE BOLA|8|1|AA WIMPRO
+SUB 10|PRATA|QF|07/09|12:15|I|AE FRIBURGO|0|2|AD SANTO ANDRÉ FUTSAL
+SUB 10|PRATA|QF|07/09|14:45|I|OCIAN PRAIA CLUBE|4|5|SPORT BENFICA MC
+SUB 10|OURO|QF|07/09|17:15|II|A. UNIÃO MAUÁ|1|1|METALÚRGICOS DE JUNDIAÍ
+SUB 10|OURO|SF|12/09|11:00|II|SANTO ANDRÉ FUTSAL|1|0|A. UNIÃO MAUÁ
+SUB 10|OURO|SF|12/09|17:15|II|RIVER DO BELÉM|2|0|ADC MARVEL
+SUB 10|BRONZE|SF|12/09|13:30|I|INST. BONS DE BOLA|2|2|AD SUZANO
+SUB 10|BRONZE|SF|12/09|17:15|I|MX7 DIADEMA|3|1|GDR 7 DE SETEMBRO
+SUB 10|PRATA|SF|13/09|08:30|I|GR GREMETAL|0|3|SER CAIEIRAS
+SUB 10|PRATA|SF|13/09|16:00|I|AD SANTO ANDRÉ FUTSAL|4|2|SPORT BENFICA MC
+SUB 10|BRONZE|F|13/09|13:30|II|MX7 DIADEMA|1|2|INST. BONS DE BOLA
+SUB 10|OURO|F|19/09|13:30|II|SANTO ANDRÉ FUTSAL|2|2|RIVER DO BELÉM
+SUB 10|PRATA|F|20/09|13:30|II|AD SANTO ANDRÉ FUTSAL|1|4|SER CAIEIRAS
+`;
+const GAMES = FIN_RAW.trim().split('\n').map(l => {
+  const [cat, chave, rnd, date, time, gym, home, hs, as, away] = l.split('|');
+  return { cat, chave, rnd, date, time, gym: 'Ciro ' + gym, home, hs: +hs, as: +as, away, metal: /METALÚRGICOS/.test(home + away) };
+});
+const CATS = ['SUB 7', 'SUB 8', 'SUB 9', 'SUB 10'];
+const CHAVES = ['OURO', 'PRATA', 'BRONZE'];
+const RND_NAME = { QF: 'Quartas de final', SF: 'Semifinal', F: 'Final' };
+const RND_ORDER = { QF: 0, SF: 1, F: 2 };
+const isM = n => /METALÚRGICOS/.test(n || '');
+const catClass = c => c.toLowerCase().replace(' ', '');
+const by = (cat, chave, rnd) => GAMES.filter(g => g.cat === cat && g.chave === chave && g.rnd === rnd);
+
+// Vencedor: pelo placar; em empate (pênaltis), quem aparece na fase seguinte. Final empatada sem dado = null.
+const PEN_WINNER = { 'SUB 10|OURO|F': 'SANTO ANDRÉ FUTSAL' }; // pênaltis: informado pelo clube, súmula não traz o dado
+function winner(g) {
+  if (g.hs !== g.as) return g.hs > g.as ? g.home : g.away;
+  const next = g.rnd === 'QF' ? 'SF' : g.rnd === 'SF' ? 'F' : null;
+  if (!next) return PEN_WINNER[g.cat + '|' + g.chave + '|' + g.rnd] || null;
+  const names = by(g.cat, g.chave, next).flatMap(x => [x.home, x.away]);
+  const h = names.includes(g.home), a = names.includes(g.away);
+  return h && !a ? g.home : a && !h ? g.away : null;
+}
+const loserOf = g => { const w = winner(g); return w ? (w === g.home ? g.away : g.home) : null; };
+function cleanName(name) { return name || 'A definir'; }
+
+// ───────── CAMPEÕES ─────────
+function renderChampions() {
+  const el = document.getElementById('champGrid');
+  const medal = { OURO: 'ic-m1', PRATA: 'ic-m2', BRONZE: 'ic-m3' };
+  el.innerHTML = CATS.map(cat => `
+    <div class="glass-panel champ-card">
+      <div class="mc-top"><span class="mc-cat-badge ${catClass(cat)}">${cat}</span></div>
+      ${CHAVES.map(ch => {
+        const f = by(cat, ch, 'F')[0], w = winner(f), v = loserOf(f);
+        const score = `${f.hs}×${f.as}`;
+        return `<div class="champ-row">
+          <span class="champ-ch"><i class="ic ic-medal ${medal[ch]}"></i> ${ch}</span>
+          <span class="champ-name ${isM(w) ? 'our' : ''}">${w || 'Final empatada · pênaltis'}</span>
+          <span class="champ-sc">${score}</span>
+          <span class="champ-vice">${w ? 'vice: ' + v : f.home + ' × ' + f.away + ' (vencedor nos pênaltis a confirmar)'}</span>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+// ───────── CAMPANHA DO METALÚRGICOS ─────────
+function renderMetalAgenda() {
+  const el = document.getElementById('metalAgendaGrid');
+  const out = [];
+  CATS.forEach(cat => {
+    const mine = GAMES.filter(g => g.cat === cat && g.metal).sort((a, b) => RND_ORDER[a.rnd] - RND_ORDER[b.rnd]);
+    if (!mine.length) return;
+    const ch = mine[0].chave;
+    const last = mine[mine.length - 1];
+    const w = winner(last);
+    const fate = last.rnd === 'F' ? (isM(w) ? 'Campeão' : 'Vice-campeão') : last.rnd === 'SF' ? 'Eliminado na semifinal' : 'Eliminado nas quartas';
+    out.push(`
+      <div class="glass-panel metal-card ${ch.toLowerCase()}">
+        <div class="mc-top">
+          <span class="mc-cat-badge ${catClass(cat)}">${cat}</span>
+          <span class="mc-chave-pill ${ch.toLowerCase()}">CHAVE ${ch}</span>
+        </div>
+        <div class="camp-fate">${fate}</div>
+        ${mine.map(g => {
+          const opp = isM(g.home) ? g.away : g.home;
+          const my = isM(g.home) ? g.hs : g.as, th = isM(g.home) ? g.as : g.hs;
+          const win = isM(winner(g));
+          const pen = g.hs === g.as ? ' · pênaltis' : '';
+          return `<div class="camp-row">
+            <span class="camp-rnd">${RND_NAME[g.rnd]} · ${g.date}</span>
+            <span class="camp-vs">${my}×${th} ${opp}${pen}</span>
+            <span class="camp-res ${win ? 'win' : 'lose'}">${win ? 'Avançou' : (g.rnd === 'F' ? 'Vice' : 'Eliminado')}</span>
+          </div>`;
+        }).join('')}
+      </div>`);
+  });
+  el.innerHTML = out.join('');
+}
+
+// ───────── CHAVEAMENTO ─────────
+let selectedCategory = 'SUB 9';
+let selectedChave = 'OURO';
+
+function setCategory(cat, btn) {
+  selectedCategory = cat;
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBracket();
+}
+
+function setChave(chave, btn) {
+  selectedChave = chave;
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBracket();
+}
+
+function renderBracket() {
+  const container = document.getElementById('bracketTree');
+  const qfs = by(selectedCategory, selectedChave, 'QF');
+  const sfs = by(selectedCategory, selectedChave, 'SF');
+  const fin = by(selectedCategory, selectedChave, 'F')[0];
+  const feeders = sf => qfs.filter(q => [q.home, q.away].some(n => n === sf.home || n === sf.away));
+  const qfOrder = [...feeders(sfs[0]), ...feeders(sfs[1])];
+
+  const card = (g, title) => {
+    const w = winner(g);
+    const row = (n, s) => `<div class="b-team-row ${isM(n) ? 'our' : ''} ${w === n ? 'win' : (w ? 'lose' : '')}">
+        <span class="t-name">${n}</span><span class="score-box">${s}</span></div>`;
+    return `
+      <div class="b-match-card ${g.metal ? 'is-metal' : ''}">
+        <div class="b-match-meta">
+          <span class="dt">${title} · ${g.date} · ${g.time}</span>
+          <span class="gym">${g.hs === g.as ? 'pênaltis' : g.gym}</span>
+        </div>
+        ${row(g.home, g.hs)}${row(g.away, g.as)}
+      </div>`;
+  };
+
+  const champ = winner(fin);
+  container.innerHTML = `
+    <div>
+      <div class="bracket-col-title">Quartas de Final</div>
+      <div class="bracket-col-qf">${qfOrder.map((g, i) => card(g, 'QF ' + (i + 1))).join('')}</div>
+    </div>
+
+    <div class="b-connector">
+      <svg width="40" height="340" viewBox="0 0 40 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0 40 H 20 V 130 H 40" stroke="var(--border2)" stroke-width="2" fill="none" />
+        <path d="M 0 130 H 20" stroke="var(--border2)" stroke-width="2" fill="none" />
+        <path d="M 0 210 H 20 V 300 H 40" stroke="var(--border2)" stroke-width="2" fill="none" />
+        <path d="M 0 300 H 20" stroke="var(--border2)" stroke-width="2" fill="none" />
+      </svg>
+    </div>
+
+    <div>
+      <div class="bracket-col-title">Semifinais</div>
+      <div class="bracket-col-sf">${sfs.map((g, i) => card(g, 'SEMI ' + (i + 1))).join('')}</div>
+    </div>
+
+    <div class="b-connector">
+      <svg width="40" height="340" viewBox="0 0 40 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0 85 H 20 V 255 H 0" stroke="var(--border2)" stroke-width="2" fill="none" />
+        <path d="M 20 170 H 40" stroke="var(--border2)" stroke-width="2" fill="none" />
+      </svg>
+    </div>
+
+    <div>
+      <div class="bracket-col-title">Grande Final</div>
+      <div class="bracket-col-f">
+        <div class="trophy-badge">🏆</div>
+        ${card(fin, 'FINAL ' + selectedChave)}
+        <div class="champ-line ${champ ? '' : 'muted'}">${champ ? 'Campeão: <strong class="' + (isM(champ) ? 'our' : '') + '">' + champ + '</strong>' : 'Decidida nos pênaltis · vencedor a confirmar'}</div>
+      </div>
+    </div>
+  `;
+}
+
+// =====================================================
+// RENDER ARTILHARIA (EXACT MOLDES DO INDEX.HTML - NO PODIUM)
+// =====================================================
+function renderArtilharia() {
+  const container = document.getElementById('artilhariaList');
+  const map = {};
+
+  FIRST_FASE_GAMES.forEach(g => {
+    let goalsStr = g.finalGoals;
+    try {
+      const stored = localStorage.getItem(`result_game_${g.gameNum}`);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.goals) goalsStr = parsed.goals;
+      }
+    } catch(e){}
+
+    if (goalsStr) {
+      try {
+        const parsed = JSON.parse(goalsStr);
+        for (const [pName, pGoals] of Object.entries(parsed)) {
+          if (pName.toLowerCase().includes('contra')) continue;
+          if (pGoals > 0) {
+            map[pName] = (map[pName] || 0) + pGoals;
+          }
+        }
+      } catch(e){}
+    }
+  });
+
+  const sorted = Object.entries(map)
+    .map(([name, goals]) => ({ name, goals }))
+    .sort((a, b) => b.goals - a.goals);
+
+  if (sorted.length === 0) {
+    container.innerHTML = '<div style="padding: 16px; font-size: 12px; color: var(--t3);">Nenhum gol registrado.</div>';
+    return;
+  }
+
+  container.innerHTML = sorted.map((s, idx) => {
+    const pObj = PLAYERS.find(p => p.displayName === s.name || p.name === s.name || s.name.includes(p.name));
+    const photo = pObj ? pObj.photo : 'icones/avatar.avif';
+    const cleanNameStr = pObj ? pObj.name : (s.name.split('-')[1]?.trim() || s.name);
+
+    return `
+      <div class="scorer-row">
+        <div class="s-pos">${idx + 1}</div>
+        <div class="s-photo"><img src="${photo}" alt="${cleanNameStr}"></div>
+        <div class="s-info">
+          <div class="s-name">${cleanNameStr}</div>
+        </div>
+        <div class="s-goals-wrap">
+          <div class="s-goals-num">${s.goals}</div>
+          <div class="s-goals-lbl">${s.goals === 1 ? 'gol' : 'gols'}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// =====================================================
+// RENDER ÚLTIMOS RESULTADOS (1ª FASE)
+// =====================================================
+function renderLastResults() {
+  const container = document.getElementById('lastGamesList');
+  const finishedGames = [...FIRST_FASE_GAMES].reverse().slice(0, 8);
+
+  container.innerHTML = finishedGames.map(g => {
+    const isHomeOur = g.home.includes('METALÚRGICOS');
+    let outcomeClass = 'w';
+    if (g.homeScore === g.awayScore) outcomeClass = 'd';
+    else if ((isHomeOur && g.homeScore < g.awayScore) || (!isHomeOur && g.awayScore < g.homeScore)) outcomeClass = 'l';
+
+    return `
+      <div class="lg-row ${outcomeClass}">
+        <div class="lg-teams">
+          <span class="${isHomeOur ? 'our' : ''}">${g.home}</span>
+          <span style="opacity:0.4; font-size:10px;">vs</span>
+          <span class="${!isHomeOur ? 'our' : ''}">${g.away}</span>
+        </div>
+        <div class="lg-score">${g.homeScore} × ${g.awayScore}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// =====================================================
+// RENDER CLASSIFICAÇÃO SUB 9 (1ª FASE)
+// =====================================================
+function renderClassif() {
+  const container = document.getElementById('classifList');
+  container.innerHTML = CLASSIF_DATA.map(row => {
+    const isOur = row.team.includes('METALÚRGICOS');
+    return `
+      <div class="classif-row ${isOur ? 'our' : ''}">
+        <div class="c-pos">${row.pos.replace('º','')}</div>
+        <div class="c-team">${row.team}</div>
+        <div class="c-pts">${row.pts}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+let currentDayFilter = 'TODOS';
+let onlyMetalFilter = false;
+const FIN_DAYS = ['05/09', '06/09', '07/09', '12/09', '13/09', '19/09', '20/09'];
+const DAY_NAME = { '05/09': 'Sáb', '06/09': 'Dom', '07/09': 'Seg (feriado)', '12/09': 'Sáb', '13/09': 'Dom', '19/09': 'Sáb', '20/09': 'Dom' };
+
+function renderDayTabs() {
+  document.getElementById('dayTabs').innerHTML =
+    `<button class="day-tab-btn active" onclick="filterScheduleDay('TODOS', this)">Todos (${GAMES.length} jogos)</button>` +
+    FIN_DAYS.map(d => `<button class="day-tab-btn" onclick="filterScheduleDay('${d}', this)">${DAY_NAME[d]} · ${d}</button>`).join('') +
+    `<button class="day-tab-btn" id="btnOnlyMetal" onclick="toggleOnlyMetal(this)" style="margin-left:auto;">Apenas Metalúrgicos</button>`;
+}
+
+function toggleFullTable(btn) {
+  const content = document.getElementById('fullTableContent');
+  const isOpening = content.style.display === 'none';
+  content.style.display = isOpening ? 'block' : 'none';
+  btn.classList.toggle('open', isOpening);
+  document.getElementById('accChevron').textContent = isOpening ? '▲ Recolher' : '▼ Expandir';
+}
+
+function filterScheduleDay(day, btn) {
+  currentDayFilter = day;
+  document.querySelectorAll('.day-tab-btn').forEach(b => { if (b.id !== 'btnOnlyMetal') b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderSchedule();
+}
+
+function toggleOnlyMetal(btn) {
+  onlyMetalFilter = !onlyMetalFilter;
+  btn.classList.toggle('active', onlyMetalFilter);
+  renderSchedule();
+}
+
+function renderSchedule() {
+  const tbody = document.getElementById('scheduleTableBody');
+  let list = GAMES.slice();
+  if (currentDayFilter !== 'TODOS') list = list.filter(g => g.date === currentDayFilter);
+  if (onlyMetalFilter) list = list.filter(g => g.metal);
+  list.sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+
+  tbody.innerHTML = list.map(g => `
+      <tr class="${g.metal ? 'is-metal-row' : ''}">
+        <td><strong style="color:var(--t1);">${g.date}</strong><br><span style="font-size:10px; color:var(--t3);">${g.time}</span></td>
+        <td><span class="sched-badge ${g.chave.toLowerCase()}">${g.chave}</span></td>
+        <td><strong>${g.cat}</strong></td>
+        <td>${RND_NAME[g.rnd]}</td>
+        <td>
+          <span style="${isM(g.home) ? 'color:var(--red); font-weight:800;' : ''}">${g.home}</span>
+          <strong class="sched-score">${g.hs} × ${g.as}</strong>
+          <span style="${isM(g.away) ? 'color:var(--red); font-weight:800;' : ''}">${g.away}</span>
+          ${g.hs === g.as ? '<span style="font-size:9px; color:var(--t3);"> · pênaltis</span>' : ''}
+        </td>
+        <td><div style="font-size:11px; font-weight:600; color:var(--t2);">${g.gym}</div></td>
+      </tr>`).join('');
+}
+
+// =====================================================
+// INIT
+// =====================================================
+function init() {
+  renderChampions();
+  renderMetalAgenda();
+  renderBracket();
+  renderArtilharia();
+  renderLastResults();
+  renderClassif();
+  renderDayTabs();
+  renderSchedule();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+<script src="tabelinha.js"></script>
+</body>
+</html>

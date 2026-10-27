@@ -1,0 +1,15 @@
+{
+  "name": "Tabelinha Futsal · Metalúrgicos Sub-9",
+  "short_name": "Tabelinha",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F0",
+  "theme_color": "#FFD60A",
+  "icons": [
+    { "src": "loja-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "loja-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
