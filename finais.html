@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tabelinha Futsal · Finais — Metalúrgicos Jundiaí Sub 9</title>
+<meta name="description" content="Fases finais do Paulista Iniciação A2 · campeões, campanha do Metalúrgicos e chaveamento.">
 <meta name="theme-color" content="#FFD60A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
@@ -960,7 +961,7 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=21">
+<link rel="stylesheet" href="tabelinha.css?v=25">
 </head>
 <body>
 
@@ -981,7 +982,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
   <div class="theme-switch-wrapper">
     <span style="font-size:14px;">☀️</span>
-    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" onchange="toggleTheme()"><span class="slider round"></span></label>
+    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" aria-label="Alternar modo escuro" onchange="toggleTheme()"><span class="slider round"></span></label>
     <span style="font-size:14px;">🌙</span>
   </div>
 </div>
@@ -999,6 +1000,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
 </div>
 </div></header>
+<main id="conteudo">
 
 <!-- CAMPEÕES -->
 <div class="section-head">
@@ -1132,6 +1134,7 @@ html.dark-mode .modal { background: #1D1B19; }
 
 </div>
 
+</main>
 <script>
 // =====================================================
 // THEME LOGIC
@@ -1644,6 +1647,6 @@ function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
-<script src="tabelinha.js?v=16"></script>
+<script src="tabelinha.js?v=25"></script>
 </body>
 </html>

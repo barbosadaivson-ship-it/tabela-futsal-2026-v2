@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tabelinha Futsal · 1ª fase — Metalúrgicos Jundiaí Sub 9</title>
+<meta name="description" content="Primeira fase do Paulista Iniciação A2 · resultados, calendário, artilharia e classificação do Metalúrgicos Sub 9.">
 <meta name="theme-color" content="#FFD60A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
@@ -523,7 +524,7 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=21">
+<link rel="stylesheet" href="tabelinha.css?v=25">
 </head>
 <body>
 
@@ -544,7 +545,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
   <div class="theme-switch-wrapper">
     <span style="font-size:14px;">☀️</span>
-    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" onchange="toggleTheme()"><span class="slider round"></span></label>
+    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" aria-label="Alternar modo escuro" onchange="toggleTheme()"><span class="slider round"></span></label>
     <span style="font-size:14px;">🌙</span>
   </div>
 </div>
@@ -553,7 +554,7 @@ html.dark-mode .modal { background: #1D1B19; }
 <div class="top-bar">
   <div class="tb-left">
     <div class="tb-badge">⚽ Federação Paulista · SUB 9</div>
-    <div class="tb-title">METALÚRGICOS JUNDIAÍ</div>
+    <h1 class="tb-title">METALÚRGICOS JUNDIAÍ</h1>
     <div class="tb-sub">Campeonato Paulista 2026 · Iniciação A2 · MAR–AGO</div>
   </div>
   <div class="tb-stats">
@@ -564,6 +565,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
 </div>
 </div></header>
+<main id="conteudo">
 
 <!-- W / D / L & ÚLTIMOS RESULTADOS -->
 <div class="overview-grid">
@@ -661,6 +663,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
 </div>
 
+</main>
 <script>
 // =====================================================
 // THEME TOGGLE
@@ -2100,6 +2103,6 @@ function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
-<script src="tabelinha.js?v=16"></script>
+<script src="tabelinha.js?v=25"></script>
 </body>
 </html>

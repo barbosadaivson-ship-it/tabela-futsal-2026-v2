@@ -220,3 +220,25 @@ var tfReduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce
   var go = function () { prep(); setTimeout(start, 1300); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(go, 0); }); else go();
 })();
+
+
+/* Acessibilidade: áreas que rolam ganham foco de teclado e nome */
+(function () {
+  var SEL = '.scroll-list, .stats-cols, .champ-grid, .metal-agenda-grid, .next-stack, .bk-scroll, .bracket-tree-container, .last-games-container, .schedule-table-wrap, .day-tabs-wrapper';
+  function label(el) {
+    if (el.matches('.next-stack')) return 'Ida e volta da semifinal';
+    var p = el.closest('.glass-panel'), h = p && p.querySelector('.panel-head-title');
+    if (h) return h.textContent.trim();
+    var s = el.previousElementSibling; if (s && s.querySelector && s.querySelector('.section-title')) return s.querySelector('.section-title').textContent.trim();
+    return 'Conteúdo com rolagem';
+  }
+  function run() {
+    document.querySelectorAll(SEL).forEach(function (el) {
+      if (el.dataset.kb) return; el.dataset.kb = '1';
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'region'); el.setAttribute('aria-label', label(el));
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('load', run); setTimeout(run, 1500);
+})();

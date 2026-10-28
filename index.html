@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tabelinha Futsal · Copa União 2026 — Metalúrgicos Jundiaí (Iniciação A2)</title>
+<meta name="description" content="Copa União 2026 · Metalúrgicos de Jundiaí (Sub 9): semifinal, chaveamento, artilharia e ranking.">
 <meta name="theme-color" content="#FFD60A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
@@ -1135,7 +1136,7 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=21">
+<link rel="stylesheet" href="tabelinha.css?v=25">
 </head>
 <body>
 
@@ -1157,7 +1158,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
   <div class="theme-switch-wrapper">
     <span style="font-size:14px;">☀️</span>
-    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" onchange="toggleTheme()"><span class="slider round"></span></label>
+    <label class="theme-switch"><input type="checkbox" id="themeCheckbox" aria-label="Alternar modo escuro" onchange="toggleTheme()"><span class="slider round"></span></label>
     <span style="font-size:14px;">🌙</span>
   </div>
 </div>
@@ -1179,6 +1180,7 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
 </div>
 </div></header>
+<main id="conteudo">
 
 <!-- PRÓXIMO CONFRONTO -->
 <div class="section-head">
@@ -1226,13 +1228,14 @@ html.dark-mode .modal { background: #1D1B19; }
   </div>
 </div>
 
-<div class="footer">
+</main>
+<footer class="footer">
   Atualizado em 27/10 · Fonte: Federação Paulista de Futsal ·
   <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/903" target="_blank" rel="noopener">Sub 10</a>
-</div>
+</footer>
 
 <script>
 // ───────── TEMA ─────────
@@ -1625,7 +1628,7 @@ function renderClassif() {
 // ───────── INIT ─────────
 renderHero(); renderNext(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
 </script>
-<script src="tabelinha.js?v=16"></script>
+<script src="tabelinha.js?v=25"></script>
 </body>
 </html>
 

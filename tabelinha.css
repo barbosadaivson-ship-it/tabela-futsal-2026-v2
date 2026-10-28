@@ -361,7 +361,6 @@ body:has(.top-bar) { --gut: 18px; }
   .hero-full :is(.hero-banner, .top-bar, .half) > :nth-child(5) { animation-delay: .66s; }
   .hero-full .half + .half > * { animation-delay: calc(.35s + .1s); }
   .tf-c { animation: tfChar .6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--k) * 26ms + .3s); }
-  .hero-full .half-hero span .tf-c, .hero-full .hero-title span .tf-c { text-shadow: 0 0 22px rgba(255,214,10,.55); }
   .hero-full .hero-stat-box, .hero-full .tb-stat { transition: transform .2s; }
   .hero-full .hero-stat-box:hover, .hero-full .tb-stat:hover { transform: translateY(-3px); }
   .stats-cols > *, .champ-grid > *, .metal-agenda-grid > * { animation: tfRise .6s cubic-bezier(.2,.7,.2,1) both; }
@@ -395,7 +394,7 @@ body:has(.top-bar) { --gut: 18px; }
 @media (prefers-reduced-motion: no-preference) {
   .tf-w { display: inline-block; animation: tfWord .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--k) * 150ms + .3s); }
   .half-hero .tf-w { animation: tfJump 1s cubic-bezier(.2,.9,.3,1.2) both; animation-delay: calc(var(--k) * 170ms + .35s); }
-  .half-hero span .tf-w { text-shadow: 0 0 26px rgba(255,214,10,.6); }
+  .half-hero { text-shadow: 0 0 18px rgba(255,214,10,.28); }
   /* linhas do banner: mais lentas e suaves */
   .hero-full .hero-banner > *, .hero-full .top-bar > *, .hero-full .half > * { animation-duration: 1.05s; animation-timing-function: cubic-bezier(.22,.7,.2,1); }
   .hero-full :is(.hero-banner, .top-bar) > :nth-child(1) { animation-delay: .3s; }
@@ -464,4 +463,52 @@ body:has(.top-bar) { --gut: 18px; }
 /* Rodada 10: o título só sobe depois do pulo e dos confetes (vence a regra genérica de atraso das linhas) */
 @media (prefers-reduced-motion: no-preference) {
   .hero-full .half-main > .half-hero:nth-child(1) { animation: tfLift 1s cubic-bezier(.65,0,.25,1) 2.3s both; }
+}
+
+
+/* ═════ v2: contraste, tamanhos mínimos e áreas de toque ═════ */
+:root { --t3: #6F6659; }
+html.dark-mode { --t3: #A0968A; }
+
+/* banner: vermelho um pouco mais fundo; textos pequenos em branco sólido */
+.hero-full { background-color: #D81B30; box-shadow: 0 18px 40px -14px rgba(216,27,48,.6); }
+html.dark-mode .hero-full { background-color: #C4162B; }
+.hero-full .hero-top-tag, .hero-full .half-tag, .hero-full .cd, .hero-full .tb-badge, .hero-full .half-lbl, .hero-full .past-line,
+.hero-full .half-row, .hero-full .half-when span, .hero-full .tb-sub, .hero-full .tb-stat .l, .hero-full .hero-stat-box .lbl,
+.hero-full .brand-sub { color: #fff !important; }
+.hero-full .brand .bw span { color: #FFE9EB; }
+.hero-full .nav-pill-btn { background: rgba(0,0,0,.2); border-color: rgba(255,255,255,.3); color: #fff; }
+.hero-full .nav-pill-btn.active { background: #FFD60A; color: #0D0D0D; }
+
+/* textos nunca menores que 11 px */
+.hero-top-tag, .half-tag, .lf-pill, .map-btn .lbl, .hero-stat-box .lbl, .tb-stat .l, .qd-sub, .cat-tag, .mo-closed, .mo-open,
+.bk-h, .mt-ok, .mt-ld, .legend, .s-goals-lbl, .c-sub, .footer, .champ-ch, .mc-chave-pill, .camp-rnd, .filter-label, .b-match-meta,
+.b-match-meta .dt, .b-match-meta .gym, .sched-badge, .fed-link, .tb-badge, .gr-round, .goals-list, .btn-edit, .outcome-badge,
+.sched-table th, .mt-top, .mt-top span, .tie-meta, .gm-time, .wdl-lbl, .bracket-col-title, .semi-foot { font-size: 11px !important; }
+.hero-stat-box .lbl { letter-spacing: .3px; }
+
+/* áreas de toque de 44 px sem mudar o desenho */
+.nav-pill-btn, .fed-btn, .filter-btn, .day-tab-btn, .map-btn, .fed-link, .gm-sum a, .btn-toggle-full-table, .dots i { position: relative; }
+.nav-pill-btn::after, .fed-btn::after, .filter-btn::after, .day-tab-btn::after, .map-btn::after, .fed-link::after, .gm-sum a::after {
+  content: ''; position: absolute; left: -6px; right: -6px; top: 50%; height: max(100%, 44px); transform: translateY(-50%); }
+.dots i::after { content: ''; position: absolute; inset: -12px -6px; }
+.quartas-det > summary, .leg-fold > summary, details.chave > summary { min-height: 44px; }
+.lg-teams .vs { opacity: 1; color: var(--t3); }
+
+/* cabeçalhos densos do chaveamento: um pouco menores e sempre numa linha só */
+.mt-top, .mt-top span, .b-match-meta, .b-match-meta .dt, .b-match-meta .gym, .tie-meta { font-size: 9.5px !important; white-space: nowrap; }
+.b-match-meta { gap: 6px; }
+.mt-top { gap: 6px; }
+
+/* mais ar entre o local do jogo e os botões de mapa */
+.lf-venue { margin-bottom: 4px; }
+.lf-links { margin-top: 10px; }
+.nav-btns { margin-top: 8px; }
+
+/* filtros de categoria/chave numa linha só no celular */
+@media (max-width: 420px) {
+  .bracket-controls .filter-btn { padding: 6px 7px; font-size: 11px !important; }
+  .bracket-controls .filter-btn::before { margin-right: 4px; }
+  .bracket-controls .filter-group { gap: 0; flex-wrap: nowrap; }
+  .bracket-controls .filter-label { margin-right: 4px; }
 }
