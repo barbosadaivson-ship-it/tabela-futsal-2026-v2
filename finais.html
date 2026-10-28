@@ -960,12 +960,13 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=9">
+<link rel="stylesheet" href="tabelinha.css?v=21">
 </head>
 <body>
 
 <div class="orbs"></div>
 
+<header class="hero-full"><div class="hero-in">
 <!-- MARCA -->
 <div class="brand-row"><div class="brand-wrap"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
   <svg width="38" height="38" viewBox="48 48 160 160" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M82.43,104.48v-5.88c0-15.68,7.84-23.52,23.52-23.52h58.8c15.68,0,23.52,7.84,23.52,23.52v58.8c0,15.68-7.84,23.52-23.52,23.52h-58.8c-15.68,0-23.52-7.84-23.52-23.52v-5.88" stroke-width="11"/><path d="M67.73,118.79h64.68M67.73,137.05h49.98" stroke-width="11"/><path d="M188.27,89.78c-21.11,0-38.22,17.11-38.22,38.22s17.11,38.22,38.22,38.22" stroke-width="8.5"/></g><circle cx="150.05" cy="128" r="9.86" fill="var(--ball)"/></svg>
@@ -987,17 +988,17 @@ html.dark-mode .modal { background: #1D1B19; }
 
 <!-- HERO BANNER -->
 <div class="hero-banner">
-  <div class="hero-top-tag">Federação Paulista de Futsal · Iniciação A2 · Encerrado</div>
-  <h1 class="hero-title">METALÚRGICOS JUNDIAÍ <span>FASES FINAIS</span></h1>
-  <p class="hero-sub">As fases finais terminaram em 20/09. O Metalúrgicos foi <strong>vice-campeão do Sub 8 na Chave Ouro</strong>, chegou às semifinais do Sub 7 na Prata e caiu nas quartas do Sub 9 e do Sub 10, ambos na Ouro.</p>
+  <div class="hero-top-tag">Iniciação A2 · Encerrado em 20/09</div>
+  <h1 class="hero-title">METALÚRGICOS <span>FASES FINAIS</span></h1>
 
   <div class="hero-stats-row">
-    <div class="hero-stat-box gold"><div class="num">Vice</div><div class="lbl">Sub 8 · Chave Ouro</div></div>
-    <div class="hero-stat-box silver"><div class="num">Semi</div><div class="lbl">Sub 7 · Chave Prata</div></div>
-    <div class="hero-stat-box"><div class="num">Quartas</div><div class="lbl">Sub 9 · Chave Ouro</div></div>
-    <div class="hero-stat-box"><div class="num">Quartas</div><div class="lbl">Sub 10 · Chave Ouro</div></div>
+    <div class="hero-stat-box"><div class="lbl">Sub 7</div><div class="num">Semi</div><div class="lbl">Prata</div></div>
+    <div class="hero-stat-box gold"><div class="lbl">Sub 8</div><div class="num">Vice</div><div class="lbl">Ouro</div></div>
+    <div class="hero-stat-box"><div class="lbl">Sub 9</div><div class="num">Quartas</div><div class="lbl">Ouro</div></div>
+    <div class="hero-stat-box"><div class="lbl">Sub 10</div><div class="num">Quartas</div><div class="lbl">Ouro</div></div>
   </div>
 </div>
+</div></header>
 
 <!-- CAMPEÕES -->
 <div class="section-head">
@@ -1012,7 +1013,6 @@ html.dark-mode .modal { background: #1D1B19; }
     <div class="icon-dot"></div>
     Campanha do Metalúrgicos
   </div>
-  <span style="font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase;">05 a 20/09 · Ginásio Pres. Ciro I e II</span>
 </div>
 
 <div class="metal-agenda-grid" id="metalAgendaGrid">
@@ -1052,17 +1052,6 @@ html.dark-mode .modal { background: #1D1B19; }
       </div>
     </div>
 
-    <!-- LOCALIZAÇÃO / GINÁSIO (DENTRO DO BLOCO DO CHAVEAMENTO) -->
-    <div class="bracket-venue-callout">
-      <div class="bvc-left">
-        <div class="bvc-tag">📍 GINÁSIO OFICIAL DAS FINAIS (FPFS)</div>
-        <div class="bvc-title">Ginásio Presidente Ciro I e II — Federação Paulista de Futsal</div>
-        <div class="bvc-address">Av. Condessa Elizabeth de Robiano, 5120 - Jardim América da Penha, São Paulo - SP</div>
-      </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Condessa+Elizabeth+de+Robiano+5120+Jardim+America+da+Penha+Sao+Paulo" target="_blank" class="bvc-map-btn">
-        📍 Abrir no Google Maps →
-      </a>
-    </div>
   </div>
 </div>
 
@@ -1402,14 +1391,21 @@ function setCategory(cat, btn) {
   selectedCategory = cat;
   btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderBracket();
+  renderBracket(); bracketFx(true);
 }
 
 function setChave(chave, btn) {
   selectedChave = chave;
   btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderBracket();
+  renderBracket(); bracketFx(true);
+}
+
+function bracketFx(anim) {
+  const panel = document.querySelector('.bracket-section .glass-panel');
+  panel.classList.remove('th-ouro', 'th-prata', 'th-bronze');
+  panel.classList.add('th-' + selectedChave.toLowerCase());
+  if (anim && window.tfPull) window.tfPull(document.querySelector('.bracket-tree-container'), document.getElementById('bracketTree'));
 }
 
 function renderBracket() {
@@ -1428,7 +1424,7 @@ function renderBracket() {
       <div class="b-match-card ${g.metal ? 'is-metal' : ''}">
         <div class="b-match-meta">
           <span class="dt">${title} · ${g.date} · ${g.time}</span>
-          <span class="gym">${g.hs === g.as ? 'vantagem do empate' : g.gym}</span>
+          <span class="gym">${g.hs === g.as ? 'vant. empate' : g.gym}</span>
         </div>
         ${row(g.home, g.hs)}${row(g.away, g.as)}
       </div>`;
@@ -1638,7 +1634,7 @@ function renderSchedule() {
 function init() {
   renderChampions();
   renderMetalAgenda();
-  renderBracket();
+  renderBracket(); bracketFx(false);
   renderArtilharia();
   renderLastResults();
   renderClassif();
@@ -1648,6 +1644,6 @@ function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
-<script src="tabelinha.js?v=3"></script>
+<script src="tabelinha.js?v=16"></script>
 </body>
 </html>

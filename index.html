@@ -1135,12 +1135,13 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=9">
+<link rel="stylesheet" href="tabelinha.css?v=21">
 </head>
 <body>
 
 <div class="orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 
+<header class="hero-full"><div class="hero-in">
 <!-- MARCA -->
 <div class="brand-row"><div class="brand-wrap"><a class="brand" href="index.html" aria-label="Tabelinha Futsal">
   <svg width="38" height="38" viewBox="48 48 160 160" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M82.43,104.48v-5.88c0-15.68,7.84-23.52,23.52-23.52h58.8c15.68,0,23.52,7.84,23.52,23.52v58.8c0,15.68-7.84,23.52-23.52,23.52h-58.8c-15.68,0-23.52-7.84-23.52-23.52v-5.88" stroke-width="11"/><path d="M67.73,118.79h64.68M67.73,137.05h49.98" stroke-width="11"/><path d="M188.27,89.78c-21.11,0-38.22,17.11-38.22,38.22s17.11,38.22,38.22,38.22" stroke-width="8.5"/></g><circle cx="150.05" cy="128" r="9.86" fill="var(--ball)"/></svg>
@@ -1177,6 +1178,7 @@ html.dark-mode .modal { background: #1D1B19; }
     </div>
   </div>
 </div>
+</div></header>
 
 <!-- PRÓXIMO CONFRONTO -->
 <div class="section-head">
@@ -1254,6 +1256,7 @@ const isUs = n => n.includes('METALÚRGICOS');
 
 const VENUE_AWAY = { name: 'Sindicato dos Securitários (Itaquera)', addr: 'R. Ioneji Matsubayashi, 982 - Itaquera, São Paulo - SP' };
 const VENUE_HOME = { name: 'Ginásio do Sindicato dos Metalúrgicos de Jundiaí', addr: 'R. Paulo Colin, 600 - Vila Augusta, Jundiaí - SP' };
+const mapBtn = (href, kind, label) => `<a class="map-btn ${kind}" href="${href}" target="_blank" rel="noopener" aria-label="Abrir no ${label}"><span class="logo"><img src="${kind === 'waze' ? 'ic-waze.svg' : 'ic-google-maps.png'}" alt=""></span><span class="lbl">${label}</span></a>`;
 const mapsUrl = a => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a);
 const wazeUrl = a => 'https://waze.com/ul?q=' + encodeURIComponent(a) + '&navigate=yes';
 const sumulaUrl = id => 'http://admfutsal.com.br/sumula_online/sumula_imprimir.php?id_jogo=' + id;
@@ -1353,6 +1356,12 @@ const SEMI = {
 };
 
 // ───────── HERO ─────────
+function countdown() {
+  const [d, m] = SEMI.ida.date.split('/').map(Number), now = new Date();
+  const days = Math.ceil((new Date(now.getFullYear(), m - 1, d, 23, 59) - now) / 864e5);
+  if (days < 0) return '';
+  return `<span class="cd">${days === 0 ? 'Ida é hoje' : days === 1 ? 'Ida é amanhã' : 'Ida em ' + days + ' dias'}</span>`;
+}
 function renderHero() {
   const all = IDA.concat(VOLTA);
   let p = 0, q = 0, v = 0, e = 0, d = 0, gf = 0, ga = 0;
@@ -1365,7 +1374,7 @@ function renderHero() {
   document.getElementById('hsGoals').textContent = `${gf} × ${ga}`;
   document.getElementById('heroOpp').textContent = SEMI.oppShort;
   document.getElementById('heroWhen').innerHTML =
-    `<span>Ida · ${SEMI.ida.date} · ${SEMI.ida.time}</span><span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span>`;
+    `<span>Ida · ${SEMI.ida.date} · ${SEMI.ida.time}</span><span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span>` + countdown();
 }
 function semiPanel(tag, pill, leg, venue, home, away, open) {
   const mine = venue === VENUE_HOME;
@@ -1380,18 +1389,15 @@ function semiPanel(tag, pill, leg, venue, home, away, open) {
         <div class="lf-match"><span class="${isUs(home) ? 'our' : ''}">${home.replace(' DE JUNDIAÍ','')}</span><i>×</i><span class="${isUs(away) ? 'our' : ''}">${away.replace(' DE JUNDIAÍ','')}</span></div>
         <div class="lf-when">Início ${leg.time} · Sub 7 a 10 em sequência</div>
         <div class="lf-venue">${venue.name}</div>
-        <div class="lf-links"><a href="${mapsUrl(venue.addr)}" target="_blank" rel="noopener">Mapa</a><a href="${wazeUrl(venue.addr)}" target="_blank" rel="noopener">Waze</a></div>
+        <div class="lf-links">${mapBtn(mapsUrl(venue.addr), 'maps', 'Google Maps')}${mapBtn(wazeUrl(venue.addr), 'waze', 'Waze')}</div>
       </div>
     </details>`;
 }
 function renderNext() {
-  // a ida fica aberta até o dia do jogo passar; depois a volta assume
-  const [d, mo] = SEMI.ida.date.split('/').map(Number);
-  const idaPassed = new Date() > new Date(new Date().getFullYear(), mo - 1, d, 23, 59);
   document.getElementById('nextGame').innerHTML = `
     <div class="next-stack">
-      ${semiPanel('Ida', idaPassed ? '' : 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ', !idaPassed)}
-      ${semiPanel('Volta', idaPassed ? 'Próximo' : '', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, idaPassed)}
+      ${semiPanel('Ida', 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ', true)}
+      ${semiPanel('Volta', '', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, true)}
     </div>
     <div class="semi-foot">Quem vencer vai à final (22/11). Quem perder disputa o 3º lugar.</div>`;
 }
@@ -1405,10 +1411,7 @@ function venueBox(v) {
   return `
     <div class="venue-box">
       <div class="vn">${v.name}</div>
-      <div class="nav-btns">
-        <a class="nav-btn" href="${mapsUrl(v.addr)}" target="_blank" rel="noopener">Mapa</a>
-        <a class="nav-btn waze" href="${wazeUrl(v.addr)}" target="_blank" rel="noopener">Waze</a>
-      </div>
+      <div class="nav-btns">${mapBtn(mapsUrl(v.addr), 'maps', 'Google Maps')}${mapBtn(wazeUrl(v.addr), 'waze', 'Waze')}</div>
     </div>`;
 }
 function gdetBody(g, usLeft) {
@@ -1525,14 +1528,21 @@ function chaveHtml(ch) {
   </div></div>`;
 }
 
-function renderChaves() {
-  document.getElementById('chaves').innerHTML = CHAVES.map(ch => {
-    const done = ch.qf.filter(i => tieState(TIES[i]) === 'done').length;
-    const hasUs = ch.qf.some(i => isUs(TIES[i].a) || isUs(TIES[i].b));
-    return `<details class="chave ${ch.cls}" ${ch.open ? 'open' : ''}>
-      <summary><span>${ch.icon} Chave ${ch.key.charAt(0) + ch.key.slice(1).toLowerCase()} ${hasUs ? '· Metalúrgicos' : ''}</span><span class="sm">${done}/4 quartas</span></summary>
-      ${chaveHtml(ch)}</details>`;
-  }).join('');
+let curChave = 'OURO';
+function setChaveCU(k) { curChave = k; renderChaves(true); }
+function renderChaves(anim) {
+  const ch = CHAVES.find(c => c.key === curChave);
+  const dot = { OURO: 'gold', PRATA: 'silver', BRONZE: 'bronze' };
+  document.getElementById('chaves').innerHTML = `
+    <div class="glass-panel th-${curChave.toLowerCase()}">
+      <div class="bracket-controls">
+        <div class="filter-group">
+          ${CHAVES.map(c => `<button class="filter-btn ${dot[c.key]} ${c.key === curChave ? 'active' : ''}" onclick="setChaveCU('${c.key}')">Chave ${c.key.charAt(0) + c.key.slice(1).toLowerCase()}</button>`).join('')}
+        </div>
+      </div>
+      ${chaveHtml(ch)}
+    </div>`;
+  if (anim && window.tfPull) window.tfPull(document.querySelector('#chaves .bk-scroll'), document.querySelector('#chaves .bk'));
 }
 
 function openTie(i) {
@@ -1610,10 +1620,12 @@ function renderClassif() {
     </div>`).join('');
 }
 
+
+
 // ───────── INIT ─────────
 renderHero(); renderNext(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
 </script>
-<script src="tabelinha.js?v=3"></script>
+<script src="tabelinha.js?v=16"></script>
 </body>
 </html>
 
