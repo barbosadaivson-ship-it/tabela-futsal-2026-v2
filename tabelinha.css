@@ -333,6 +333,10 @@ body:has(.top-bar) { --gut: 18px; }
   .next-stack::-webkit-scrollbar { display: none; }
   .next-stack > * { flex: 0 0 84%; scroll-snap-align: start; min-width: 0; }
 }
+/* só um bloco (ex.: apenas a volta): ocupa a largura toda e some a bolinha */
+.next-stack > :only-child { grid-column: 1 / -1; }
+@media (max-width: 699px) { .next-stack > :only-child { flex-basis: 100%; } }
+.dots:has(> i:only-child) { display: none; }
 .leg-fold summary { cursor: default; }
 .leg-fold summary::after { content: none !important; }
 

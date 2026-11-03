@@ -226,7 +226,7 @@ var tfReduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce
 (function () {
   var SEL = '.scroll-list, .stats-cols, .champ-grid, .metal-agenda-grid, .next-stack, .bk-scroll, .bracket-tree-container, .last-games-container, .schedule-table-wrap, .day-tabs-wrapper';
   function label(el) {
-    if (el.matches('.next-stack')) return 'Ida e volta da semifinal';
+    if (el.matches('.next-stack')) return 'Jogos da semifinal';
     var p = el.closest('.glass-panel'), h = p && p.querySelector('.panel-head-title');
     if (h) return h.textContent.trim();
     var s = el.previousElementSibling; if (s && s.querySelector && s.querySelector('.section-title')) return s.querySelector('.section-title').textContent.trim();

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tabelinha Futsal · Copa União 2026 — Metalúrgicos Jundiaí (Iniciação A2)</title>
-<meta name="description" content="Copa União 2026 · Metalúrgicos de Jundiaí (Sub 9): semifinal, chaveamento, artilharia e ranking.">
+<meta name="description" content="Copa União 2026 · Metalúrgicos de Jundiaí (Sub 9): semifinal (volta 14/11), chaveamento, artilharia e ranking.">
 <meta name="theme-color" content="#FFD60A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
@@ -1136,7 +1136,7 @@ html.dark-mode .modal { background: #1D1B19; }
 .tie-card.is-metal { border: 0; background: var(--s1); box-shadow: inset 3px 0 0 var(--red), var(--shadow); }
 .mt.final { border: 0; }
 </style>
-<link rel="stylesheet" href="tabelinha.css?v=25">
+<link rel="stylesheet" href="tabelinha.css?v=26">
 </head>
 <body>
 
@@ -1165,16 +1165,16 @@ html.dark-mode .modal { background: #1D1B19; }
 
 <!-- HERO -->
 <div class="hero-banner copa">
-  <div class="hero-top-tag">Copa União · Chave Ouro</div>
+  <div class="hero-top-tag">Copa União · Chave Ouro · Semifinal</div>
   <div class="court">
     <div class="half half-main">
-      <h1 class="half-hero">AGORA É <span>SEMI!</span></h1>
+      <h1 class="half-hero">VAMOS PRA <span>VOLTA!</span></h1>
       <div class="vs-line"><span class="our">METALÚRGICOS</span><i>×</i><span id="heroOpp">BENFICA MOGI</span></div>
       <div class="half-when" id="heroWhen"></div>
     </div>
     <div class="half half-past">
-      <div class="half-tag">Últimos resultados · quartas</div>
-      <div class="past-line">Vencemos o Bons de Bola: <b id="heroPts">–</b> em pontos</div>
+      <div class="half-tag">Últimos resultados · ida da semi</div>
+      <div class="past-line" id="heroPast">Perdemos a ida: <b id="heroPts">–</b> em pontos</div>
       <div class="half-row"><span><b id="hsRec">–</b> V · E · D</span><span><b id="hsGoals">–</b> gols</span></div>
     </div>
   </div>
@@ -1187,6 +1187,11 @@ html.dark-mode .modal { background: #1D1B19; }
   <div class="section-title"><div class="icon-dot"></div>Próximos jogos</div>
 </div>
 <div id="nextGame"></div>
+
+<details class="quartas-det">
+  <summary><span>Semifinal · ida · perdemos para o Benfica</span><span class="qd-sub">detalhes</span></summary>
+  <div class="legs-grid" id="semiGrid"></div>
+</details>
 
 <details class="quartas-det">
   <summary><span>Quartas · vencemos o Bons de Bola</span><span class="qd-sub">detalhes</span></summary>
@@ -1230,7 +1235,7 @@ html.dark-mode .modal { background: #1D1B19; }
 
 </main>
 <footer class="footer">
-  Atualizado em 27/10 · Fonte: Federação Paulista de Futsal ·
+  Atualizado em 03/11 · Fonte: Federação Paulista de Futsal ·
   <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
@@ -1284,7 +1289,14 @@ const TIES = [
   { a:'AD NANDO GRANA', b:'GR GREMETAL', d1:'11/10', d2:'24/10', r:{ 7:[[2,5],[0,3]], 8:[[1,4],[1,2]], 9:[[5,0],[2,2]], 10:[[4,2],[1,1]] } },
   { a:'ADC MARVEL', b:'SANTO ANDRÉ FUTSAL', d1:'17/10', d2:'24/10', r:{ 7:[[2,5],[0,4]], 8:[[2,1],[3,3]], 9:[[0,0],[1,2]], 10:[[0,2],[2,3]] } },
   { a:'AE FUTMAX', b:'MX7 DIADEMA', d1:'17/10', d2:'24/10', r:{ 7:[[0,1],[2,4]], 8:[[0,2],[4,2]], 9:[[1,4],[2,6]], 10:[[1,0],[1,4]] } },
-  { a:BONS, b:'METALÚRGICOS DE JUNDIAÍ', d1:'18/10', d2:'24/10', r:{ 7:[[3,3],[0,3]], 8:[[2,4],[2,2]], 9:[[1,1],[0,4]], 10:[[1,2],[0,1]] } }
+  { a:BONS, b:'METALÚRGICOS DE JUNDIAÍ', d1:'18/10', d2:'24/10', r:{ 7:[[3,3],[0,3]], 8:[[2,4],[2,2]], 9:[[1,1],[0,4]], 10:[[1,2],[0,1]] } },
+  // ── SEMIFINAIS (índices 12 a 17): só a ida foi jogada; a volta entra no 2º elemento de cada categoria ──
+  { a:'RIVER DO BELÉM', b:'SANTO ANDRÉ FUTSAL', d1:'01/11', d2:'14/11', r:{ 7:[[2,4],null], 8:[[6,5],null], 9:[[1,4],null], 10:[[2,1],null] } },
+  { a:'SPORT BENFICA DE MOGI', b:'METALÚRGICOS DE JUNDIAÍ', d1:'31/10', d2:'14/11', r:{ 7:[[5,2],null], 8:[[3,2],null], 9:[[6,3],null], 10:[[2,1],null] } },
+  { a:'CTC VILA EMA', b:'ADEF/COTIA', d1:'31/10', d2:'14/11', r:{ 7:[[9,2],null], 8:[[3,6],null], 9:[[3,3],null], 10:[[1,2],null] } },
+  { a:'AD NANDO GRANA', b:'G.D.R. 7 DE SETEMBRO', d1:'01/11', d2:'15/11', r:{ 7:[[2,3],null], 8:[[3,5],null], 9:[[1,2],null], 10:[[2,2],null] } },
+  { a:'OCIAN PRAIA CLUBE', b:'AE FRIBURGO', d1:'01/11', d2:'15/11', r:{ 7:[[7,1],null], 8:[[2,1],null], 9:[[2,0],null], 10:[[2,1],null] } },
+  { a:'A. PAULISTA FC MOOCA', b:'MX7 DIADEMA', d1:'31/10', d2:'14/11', r:{ 7:[[1,2],null], 8:[[2,4],null], 9:[[3,3],null], 10:[[3,0],null]  } }
 ];
 
 // ───────── NOSSOS JOGOS (com gols) ─────────
@@ -1302,6 +1314,22 @@ const IDA = [
   { cat:10, time:'12:00', sumula:146351, bons:1, us:2,
     usGoals:[['Vitor Tosta',11,1],['Arthur Ryan',10,1]],
     bonsGoals:[['Kauan Henrique',22,1]] }
+];
+// Semifinal · ida 31/10 — Ginásio Vila Santista, Mogi das Cruzes (mandante: Benfica). Adversário nas chaves bons/bonsGoals.
+// num 0 = gol contra do adversário.
+const SEMI_IDA = [
+  { cat:7,  time:'08:30', sumula:146901, bons:5, us:2,
+    usGoals:[['Vinicius Rafael',12,1],['Lorenzo Goes',10,1]],
+    bonsGoals:[['Thiago Sousa',11,3],['Arthur Fonseca',19,1],['Dominic Frank',10,1]] },
+  { cat:8,  time:'09:30', sumula:146903, bons:3, us:2,
+    usGoals:[['Heitor Ribeiro',9,1],['Gol contra',0,1]],
+    bonsGoals:[['Benício Sabariego',12,2],['Theo Felipe',14,1]] },
+  { cat:9,  time:'10:30', sumula:146905, bons:6, us:3,
+    usGoals:[['Miguel Duca',11,1],['Gabriel',7,1],['Otto Pitombeira',17,1]],
+    bonsGoals:[['Lucas Pinhal',10,3],['Davi Silva',4,1],['Gabriel Ribeiro',9,1],['Guilherme Nascimento',19,1]] },
+  { cat:10, time:'11:30', sumula:146907, bons:2, us:1,
+    usGoals:[['Matheus Oliveira',17,1]],
+    bonsGoals:[['Octávio Lúcio',13,1],['Bernardo Alves',12,1]] }
 ];
 // Volta 24/10 — Ginásio dos Metalúrgicos (mandante: Metalúrgicos)
 const VOLTA = [
@@ -1360,24 +1388,25 @@ const SEMI = {
 
 // ───────── HERO ─────────
 function countdown() {
-  const [d, m] = SEMI.ida.date.split('/').map(Number), now = new Date();
-  const days = Math.ceil((new Date(now.getFullYear(), m - 1, d, 23, 59) - now) / 864e5);
+  const [d, m] = SEMI.volta.date.split('/').map(Number), now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const days = Math.round((new Date(now.getFullYear(), m - 1, d) - now) / 864e5);
   if (days < 0) return '';
-  return `<span class="cd">${days === 0 ? 'Ida é hoje' : days === 1 ? 'Ida é amanhã' : 'Ida em ' + days + ' dias'}</span>`;
+  return `<span class="cd">${days === 0 ? 'Volta é hoje' : days === 1 ? 'Volta é amanhã' : 'Volta em ' + days + ' dias'}</span>`;
 }
 function renderHero() {
-  const all = IDA.concat(VOLTA);
   let p = 0, q = 0, v = 0, e = 0, d = 0, gf = 0, ga = 0;
-  all.forEach(g => {
+  SEMI_IDA.forEach(g => {
     gf += g.us; ga += g.bons;
     if (g.us > g.bons) { p += 3; v++; } else if (g.us === g.bons) { p += 1; q += 1; e++; } else { q += 3; d++; }
   });
-  document.getElementById('heroPts').textContent = p + ' × ' + q;
+  const verbo = p > q ? 'Vencemos' : p < q ? 'Perdemos' : 'Empatamos';
+  document.getElementById('heroPast').innerHTML = `${verbo} a ida: <b id="heroPts">${p} × ${q}</b> em pontos`;
   document.getElementById('hsRec').textContent = `${v} · ${e} · ${d}`;
   document.getElementById('hsGoals').textContent = `${gf} × ${ga}`;
   document.getElementById('heroOpp').textContent = SEMI.oppShort;
   document.getElementById('heroWhen').innerHTML =
-    `<span>Ida · ${SEMI.ida.date} · ${SEMI.ida.time}</span><span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span>` + countdown();
+    `<span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span><span>Em casa</span>` + countdown();
 }
 function semiPanel(tag, pill, leg, venue, home, away, open) {
   const mine = venue === VENUE_HOME;
@@ -1399,8 +1428,7 @@ function semiPanel(tag, pill, leg, venue, home, away, open) {
 function renderNext() {
   document.getElementById('nextGame').innerHTML = `
     <div class="next-stack">
-      ${semiPanel('Ida', 'Próximo', SEMI.ida, SEMI.ida.venue, SEMI.ida.home, 'METALÚRGICOS DE JUNDIAÍ', true)}
-      ${semiPanel('Volta', '', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, true)}
+      ${semiPanel('Volta', 'Próximo', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, true)}
     </div>
     <div class="semi-foot">Quem vencer vai à final (22/11). Quem perder disputa o 3º lugar.</div>`;
 }
@@ -1408,7 +1436,7 @@ function renderNext() {
 // ───────── NOSSO CONFRONTO ─────────
 function goalsHtml(arr) {
   if (!arr.length) return '<div class="gl">—</div>';
-  return arr.map(([n, num, q]) => `<div class="gl"><em>${q > 1 ? q + '× ' : ''}</em>${n} <span style="color:var(--t3)">(${num})</span></div>`).join('');
+  return arr.map(([n, num, q]) => `<div class="gl"><em>${q > 1 ? q + '× ' : ''}</em>${n}${num ? ` <span style="color:var(--t3)">(${num})</span>` : ''}</div>`).join('');
 }
 function venueBox(v) {
   return `
@@ -1417,18 +1445,19 @@ function venueBox(v) {
       <div class="nav-btns">${mapBtn(mapsUrl(v.addr), 'maps', 'Google Maps')}${mapBtn(wazeUrl(v.addr), 'waze', 'Waze')}</div>
     </div>`;
 }
-function gdetBody(g, usLeft) {
-  const bons = `<div class="col${usLeft ? ' r' : ''}"><b>Bons de Bola</b>${goalsHtml(g.bonsGoals)}</div>`;
+function gdetBody(g, usLeft, oppLabel) {
+  const bons = `<div class="col${usLeft ? ' r' : ''}"><b>${oppLabel || 'Bons de Bola'}</b>${goalsHtml(g.bonsGoals)}</div>`;
   const us = `<div class="col${usLeft ? '' : ' r'}"><b>Metalúrgicos</b>${goalsHtml(g.usGoals)}</div>`;
   return `<div class="gdet-body"><div class="gm-goals">${usLeft ? us + bons : bons + us}</div>
     <div class="gm-sum"><a href="${sumulaUrl(g.sumula)}" target="_blank" rel="noopener">Súmula ↗</a></div></div>`;
 }
-function legRows(list, date, usHome) {
+function legRows(list, date, usHome, opp, oppLabel) {
+  opp = opp || BONS;
   return list.map(g => {
     const cls = g.us > g.bons ? 'w' : g.us < g.bons ? 'l' : 'd';
     const teams = usHome
-      ? `<div class="gm-team r our">METALÚRGICOS</div><div class="gm-score">${g.us} × ${g.bons}</div><div class="gm-team">${BONS}</div>`
-      : `<div class="gm-team r">${BONS}</div><div class="gm-score">${g.bons} × ${g.us}</div><div class="gm-team our">METALÚRGICOS</div>`;
+      ? `<div class="gm-team r our">METALÚRGICOS</div><div class="gm-score">${g.us} × ${g.bons}</div><div class="gm-team">${opp}</div>`
+      : `<div class="gm-team r">${opp}</div><div class="gm-score">${g.bons} × ${g.us}</div><div class="gm-team our">METALÚRGICOS</div>`;
     return `
       <details class="gm2 ${cls}">
         <summary>
@@ -1436,9 +1465,19 @@ function legRows(list, date, usHome) {
           <div class="gm-line">${teams}</div>
           <div class="gm-more"><span class="mo-closed">gols ▾</span><span class="mo-open">ocultar ▴</span></div>
         </summary>
-        ${gdetBody(g, usHome)}
+        ${gdetBody(g, usHome, oppLabel)}
       </details>`;
   }).join('');
+}
+function renderSemiIda() {
+  document.getElementById('semiGrid').innerHTML = `
+    <div class="glass-panel leg-panel">
+      <div class="leg-head">
+        <div><div class="leg-title">Ida · 31/10</div><div class="leg-sub">Casa do Benfica</div></div>
+      </div>
+      <div class="leg-rows">${legRows(SEMI_IDA, '31/10', false, 'SPORT BENFICA MC', 'Benfica Mogi')}</div>
+      ${venueBox(SEMI.ida.venue)}
+    </div>`;
 }
 function renderLegs() {
   document.getElementById('legsGrid').innerHTML = `
@@ -1475,12 +1514,9 @@ const sh = n => SHORT[n] || n;
 
 // 12 confrontos = quartas Ouro / Prata / Bronze (índices em TIES). Ordem provisória: [QF1, QF2 | QF3, QF4]
 const CHAVES = [
-  { key:'OURO', icon:'🥇', cls:'ouro', open:true, qf:[9, 5, 7, 11], sf:['31/10 · 14/11','31/10 · 14/11'], final:'22/11 · Ciro I',
-    cons:['Jogo 7 · ADC Marvel × A. União Mauá — ida 31/10 8h30 · volta 14/11 8h30','Jogo 8 · Inst. Bons de Bola × Clube Batalha — ida 01/11 9h00 · volta 15/11 14h30'] },
-  { key:'PRATA', icon:'🥈', cls:'prata', open:false, qf:[3, 4, 6, 8], sf:['31/10 · 14/11','31/10 · 14/11'], final:'29/11 · Ciro I',
-    cons:['Jogo 7 · AD Santo André × AD Suzano — ida 31/10 14h30 · volta 14/11 15h00','Jogo 8 · AD Nando Grana × GDR 7 de Setembro — ida 01/11 14h30 · volta 15/11 14h30'] },
-  { key:'BRONZE', icon:'🥉', cls:'bronze', open:false, qf:[0, 2, 1, 10], sf:['31/10 · 15/11','31/10 · 14/11'], final:'28/11 · Ciro I',
-    cons:['Jogo 7 · AA Wimpro × SER Caieiras — ida 01/11 8h30 · volta 14/11 8h30','Jogo 8 · AE Futmax × AE Chute Futsal — ida 31/10 14h30 · volta 15/11 14h30'] }
+  { key:'OURO', icon:'🥇', cls:'ouro', open:true, qf:[9, 5, 7, 11], sf:['01/11 · 14/11','31/10 · 14/11'], sfT:[12, 13], final:'22/11 · Ciro I' },
+  { key:'PRATA', icon:'🥈', cls:'prata', open:false, qf:[3, 4, 6, 8], sf:['31/10 · 14/11','01/11 · 15/11'], sfT:[14, 15], final:'29/11 · Ciro I' },
+  { key:'BRONZE', icon:'🥉', cls:'bronze', open:false, qf:[0, 2, 1, 10], sf:['01/11 · 15/11','31/10 · 14/11'], sfT:[16, 17], final:'28/11 · Ciro I' }
 ];
 
 function matchCard(ti, label) {
@@ -1513,8 +1549,8 @@ function advCard(label, tiA, tiB, nameA, nameB, topExtra) {
 
 function chaveHtml(ch) {
   const [q1, q2, q3, q4] = ch.qf;
-  const sfA = advCard('Semifinal 1', q1, q2, 'Venc. QF1', 'Venc. QF2', ch.sf[0]);
-  const sfB = advCard('Semifinal 2', q3, q4, 'Venc. QF3', 'Venc. QF4', ch.sf[1]);
+  const sfA = ch.sfT ? matchCard(ch.sfT[0], 'SF1') : advCard('Semifinal 1', q1, q2, 'Venc. QF1', 'Venc. QF2', ch.sf[0]);
+  const sfB = ch.sfT ? matchCard(ch.sfT[1], 'SF2') : advCard('Semifinal 2', q3, q4, 'Venc. QF3', 'Venc. QF4', ch.sf[1]);
   const fin = `<div class="trophy">🏆</div><div class="mt final"><div class="mt-top"><span>Final ${ch.key}</span><span>${ch.final}</span></div>
       <div class="mt-t tbd"><span class="nm">Venc. Semi 1</span><span class="sc">–</span></div><div class="mt-vs"><span>VS</span></div><div class="mt-t tbd"><span class="nm">Venc. Semi 2</span><span class="sc">–</span></div></div>`;
   return `<div class="bk-scroll"><div class="bk">
@@ -1572,7 +1608,7 @@ function openTie(i) {
   }
   document.getElementById('modalBody').innerHTML = `
     <div class="md-title">${t.a} × ${t.b}</div>
-    <div class="md-sub">Quartas · Chave ${(CHAVES.find(c=>c.qf.includes(i))||{key:''}).key} · Ida ${t.d1} · Volta ${t.d2}</div>
+    <div class="md-sub">${i >= 12 ? 'Semifinal' : 'Quartas'} · Chave ${(CHAVES.find(c=>c.qf.includes(i)||(c.sfT||[]).includes(i))||{key:''}).key} · Ida ${t.d1} · Volta ${t.d2}</div>
     <table class="md-table">
       <thead><tr><th>Cat.</th><th>Ida<br>${t.a.split(' ')[0]} × ${t.b.split(' ')[0]}</th><th>Volta<br>${t.b.split(' ')[0]} × ${t.a.split(' ')[0]}</th><th>Pts<br>${t.a.split(' ')[0]} × ${t.b.split(' ')[0]}</th></tr></thead>
       <tbody>${rows}<tr class="tot"><td>Total</td><td colspan="2" style="text-align:right">Gols: ${s.ga} × ${s.gb}</td><td class="sc">${s.pa} × ${s.pb}</td></tr></tbody>
@@ -1590,7 +1626,7 @@ function renderArtilharia() {
   const el = document.getElementById('artilhariaList');
   el.innerHTML = [7, 8, 9, 10].map(cat => {
     const arr = [];
-    IDA.concat(VOLTA).filter(g => g.cat === cat).forEach(g => g.usGoals.forEach(([n, num, q]) => { const x = arr.find(y => y.num === num); if (x) x.goals += q; else arr.push({ name:n, num, goals:q }); }));
+    IDA.concat(VOLTA, SEMI_IDA).filter(g => g.cat === cat).forEach(g => g.usGoals.filter(([n, num]) => num).forEach(([n, num, q]) => { const x = arr.find(y => y.num === num); if (x) x.goals += q; else arr.push({ name:n, num, goals:q }); }));
     arr.sort((a, b) => b.goals - a.goals);
     const total = arr.reduce((s, x) => s + x.goals, 0);
     const rows = arr.length ? arr.map((s, idx) => `
@@ -1626,9 +1662,9 @@ function renderClassif() {
 
 
 // ───────── INIT ─────────
-renderHero(); renderNext(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
+renderHero(); renderNext(); renderSemiIda(); renderLegs(); renderChaves(); renderArtilharia(); renderClassif();
 </script>
-<script src="tabelinha.js?v=25"></script>
+<script src="tabelinha.js?v=26"></script>
 </body>
 </html>
 
