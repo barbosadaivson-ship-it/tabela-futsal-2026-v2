@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tabelinha Futsal · Copa União 2026 — Metalúrgicos Jundiaí (Iniciação A2)</title>
-<meta name="description" content="Copa União 2026 · Metalúrgicos de Jundiaí (Sub 9): semifinal (volta 14/11), chaveamento, artilharia e ranking.">
+<meta name="description" content="Copa União 2026 · Metalúrgicos de Jundiaí (Sub 9): semifinal, chaveamento, artilharia e ranking.">
 <meta name="theme-color" content="#FFD60A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="tabelinha-favicon.svg">
@@ -1168,12 +1168,12 @@ html.dark-mode .modal { background: #1D1B19; }
   <div class="hero-top-tag">Copa União · Chave Ouro · Semifinal</div>
   <div class="court">
     <div class="half half-main">
-      <h1 class="half-hero">VAMOS PRA <span>VOLTA!</span></h1>
+      <h1 class="half-hero">QUASE <span>LÁ!</span></h1>
       <div class="vs-line"><span class="our">METALÚRGICOS</span><i>×</i><span id="heroOpp">BENFICA MOGI</span></div>
       <div class="half-when" id="heroWhen"></div>
     </div>
     <div class="half half-past">
-      <div class="half-tag">Últimos resultados · ida da semi</div>
+      <div class="half-tag">Semifinal · resultado final</div>
       <div class="past-line" id="heroPast">Perdemos a ida: <b id="heroPts">–</b> em pontos</div>
       <div class="half-row"><span><b id="hsRec">–</b> V · E · D</span><span><b id="hsGoals">–</b> gols</span></div>
     </div>
@@ -1189,7 +1189,7 @@ html.dark-mode .modal { background: #1D1B19; }
 <div id="nextGame"></div>
 
 <details class="quartas-det">
-  <summary><span>Semifinal · ida · perdemos para o Benfica</span><span class="qd-sub">detalhes</span></summary>
+  <summary><span>Semifinal · ida e volta · fora por 1 gol</span><span class="qd-sub">detalhes</span></summary>
   <div class="legs-grid" id="semiGrid"></div>
 </details>
 
@@ -1235,7 +1235,7 @@ html.dark-mode .modal { background: #1D1B19; }
 
 </main>
 <footer class="footer">
-  Atualizado em 03/11 · Fonte: Federação Paulista de Futsal ·
+  Atualizado em 15/11 · Fonte: Federação Paulista de Futsal ·
   <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
@@ -1290,13 +1290,13 @@ const TIES = [
   { a:'ADC MARVEL', b:'SANTO ANDRÉ FUTSAL', d1:'17/10', d2:'24/10', r:{ 7:[[2,5],[0,4]], 8:[[2,1],[3,3]], 9:[[0,0],[1,2]], 10:[[0,2],[2,3]] } },
   { a:'AE FUTMAX', b:'MX7 DIADEMA', d1:'17/10', d2:'24/10', r:{ 7:[[0,1],[2,4]], 8:[[0,2],[4,2]], 9:[[1,4],[2,6]], 10:[[1,0],[1,4]] } },
   { a:BONS, b:'METALÚRGICOS DE JUNDIAÍ', d1:'18/10', d2:'24/10', r:{ 7:[[3,3],[0,3]], 8:[[2,4],[2,2]], 9:[[1,1],[0,4]], 10:[[1,2],[0,1]] } },
-  // ── SEMIFINAIS (índices 12 a 17): só a ida foi jogada; a volta entra no 2º elemento de cada categoria ──
-  { a:'RIVER DO BELÉM', b:'SANTO ANDRÉ FUTSAL', d1:'01/11', d2:'14/11', r:{ 7:[[2,4],null], 8:[[6,5],null], 9:[[1,4],null], 10:[[2,1],null] } },
-  { a:'SPORT BENFICA DE MOGI', b:'METALÚRGICOS DE JUNDIAÍ', d1:'31/10', d2:'14/11', r:{ 7:[[5,2],null], 8:[[3,2],null], 9:[[6,3],null], 10:[[2,1],null] } },
-  { a:'CTC VILA EMA', b:'ADEF/COTIA', d1:'31/10', d2:'14/11', r:{ 7:[[9,2],null], 8:[[3,6],null], 9:[[3,3],null], 10:[[1,2],null] } },
-  { a:'AD NANDO GRANA', b:'G.D.R. 7 DE SETEMBRO', d1:'01/11', d2:'15/11', r:{ 7:[[2,3],null], 8:[[3,5],null], 9:[[1,2],null], 10:[[2,2],null] } },
-  { a:'OCIAN PRAIA CLUBE', b:'AE FRIBURGO', d1:'01/11', d2:'15/11', r:{ 7:[[7,1],null], 8:[[2,1],null], 9:[[2,0],null], 10:[[2,1],null] } },
-  { a:'A. PAULISTA FC MOOCA', b:'MX7 DIADEMA', d1:'31/10', d2:'14/11', r:{ 7:[[1,2],null], 8:[[2,4],null], 9:[[3,3],null], 10:[[3,0],null]  } }
+  // ── SEMIFINAIS (índices 12 a 17): ida e volta jogadas ──
+  { a:'RIVER DO BELÉM', b:'SANTO ANDRÉ FUTSAL', d1:'01/11', d2:'14/11', r:{ 7:[[2,4],[0,5]], 8:[[6,5],[2,9]], 9:[[1,4],[2,2]], 10:[[2,1],[1,2]] } },
+  { a:'SPORT BENFICA DE MOGI', b:'METALÚRGICOS DE JUNDIAÍ', d1:'31/10', d2:'14/11', r:{ 7:[[5,2],[1,2]], 8:[[3,2],[3,6]], 9:[[6,3],[3,4]], 10:[[2,1],[2,4]] } },
+  { a:'CTC VILA EMA', b:'ADEF/COTIA', d1:'31/10', d2:'14/11', r:{ 7:[[9,2],[5,1]], 8:[[3,6],[2,2]], 9:[[3,3],[2,6]], 10:[[1,2],[5,3]] } },
+  { a:'AD NANDO GRANA', b:'G.D.R. 7 DE SETEMBRO', d1:'01/11', d2:'15/11', r:{ 7:[[2,3],[2,10]], 8:[[3,5],[2,4]], 9:[[1,2],[3,1]], 10:[[2,2],[7,1]] } },
+  { a:'OCIAN PRAIA CLUBE', b:'AE FRIBURGO', d1:'01/11', d2:'15/11', r:{ 7:[[7,1],[3,5]], 8:[[2,1],[3,1]], 9:[[2,0],[2,2]], 10:[[2,1],[0,2]] } },
+  { a:'A. PAULISTA FC MOOCA', b:'MX7 DIADEMA', d1:'31/10', d2:'14/11', r:{ 7:[[1,2],[2,2]], 8:[[2,4],[4,4]], 9:[[3,3],[5,5]], 10:[[3,0],[7,1]] } }
 ];
 
 // ───────── NOSSOS JOGOS (com gols) ─────────
@@ -1330,6 +1330,21 @@ const SEMI_IDA = [
   { cat:10, time:'11:30', sumula:146907, bons:2, us:1,
     usGoals:[['Matheus Oliveira',17,1]],
     bonsGoals:[['Octávio Lúcio',13,1],['Bernardo Alves',12,1]] }
+];
+// Semifinal · volta 14/11 — Ginásio dos Metalúrgicos (mandante: Metalúrgicos). Adversário nas chaves bons/bonsGoals.
+const SEMI_VOLTA = [
+  { cat:7,  time:'08:30', sumula:146902, bons:1, us:2,
+    usGoals:[['Gregory Melo',5,1],['Valentin Siqueira',4,1]],
+    bonsGoals:[['Arthur Fonseca',19,1]] },
+  { cat:8,  time:'09:30', sumula:146904, bons:3, us:6,
+    usGoals:[['Nicollas Preto',10,2],['Arthur Gonçalves',6,1],['Anthony Samuel',12,1],['João Miguel',14,1],['Benjamim Cierjacks',4,1]],
+    bonsGoals:[['Benício Sabariego',12,2],['João Noah',29,1]] },
+  { cat:9,  time:'10:30', sumula:146906, bons:3, us:4,
+    usGoals:[['Otto Pitombeira',17,3],['Davi lucca',9,1]],
+    bonsGoals:[['Gabriel Ribeiro',9,2],['Lucas Pinhal',10,1]] },
+  { cat:10, time:'11:30', sumula:146908, bons:2, us:4,
+    usGoals:[['Davi lucca',9,2],['Vitor Tosta',11,1],['Renan França',14,1]],
+    bonsGoals:[['Davi Lucas',6,1],['Octávio Lúcio',13,1]] }
 ];
 // Volta 24/10 — Ginásio dos Metalúrgicos (mandante: Metalúrgicos)
 const VOLTA = [
@@ -1387,26 +1402,23 @@ const SEMI = {
 };
 
 // ───────── HERO ─────────
-function countdown() {
-  const [d, m] = SEMI.volta.date.split('/').map(Number), now = new Date();
-  now.setHours(0, 0, 0, 0);
-  const days = Math.round((new Date(now.getFullYear(), m - 1, d) - now) / 864e5);
-  if (days < 0) return '';
-  return `<span class="cd">${days === 0 ? 'Volta é hoje' : days === 1 ? 'Volta é amanhã' : 'Volta em ' + days + ' dias'}</span>`;
-}
 function renderHero() {
   let p = 0, q = 0, v = 0, e = 0, d = 0, gf = 0, ga = 0;
-  SEMI_IDA.forEach(g => {
+  SEMI_IDA.concat(SEMI_VOLTA).forEach(g => {
     gf += g.us; ga += g.bons;
     if (g.us > g.bons) { p += 3; v++; } else if (g.us === g.bons) { p += 1; q += 1; e++; } else { q += 3; d++; }
   });
-  const verbo = p > q ? 'Vencemos' : p < q ? 'Perdemos' : 'Empatamos';
-  document.getElementById('heroPast').innerHTML = `${verbo} a ida: <b id="heroPts">${p} × ${q}</b> em pontos`;
+  const dif = Math.abs(gf - ga), gol = dif === 1 ? 'gol' : 'gols';
+  const idaPts = SEMI_IDA.reduce((s, g) => s + (g.us > g.bons ? 3 : g.us === g.bons ? 1 : 0), 0);
+  const voltaPts = p - idaPts;
+  document.getElementById('heroPast').innerHTML = p === q
+    ? `Empate em pontos: <b id="heroPts">${p} × ${q}</b> · fora por ${dif} ${gol}`
+    : `${p > q ? 'Vencemos' : 'Perdemos'} a semi: <b id="heroPts">${p} × ${q}</b> em pontos`;
   document.getElementById('hsRec').textContent = `${v} · ${e} · ${d}`;
   document.getElementById('hsGoals').textContent = `${gf} × ${ga}`;
   document.getElementById('heroOpp').textContent = SEMI.oppShort;
   document.getElementById('heroWhen').innerHTML =
-    `<span>Volta · ${SEMI.volta.date} · ${SEMI.volta.time}</span><span>Em casa</span>` + countdown();
+    `<span>Ida · ${idaPts} × ${12 - idaPts}</span><span>Volta · ${voltaPts} × ${12 - voltaPts}</span><span>Que reação, garotos! Orgulho demais.</span>`;
 }
 function semiPanel(tag, pill, leg, venue, home, away, open) {
   const mine = venue === VENUE_HOME;
@@ -1428,9 +1440,19 @@ function semiPanel(tag, pill, leg, venue, home, away, open) {
 function renderNext() {
   document.getElementById('nextGame').innerHTML = `
     <div class="next-stack">
-      ${semiPanel('Volta', 'Próximo', SEMI.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', SEMI.opp, true)}
+      <details class="glass-panel leg-fold" open>
+        <summary>
+          <span class="lf-title">3º lugar</span>
+          <span class="lf-sub">A definir</span>
+          <span class="lf-pill">Aguardando</span>
+        </summary>
+        <div class="lf-body">
+          <div class="lf-match"><span class="our">METALÚRGICOS</span><i>×</i><span>RIVER DO BELÉM</span></div>
+          <div class="lf-when">Data e local ainda não publicados pela federação</div>
+        </div>
+      </details>
     </div>
-    <div class="semi-foot">Quem vencer vai à final (22/11). Quem perder disputa o 3º lugar.</div>`;
+    <div class="semi-foot">Final da Chave Ouro: Santo André FS × Benfica Mogi · 22/11 · Ciro I.</div>`;
 }
 
 // ───────── NOSSO CONFRONTO ─────────
@@ -1471,6 +1493,13 @@ function legRows(list, date, usHome, opp, oppLabel) {
 }
 function renderSemiIda() {
   document.getElementById('semiGrid').innerHTML = `
+    <div class="glass-panel leg-panel">
+      <div class="leg-head">
+        <div><div class="leg-title">Volta · 14/11</div><div class="leg-sub">Nossa casa</div></div>
+      </div>
+      <div class="leg-rows">${legRows(SEMI_VOLTA, '14/11', true, 'SPORT BENFICA MC', 'Benfica Mogi')}</div>
+      ${venueBox(VENUE_HOME)}
+    </div>
     <div class="glass-panel leg-panel">
       <div class="leg-head">
         <div><div class="leg-title">Ida · 31/10</div><div class="leg-sub">Casa do Benfica</div></div>
@@ -1551,8 +1580,12 @@ function chaveHtml(ch) {
   const [q1, q2, q3, q4] = ch.qf;
   const sfA = ch.sfT ? matchCard(ch.sfT[0], 'SF1') : advCard('Semifinal 1', q1, q2, 'Venc. QF1', 'Venc. QF2', ch.sf[0]);
   const sfB = ch.sfT ? matchCard(ch.sfT[1], 'SF2') : advCard('Semifinal 2', q3, q4, 'Venc. QF3', 'Venc. QF4', ch.sf[1]);
+  const fw = i => { if (!ch.sfT) return null; const s = TIES[ch.sfT[i]]; if (tieState(s) !== 'done') return null; const W = tieWinner(s); return W.w ? s[W.w] : null; };
+  const frow = (n, fb) => n
+    ? `<div class="mt-t ${isUs(n) ? 'our' : ''}" title="${n}"><span class="nm">${sh(n)}</span><span class="sc">–</span></div>`
+    : `<div class="mt-t tbd"><span class="nm">${fb}</span><span class="sc">–</span></div>`;
   const fin = `<div class="trophy">🏆</div><div class="mt final"><div class="mt-top"><span>Final ${ch.key}</span><span>${ch.final}</span></div>
-      <div class="mt-t tbd"><span class="nm">Venc. Semi 1</span><span class="sc">–</span></div><div class="mt-vs"><span>VS</span></div><div class="mt-t tbd"><span class="nm">Venc. Semi 2</span><span class="sc">–</span></div></div>`;
+      ${frow(fw(0), 'Venc. Semi 1')}<div class="mt-vs"><span>VS</span></div>${frow(fw(1), 'Venc. Semi 2')}</div>`;
   return `<div class="bk-scroll"><div class="bk">
     <div class="bk-h">Quartas</div><div></div><div class="bk-h">Semifinal</div><div></div><div class="bk-h">Final</div><div></div><div class="bk-h">Semifinal</div><div></div><div class="bk-h">Quartas</div>
     <div class="bk-col">${matchCard(q1, 'QF1')}${matchCard(q2, 'QF2')}</div>
@@ -1626,7 +1659,7 @@ function renderArtilharia() {
   const el = document.getElementById('artilhariaList');
   el.innerHTML = [7, 8, 9, 10].map(cat => {
     const arr = [];
-    IDA.concat(VOLTA, SEMI_IDA).filter(g => g.cat === cat).forEach(g => g.usGoals.filter(([n, num]) => num).forEach(([n, num, q]) => { const x = arr.find(y => y.num === num); if (x) x.goals += q; else arr.push({ name:n, num, goals:q }); }));
+    IDA.concat(VOLTA, SEMI_IDA, SEMI_VOLTA).filter(g => g.cat === cat).forEach(g => g.usGoals.filter(([n, num]) => num).forEach(([n, num, q]) => { const x = arr.find(y => y.num === num); if (x) x.goals += q; else arr.push({ name:n, num, goals:q }); }));
     arr.sort((a, b) => b.goals - a.goals);
     const total = arr.reduce((s, x) => s + x.goals, 0);
     const rows = arr.length ? arr.map((s, idx) => `
