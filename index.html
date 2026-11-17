@@ -1227,7 +1227,7 @@ html.dark-mode .modal { background: #1D1B19; }
   <div class="glass-panel">
     <div class="panel-head">
       <div class="panel-head-title">Ranking geral</div>
-      <span style="font-size:10px;color:var(--t3);font-weight:700;">Federação · até 15/11</span>
+      <span style="font-size:10px;color:var(--t3);font-weight:700;">Federação · até 17/11</span>
     </div>
     <div id="classifList" class="scroll-list"></div>
   </div>
@@ -1235,7 +1235,7 @@ html.dark-mode .modal { background: #1D1B19; }
 
 </main>
 <footer class="footer">
-  Atualizado em 15/11 · Fonte: Federação Paulista de Futsal ·
+  Atualizado em 17/11 · Fonte: Federação Paulista de Futsal ·
   <a href="https://eventos.admfutsal.com.br/evento/900" target="_blank" rel="noopener">Sub 7</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/901" target="_blank" rel="noopener">Sub 8</a> ·
   <a href="https://eventos.admfutsal.com.br/evento/902" target="_blank" rel="noopener">Sub 9</a> ·
@@ -1294,7 +1294,7 @@ const TIES = [
   { a:'RIVER DO BELÉM', b:'SANTO ANDRÉ FUTSAL', d1:'01/11', d2:'14/11', r:{ 7:[[2,4],[0,5]], 8:[[6,5],[2,9]], 9:[[1,4],[2,2]], 10:[[2,1],[1,2]] } },
   { a:'SPORT BENFICA DE MOGI', b:'METALÚRGICOS DE JUNDIAÍ', d1:'31/10', d2:'14/11', r:{ 7:[[5,2],[1,2]], 8:[[3,2],[3,6]], 9:[[6,3],[3,4]], 10:[[2,1],[2,4]] } },
   { a:'CTC VILA EMA', b:'ADEF/COTIA', d1:'31/10', d2:'14/11', r:{ 7:[[9,2],[5,1]], 8:[[3,6],[2,2]], 9:[[3,3],[2,6]], 10:[[1,2],[5,3]] } },
-  { a:'AD NANDO GRANA', b:'G.D.R. 7 DE SETEMBRO', d1:'01/11', d2:'15/11', r:{ 7:[[2,3],[2,10]], 8:[[3,5],[2,4]], 9:[[1,2],[3,1]], 10:[[2,2],[7,1]] } },
+  { a:'ADC MERCEDES BENZ', b:'GR GREMETAL', d1:'08/11', d2:'15/11', r:{ 7:[[3,4],[4,2]], 8:[[7,2],[5,3]], 9:[[2,1],[2,1]], 10:[[6,3],[3,1]] } },
   { a:'OCIAN PRAIA CLUBE', b:'AE FRIBURGO', d1:'01/11', d2:'15/11', r:{ 7:[[7,1],[3,5]], 8:[[2,1],[3,1]], 9:[[2,0],[2,2]], 10:[[2,1],[0,2]] } },
   { a:'A. PAULISTA FC MOOCA', b:'MX7 DIADEMA', d1:'31/10', d2:'14/11', r:{ 7:[[1,2],[2,2]], 8:[[2,4],[4,4]], 9:[[3,3],[5,5]], 10:[[3,0],[7,1]] } }
 ];
@@ -1420,13 +1420,13 @@ function renderHero() {
   document.getElementById('heroWhen').innerHTML =
     `<span>Ida · ${idaPts} × ${12 - idaPts}</span><span>Volta · ${voltaPts} × ${12 - voltaPts}</span><span>Parabéns, garotos! Superação incrível.</span>`;
 }
-function semiPanel(tag, pill, leg, venue, home, away, open) {
+function semiPanel(tag, pill, leg, venue, home, away, open, sub) {
   const mine = venue === VENUE_HOME;
   return `
     <details class="glass-panel leg-fold" ${open ? 'open' : ''}>
       <summary>
         <span class="lf-title">${tag} · ${leg.date}</span>
-        <span class="lf-sub">${mine ? 'Nossa casa' : 'Casa do Benfica'}</span>
+        <span class="lf-sub">${sub || (mine ? 'Nossa casa' : 'Casa do Benfica')}</span>
         ${pill ? `<span class="lf-pill">${pill}</span>` : ''}
       </summary>
       <div class="lf-body">
@@ -1437,22 +1437,19 @@ function semiPanel(tag, pill, leg, venue, home, away, open) {
       </div>
     </details>`;
 }
+// Disputa do 3º lugar da Chave Ouro (federação, 17/11): ida e volta, 4 categorias em sequência
+const TERCEIRO = {
+  opp: 'RIVER DO BELÉM',
+  ida:   { date:'21/11', time:'14h30', home:'RIVER DO BELÉM', venue:{ name:'Arena Batebola Sports (casa do River)', addr:'Arena Batebola Sports, São Paulo - SP' } },
+  volta: { date:'05/12', time:'8h30',  home:'METALÚRGICOS DE JUNDIAÍ' }
+};
 function renderNext() {
   document.getElementById('nextGame').innerHTML = `
     <div class="next-stack">
-      <details class="glass-panel leg-fold" open>
-        <summary>
-          <span class="lf-title">3º lugar</span>
-          <span class="lf-sub">A definir</span>
-          <span class="lf-pill">Aguardando</span>
-        </summary>
-        <div class="lf-body">
-          <div class="lf-match"><span class="our">METALÚRGICOS</span><i>×</i><span>RIVER DO BELÉM</span></div>
-          <div class="lf-when">Data e local ainda não publicados pela federação</div>
-        </div>
-      </details>
+      ${semiPanel('3º lugar · ida', 'Próximo', TERCEIRO.ida, TERCEIRO.ida.venue, TERCEIRO.ida.home, 'METALÚRGICOS DE JUNDIAÍ', true, 'Casa do River')}
+      ${semiPanel('3º lugar · volta', '', TERCEIRO.volta, VENUE_HOME, 'METALÚRGICOS DE JUNDIAÍ', TERCEIRO.opp, true)}
     </div>
-    <div class="semi-foot">Final da Chave Ouro: Santo André FS × Benfica Mogi · 22/11 · Ciro I.</div>`;
+    <div class="semi-foot">Disputa do 3º lugar da Chave Ouro, em ida e volta. Final: Santo André FS × Benfica Mogi, 22/11 · Ciro I.</div>`;
 }
 
 // ───────── NOSSO CONFRONTO ─────────
@@ -1544,7 +1541,7 @@ const sh = n => SHORT[n] || n;
 // 12 confrontos = quartas Ouro / Prata / Bronze (índices em TIES). Ordem provisória: [QF1, QF2 | QF3, QF4]
 const CHAVES = [
   { key:'OURO', icon:'🥇', cls:'ouro', open:true, qf:[9, 5, 7, 11], sf:['01/11 · 14/11','31/10 · 14/11'], sfT:[12, 13], final:'22/11 · Ciro I' },
-  { key:'PRATA', icon:'🥈', cls:'prata', open:false, qf:[3, 4, 6, 8], sf:['31/10 · 14/11','01/11 · 15/11'], sfT:[14, 15], final:'29/11 · Ciro I' },
+  { key:'PRATA', icon:'🥈', cls:'prata', open:false, qf:[3, 4, 6, 8], sf:['31/10 · 14/11','08/11 · 15/11'], sfT:[14, 15], final:'29/11 · Ciro I' },
   { key:'BRONZE', icon:'🥉', cls:'bronze', open:false, qf:[0, 2, 1, 10], sf:['01/11 · 15/11','31/10 · 14/11'], sfT:[16, 17], final:'28/11 · Ciro I' }
 ];
 
@@ -1676,9 +1673,9 @@ function renderArtilharia() {
   }).join('');
 }
 
-// ───────── RANKING GERAL DA FEDERAÇÃO (Iniciação A2, Sub 7 + 8 + 9 + 10, até 15/11) ─────────
+// ───────── RANKING GERAL DA FEDERAÇÃO (Iniciação A2, Sub 7 + 8 + 9 + 10, até 17/11) ─────────
 // Total = índice técnico + bonificações + negativos (é ele que define a posição)
-const RANKING = [{"pos":1,"team":"SANTO ANDRÉ FUTSAL","pts":249,"j":118,"v":78,"e":15,"d":25,"gp":462,"gc":246,"sg":216,"it":2110,"bonus":4050,"neg":-2,"total":6158},{"pos":2,"team":"ADC MERCEDES BENZ","pts":217,"j":118,"v":68,"e":13,"d":37,"gp":338,"gc":212,"sg":126,"it":1839,"bonus":3550,"neg":-223,"total":5166},{"pos":3,"team":"RIVER DO BELÉM","pts":210,"j":116,"v":65,"e":15,"d":36,"gp":362,"gc":280,"sg":82,"it":1810,"bonus":3050,"neg":-7,"total":4853},{"pos":4,"team":"SPORT BENFICA DE MOGI","pts":220,"j":116,"v":69,"e":13,"d":34,"gp":381,"gc":261,"sg":120,"it":1897,"bonus":2900,"neg":-19,"total":4778},{"pos":5,"team":"METALÚRGICOS DE JUNDIAÍ","pts":227,"j":115,"v":69,"e":20,"d":26,"gp":371,"gc":238,"sg":133,"it":1974,"bonus":2600,"neg":-12,"total":4562},{"pos":6,"team":"CLUBE BATALHA","pts":191,"j":117,"v":58,"e":17,"d":42,"gp":310,"gc":241,"sg":69,"it":1632,"bonus":2590,"neg":-8,"total":4214},{"pos":7,"team":"A. UNIÃO MAUÁ","pts":190,"j":114,"v":57,"e":19,"d":38,"gp":286,"gc":234,"sg":52,"it":1667,"bonus":1900,"neg":-2,"total":3565},{"pos":8,"team":"ADC MARVEL","pts":177,"j":115,"v":52,"e":21,"d":42,"gp":244,"gc":206,"sg":38,"it":1539,"bonus":1650,"neg":-25,"total":3164},{"pos":9,"team":"INST. BONS DE BOLA","pts":179,"j":117,"v":53,"e":20,"d":44,"gp":326,"gc":279,"sg":47,"it":1530,"bonus":1520,"neg":-1,"total":3049},{"pos":10,"team":"GR GREMETAL","pts":165,"j":115,"v":50,"e":15,"d":50,"gp":322,"gc":299,"sg":23,"it":1435,"bonus":1240,"neg":-1,"total":2674},{"pos":11,"team":"A.D. SUZANO","pts":167,"j":115,"v":47,"e":26,"d":42,"gp":303,"gc":279,"sg":24,"it":1452,"bonus":1130,"neg":-9,"total":2573},{"pos":12,"team":"S.E.R. CAIEIRAS","pts":143,"j":115,"v":42,"e":17,"d":56,"gp":252,"gc":345,"sg":-93,"it":1243,"bonus":1270,"neg":-2,"total":2511},{"pos":13,"team":"CTC VILA EMA","pts":161,"j":115,"v":49,"e":14,"d":52,"gp":286,"gc":300,"sg":-14,"it":1400,"bonus":1060,"neg":-14,"total":2446},{"pos":14,"team":"AD SANTO ANDRÉ FUTSAL","pts":145,"j":116,"v":42,"e":19,"d":55,"gp":310,"gc":334,"sg":-24,"it":1250,"bonus":1110,"neg":-32,"total":2328},{"pos":15,"team":"ADEF/COTIA","pts":167,"j":113,"v":50,"e":17,"d":46,"gp":304,"gc":297,"sg":7,"it":1478,"bonus":780,"neg":-2,"total":2256},{"pos":16,"team":"MX7 DIADEMA","pts":147,"j":116,"v":42,"e":21,"d":53,"gp":288,"gc":324,"sg":-36,"it":1267,"bonus":790,"neg":-2,"total":2055},{"pos":17,"team":"G.D.R. 7 DE SETEMBRO","pts":155,"j":113,"v":47,"e":14,"d":52,"gp":290,"gc":335,"sg":-45,"it":1372,"bonus":680,"neg":-25,"total":2027},{"pos":18,"team":"AE FRIBURGO","pts":142,"j":113,"v":44,"e":10,"d":59,"gp":285,"gc":316,"sg":-31,"it":1257,"bonus":460,"neg":-8,"total":1709},{"pos":19,"team":"AE FUTMAX","pts":120,"j":117,"v":35,"e":15,"d":67,"gp":191,"gc":346,"sg":-155,"it":1026,"bonus":610,"neg":-3,"total":1633},{"pos":20,"team":"AD NANDO GRANA","pts":134,"j":113,"v":40,"e":14,"d":59,"gp":291,"gc":357,"sg":-66,"it":1186,"bonus":420,"neg":-4,"total":1602},{"pos":21,"team":"A. PAULISTA FC MOOCA","pts":115,"j":112,"v":33,"e":16,"d":63,"gp":264,"gc":364,"sg":-100,"it":1027,"bonus":560,"neg":-4,"total":1583},{"pos":22,"team":"OCIAN PRAIA CLUBE","pts":130,"j":113,"v":37,"e":19,"d":57,"gp":248,"gc":290,"sg":-42,"it":1150,"bonus":460,"neg":-30,"total":1580},{"pos":23,"team":"CHUTE FUTSAL","pts":120,"j":113,"v":35,"e":15,"d":63,"gp":259,"gc":346,"sg":-87,"it":1062,"bonus":500,"neg":-7,"total":1555},{"pos":24,"team":"AA WIMPRO GUARULHOS","pts":72,"j":115,"v":21,"e":9,"d":85,"gp":159,"gc":403,"sg":-244,"it":626,"bonus":420,"neg":-83,"total":963}];
+const RANKING = [{"pos":1,"team":"SANTO ANDRÉ FUTSAL","pts":249,"j":118,"v":78,"e":15,"d":25,"gp":462,"gc":246,"sg":216,"it":2110,"bonus":4350,"neg":-2,"total":6458},{"pos":2,"team":"ADC MERCEDES BENZ","pts":217,"j":118,"v":68,"e":13,"d":37,"gp":338,"gc":212,"sg":126,"it":1839,"bonus":3650,"neg":-223,"total":5266},{"pos":3,"team":"SPORT BENFICA DE MOGI","pts":220,"j":116,"v":69,"e":13,"d":34,"gp":381,"gc":261,"sg":120,"it":1897,"bonus":3200,"neg":-19,"total":5078},{"pos":4,"team":"RIVER DO BELÉM","pts":210,"j":116,"v":65,"e":15,"d":36,"gp":362,"gc":280,"sg":82,"it":1810,"bonus":3050,"neg":-7,"total":4853},{"pos":5,"team":"METALÚRGICOS DE JUNDIAÍ","pts":227,"j":115,"v":69,"e":20,"d":26,"gp":371,"gc":238,"sg":133,"it":1974,"bonus":2600,"neg":-12,"total":4562},{"pos":6,"team":"CLUBE BATALHA","pts":191,"j":117,"v":58,"e":17,"d":42,"gp":310,"gc":241,"sg":69,"it":1632,"bonus":2590,"neg":-8,"total":4214},{"pos":7,"team":"A. UNIÃO MAUÁ","pts":190,"j":114,"v":57,"e":19,"d":38,"gp":286,"gc":234,"sg":52,"it":1667,"bonus":1900,"neg":-2,"total":3565},{"pos":8,"team":"ADC MARVEL","pts":177,"j":115,"v":52,"e":21,"d":42,"gp":244,"gc":206,"sg":38,"it":1539,"bonus":1650,"neg":-25,"total":3164},{"pos":9,"team":"INST. BONS DE BOLA","pts":179,"j":117,"v":53,"e":20,"d":44,"gp":326,"gc":279,"sg":47,"it":1530,"bonus":1520,"neg":-1,"total":3049},{"pos":10,"team":"GR GREMETAL","pts":165,"j":115,"v":50,"e":15,"d":50,"gp":322,"gc":299,"sg":23,"it":1435,"bonus":1240,"neg":-1,"total":2674},{"pos":11,"team":"A.D. SUZANO","pts":167,"j":115,"v":47,"e":26,"d":42,"gp":303,"gc":279,"sg":24,"it":1452,"bonus":1130,"neg":-9,"total":2573},{"pos":12,"team":"CTC VILA EMA","pts":161,"j":115,"v":49,"e":14,"d":52,"gp":286,"gc":300,"sg":-14,"it":1400,"bonus":1160,"neg":-14,"total":2546},{"pos":13,"team":"S.E.R. CAIEIRAS","pts":143,"j":115,"v":42,"e":17,"d":56,"gp":252,"gc":345,"sg":-93,"it":1243,"bonus":1270,"neg":-2,"total":2511},{"pos":14,"team":"AD SANTO ANDRÉ FUTSAL","pts":145,"j":116,"v":42,"e":19,"d":55,"gp":310,"gc":334,"sg":-24,"it":1250,"bonus":1110,"neg":-32,"total":2328},{"pos":15,"team":"ADEF/COTIA","pts":167,"j":113,"v":50,"e":17,"d":46,"gp":304,"gc":297,"sg":7,"it":1478,"bonus":780,"neg":-2,"total":2256},{"pos":16,"team":"MX7 DIADEMA","pts":147,"j":116,"v":42,"e":21,"d":53,"gp":288,"gc":324,"sg":-36,"it":1267,"bonus":790,"neg":-2,"total":2055},{"pos":17,"team":"G.D.R. 7 DE SETEMBRO","pts":155,"j":113,"v":47,"e":14,"d":52,"gp":290,"gc":335,"sg":-45,"it":1372,"bonus":680,"neg":-25,"total":2027},{"pos":18,"team":"AE FRIBURGO","pts":142,"j":113,"v":44,"e":10,"d":59,"gp":285,"gc":316,"sg":-31,"it":1257,"bonus":460,"neg":-8,"total":1709},{"pos":19,"team":"AE FUTMAX","pts":120,"j":117,"v":35,"e":15,"d":67,"gp":191,"gc":346,"sg":-155,"it":1026,"bonus":610,"neg":-3,"total":1633},{"pos":20,"team":"A. PAULISTA FC MOOCA","pts":115,"j":112,"v":33,"e":16,"d":63,"gp":264,"gc":364,"sg":-100,"it":1027,"bonus":600,"neg":-4,"total":1623},{"pos":21,"team":"OCIAN PRAIA CLUBE","pts":130,"j":113,"v":37,"e":19,"d":57,"gp":248,"gc":290,"sg":-42,"it":1150,"bonus":500,"neg":-30,"total":1620},{"pos":22,"team":"AD NANDO GRANA","pts":134,"j":113,"v":40,"e":14,"d":59,"gp":291,"gc":357,"sg":-66,"it":1186,"bonus":420,"neg":-4,"total":1602},{"pos":23,"team":"CHUTE FUTSAL","pts":120,"j":113,"v":35,"e":15,"d":63,"gp":259,"gc":346,"sg":-87,"it":1062,"bonus":500,"neg":-7,"total":1555},{"pos":24,"team":"AA WIMPRO GUARULHOS","pts":72,"j":115,"v":21,"e":9,"d":85,"gp":159,"gc":403,"sg":-244,"it":626,"bonus":420,"neg":-83,"total":963}];
 const fmt = n => n.toLocaleString('pt-BR');
 const sgn = n => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n));
 function renderClassif() {
